@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/nav_destination_contactController">
+
+    <fragment
+        android:id="@+id/nav_destination_contactController"
+        android:name="com.example.myapplication.ContactController"
+        android:label="fragment_contact_controller"
+        tools:layout="@layout/fragment_contact_controller" />
+    <fragment
+        android:id="@+id/nav_destination_dialogController"
+        android:name="com.example.myapplication.DialogController"
+        android:label="fragment_dialog_controller"
+        tools:layout="@layout/fragment_dialog_controller" />
+</navigation>
