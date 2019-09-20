@@ -4,7 +4,7 @@
     android:id="@+id/frame_dialog"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DialogController">
+    tools:context="com.example.CryptoChat.controllers.DialogController">
 
     <!-- TODO: Update blank fragment layout -->
     <com.stfalcon.chatkit.dialogs.DialogsList

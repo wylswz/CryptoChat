@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/nav_destination_contactController"
-        android:name="com.example.myapplication.ContactController"
+        android:name="com.example.CryptoChat.controllers.ContactController"
         android:label="fragment_contact_controller"
         tools:layout="@layout/fragment_contact_controller" />
     <fragment
         android:id="@+id/nav_destination_dialogController"
-        android:name="com.example.myapplication.DialogController"
+        android:name="com.example.CryptoChat.controllers.DialogController"
         android:label="fragment_dialog_controller"
         tools:layout="@layout/fragment_dialog_controller" />
 </navigation>

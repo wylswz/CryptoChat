@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.example.CryptoChat.controllers.MainActivity">
 
     <fragment
         android:id="@+id/nav_controller"
@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nav_controller"
         app:layout_constraintVertical_bias="0.492"
-        app:menu="@menu/bottom_nav" />
+        app:menu="@menu/button_nav" />
 
 
 
