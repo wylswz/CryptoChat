@@ -15,7 +15,6 @@ public class FakeContactProvider extends ContactProvider {
         for (int i=0;i<100;i++) {
             users.add(new User(Integer.valueOf(i).toString(),"Contact - " +i,"", true));
         }
-
     }
 
     @Override

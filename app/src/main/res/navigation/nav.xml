@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_destination_contactController"
-        android:name="com.example.CryptoChat.controllers.ContactController"
+        android:name="com.example.CryptoChat.controllers.ContactListController"
         android:label="fragment_contact_controller"
         tools:layout="@layout/fragment_contact_controller" />
     <fragment
@@ -15,4 +15,9 @@
         android:name="com.example.CryptoChat.controllers.DialogController"
         android:label="fragment_dialog_controller"
         tools:layout="@layout/fragment_dialog_controller" />
+    <fragment
+        android:id="@+id/nav_destination_settingsController"
+        android:name="com.example.CryptoChat.controllers.SettingsController"
+        android:label="fragment_settings_controller"
+        tools:layout="@layout/fragment_settings_controller" />
 </navigation>

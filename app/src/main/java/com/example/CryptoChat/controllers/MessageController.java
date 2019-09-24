@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +35,7 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
     private static final int TOTAL_MESSAGES_COUNT = 100;
 
     protected final String senderId = "0";
+    protected final String receiverId = "1";
     protected ImageLoader imageLoader;
     protected MessagesListAdapter<Message> messagesAdapter;
 
@@ -54,6 +57,7 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
 
         setContentView(R.layout.activity_messages_controller);
 
+
         this.messagesList = (MessagesList) findViewById(R.id.messagesList);
         initAdapter();
 
@@ -62,6 +66,8 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
         input.setTypingListener(this);
         input.setAttachmentsListener(this);
     }
+
+
 
     private void initAdapter() {
         messagesAdapter = new MessagesListAdapter<>(senderId, imageLoader);
@@ -89,6 +95,7 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
     public boolean onCreateOptionsMenu(Menu menu) {
         this.menu = menu;
         getMenuInflater().inflate(R.menu.chat_actions_menu, menu);
+        getMenuInflater().inflate(R.menu.toolbar_message, menu);
         onSelectionChanged(0);
         return true;
     }
@@ -103,6 +110,10 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
                 messagesAdapter.copySelectedMessagesText(this, getMessageStringFormatter(), true);
                 AppUtils.showToast(this, R.string.copied_message, true);
                 break;
+            case R.id.edit_contact_in_chat:
+                Intent intent = new Intent(this, ContactSettingsController.class);
+                intent.putExtra("uid", receiverId);
+                startActivity(intent);
         }
         return true;
     }

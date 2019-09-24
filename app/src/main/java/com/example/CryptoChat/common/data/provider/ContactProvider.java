@@ -53,8 +53,14 @@ public abstract class ContactProvider {
         throw new ObjectNotExistException("User object does not exist");
     }
 
+
+
     public User getUser(int idx) {
         return getUsers().get(idx);
+    }
+
+    public void setUser(int idx, User user) {
+        getUsers().set(idx, user);
     }
 
     public int getCount() {
