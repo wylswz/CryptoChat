@@ -13,7 +13,7 @@ import com.example.CryptoChat.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends FragmentActivity implements DialogController.OnFragmentInteractionListener,
-ContactController.OnFragmentInteractionListener{
+ContactListController.OnFragmentInteractionListener, SettingsController.OnFragmentInteractionListener{
 
     public static final String EXTRA_MESSAGE = "com.example.CryptoChat.MESSAGE";
 
