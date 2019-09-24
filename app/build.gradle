@@ -36,4 +36,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.1.0'
     implementation 'com.github.stfalcon:chatkit:0.3.3'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'androidx.biometric:biometric:1.0.0-alpha03'
 }

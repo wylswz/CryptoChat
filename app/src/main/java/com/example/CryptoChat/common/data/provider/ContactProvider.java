@@ -6,6 +6,10 @@ import com.example.CryptoChat.common.data.models.User;
 
 import java.util.ArrayList;
 
+
+/*
+* TODO: Implement singleton pattern with getInstance() method
+* */
 public abstract class ContactProvider {
 
     private ArrayList<User> users;

@@ -1,25 +1,21 @@
 package com.example.CryptoChat.controllers;
 
-import com.example.CryptoChat.R;
-import com.example.CryptoChat.common.data.fake.DialogsFixtures;
-import com.example.CryptoChat.common.data.models.Dialog;
-
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.CryptoChat.utils.AppUtils;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.example.CryptoChat.R;
+import com.example.CryptoChat.common.data.fake.DialogsFixtures;
+import com.example.CryptoChat.common.data.models.Dialog;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.dialogs.DialogsList;

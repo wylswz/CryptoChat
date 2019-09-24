@@ -1,14 +1,15 @@
 package com.example.CryptoChat.controllers;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CryptoChat.R;
-import com.example.CryptoChat.utils.AppUtils;
 
 public class ContactSettingsController extends AppCompatActivity {
 
@@ -21,7 +22,14 @@ public class ContactSettingsController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         uid = (String)intent.getStringExtra("uid");
+
         setContentView(R.layout.activity_contact_settings);
+
+        EditText alias = findViewById(R.id.edit_contact_alias);
+        alias.setText(uid);
+        /*
+        * TODO: Fetch user object from provider and set default alias to EditText field
+        * */
 
     }
 
@@ -46,6 +54,12 @@ public class ContactSettingsController extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    public static void open(Context context, String uid) {
+        Intent intent = new Intent(context, ContactSettingsController.class);
+        intent.putExtra("uid", uid);
+        context.startActivity(intent);
     }
 
 

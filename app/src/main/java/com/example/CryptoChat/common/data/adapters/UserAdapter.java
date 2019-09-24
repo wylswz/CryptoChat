@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.CryptoChat.common.data.provider.ContactProvider;
 import com.example.CryptoChat.R;
+import com.example.CryptoChat.common.data.provider.ContactProvider;
 
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {

@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -111,9 +109,7 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
                 AppUtils.showToast(this, R.string.copied_message, true);
                 break;
             case R.id.edit_contact_in_chat:
-                Intent intent = new Intent(this, ContactSettingsController.class);
-                intent.putExtra("uid", receiverId);
-                startActivity(intent);
+                ContactSettingsController.open(this,this.receiverId);
         }
         return true;
     }
