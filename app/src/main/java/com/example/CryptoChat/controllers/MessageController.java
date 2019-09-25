@@ -56,10 +56,10 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
         setContentView(R.layout.activity_messages_controller);
 
 
-        this.messagesList = (MessagesList) findViewById(R.id.messagesList);
+        this.messagesList = findViewById(R.id.messagesList);
         initAdapter();
 
-        MessageInput input = (MessageInput) findViewById(R.id.input);
+        MessageInput input = findViewById(R.id.input);
         input.setInputListener(this);
         input.setTypingListener(this);
         input.setAttachmentsListener(this);
@@ -86,6 +86,7 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
     @Override
     protected void onStart() {
         super.onStart();
+        // TODO: Load local messages instead of random fake messages
         messagesAdapter.addToStart(MessagesFixtures.getTextMessage(), true);
     }
 
@@ -140,6 +141,7 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
 
     protected void loadMessages() {
         //imitation of internet connection
+        // TODO: Load real messages (with pagination)
         new Handler().postDelayed(() -> {
             ArrayList<Message> messages = MessagesFixtures.getMessages(lastLoadedDate);
             lastLoadedDate = messages.get(messages.size() - 1).getCreatedAt();
@@ -182,6 +184,8 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
     public boolean onSubmit(CharSequence input) {
         messagesAdapter.addToStart(
                 MessagesFixtures.getTextMessage(input.toString()), true);
+
+        // TODO: Send the message to server side along with receiver ID
         return true;
     }
 
