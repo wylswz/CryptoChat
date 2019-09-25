@@ -68,6 +68,7 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
 
 
     private void initAdapter() {
+
         messagesAdapter = new MessagesListAdapter<>(senderId, imageLoader);
         messagesAdapter.enableSelectionMode(this);
         messagesAdapter.setLoadMoreListener(this);

@@ -38,7 +38,8 @@ public class MainActivity extends FragmentActivity implements DialogController.O
                 super.onAuthenticationError(errorCode, errString);
                 Log.v("Auth", "Auth error");
                 //TODO: In prod env, should exit the program
-                show();
+                //show();
+                System.exit(0);
 
 
 
