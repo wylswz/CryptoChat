@@ -4,23 +4,23 @@ import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.models.Message;
 import com.example.CryptoChat.common.data.models.MessageDao;
 
-import org.greenrobot.greendao.AbstractDaoSession;
-
 import java.util.Date;
 import java.util.List;
 
 public class SQLiteMessageProvider extends MessageProvider {
 
-    public SQLiteMessageProvider instance = null;
-    public MessageDao messageDao;
+    private static SQLiteMessageProvider instance = null;
+    private MessageDao messageDao;
+    private DaoSession session;
 
-    public SQLiteMessageProvider getInstance(DaoSession session){
+    public static SQLiteMessageProvider getInstance(DaoSession session){
 
         if (instance == null) {
-            synchronized (instance) {
+            synchronized (SQLiteMessageProvider.class) {
                 if (instance == null) {
                     instance = new SQLiteMessageProvider();
-                    this.messageDao = session.getMessageDao();
+                    instance.messageDao = session.getMessageDao();
+                    instance.session = session;
                 }
             }
         }
@@ -29,36 +29,80 @@ public class SQLiteMessageProvider extends MessageProvider {
 
     @Override
     public Message getMessageById(String Id) {
+        List<Message> l = this.messageDao.queryBuilder()
+                .where(MessageDao.Properties.Id.eq(Id))
+                .orderDesc(MessageDao.Properties.CreatedAt)
+                .list();
+        if (l.size()>=1) return l.get(0);
         return null;
     }
 
     @Override
     public Message getMessageByPk(Long pk) {
+        List<Message> l = this.messageDao.queryBuilder()
+                .where(MessageDao.Properties.DbId.eq(pk))
+                .orderDesc(MessageDao.Properties.CreatedAt)
+                .list();
+        if (l.size()>=1) return l.get(0);
         return null;
     }
 
     @Override
     public List<Message> getMessages(Date from, Date to, Long userDbId) {
-        return null;
+        List<Message> l = this.messageDao.queryBuilder()
+                .where(MessageDao.Properties.UserDbId.eq(userDbId))
+                .where(MessageDao.Properties.CreatedAt.ge(from))
+                .where(MessageDao.Properties.CreatedAt.lt(to))
+                .orderDesc(MessageDao.Properties.CreatedAt)
+                .list();
+        return l;
     }
 
     @Override
-    public List<Message> getMessages(Long userDbId) {
-        return null;
+    public List<Message> getMessages(Long userDbId, int limit, int offset) {
+        List<Message> l = this.messageDao.queryBuilder()
+                .where(MessageDao.Properties.UserDbId.eq(userDbId))
+                .orderDesc(MessageDao.Properties.CreatedAt)
+                .limit(limit)
+                .offset(offset)
+                .list();
+
+        return l;
+    }
+
+
+    public List<Message> getMessages(String userId, int limit, int offset) {
+        List<Message> l = this.messageDao.queryBuilder()
+                .where(MessageDao.Properties.UserId.eq(userId))
+                .orderDesc(MessageDao.Properties.CreatedAt)
+                .limit(limit)
+                .offset(offset)
+                .list();
+
+        return l;
     }
 
     @Override
     public void InsertMessage(Message m) {
-
+        this.messageDao.insert(m);
     }
 
     @Override
     public void DropMessageById(String Id) {
+        this.messageDao.queryBuilder()
+                .where(MessageDao.Properties.Id.eq(Id))
+                .buildDelete().executeDeleteWithoutDetachingEntities();
+        session.clear();
+        // Clear the session cache
 
     }
 
     @Override
     public void DropMessageByPk(Long pk) {
+        this.messageDao.queryBuilder()
+                .where(MessageDao.Properties.DbId.eq(pk))
+                .buildDelete().executeDeleteWithoutDetachingEntities();
+        session.clear();
 
     }
 

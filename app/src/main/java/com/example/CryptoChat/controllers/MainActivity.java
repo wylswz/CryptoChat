@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.models.DaoMaster;
 import com.example.CryptoChat.common.data.models.DaoSession;
+import com.example.CryptoChat.utils.DBUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends FragmentActivity implements DialogController.OnFragmentInteractionListener,
@@ -29,7 +30,9 @@ public class MainActivity extends FragmentActivity implements DialogController.O
         verifyAuth();
         initUI();
         hide();
-        mDaoSession =new DaoMaster(new DaoMaster.DevOpenHelper(this,"DataStore.db").getWritableDb()).newSession();
+
+        mDaoSession =DBUtils.getDaoSession(this);
+        DBUtils.initDB(this);
 
         /*
          * Navigating by setting same ID for menu items and nav items
@@ -44,12 +47,9 @@ public class MainActivity extends FragmentActivity implements DialogController.O
                 super.onAuthenticationError(errorCode, errString);
                 Log.v("Auth", "Auth error");
                 //TODO: In prod env, should exit the program
-                //show();
+                show();
 
-                System.exit(0);
-
-
-
+                //System.exit(0);
             }
 
             @Override
