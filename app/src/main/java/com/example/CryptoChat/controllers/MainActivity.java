@@ -1,5 +1,6 @@
 package com.example.CryptoChat.controllers;
 
+import android.app.Application;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,18 +14,23 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.CryptoChat.R;
+import com.example.CryptoChat.common.data.models.DaoMaster;
+import com.example.CryptoChat.common.data.models.DaoSession;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends FragmentActivity implements DialogController.OnFragmentInteractionListener,
         ContactListController.OnFragmentInteractionListener, SettingsController.OnFragmentInteractionListener, Authenticatable {
 
 
+    private DaoSession mDaoSession;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         verifyAuth();
         initUI();
         hide();
+        mDaoSession =new DaoMaster(new DaoMaster.DevOpenHelper(this,"DataStore.db").getWritableDb()).newSession();
+
         /*
          * Navigating by setting same ID for menu items and nav items
          * */
@@ -39,6 +45,7 @@ public class MainActivity extends FragmentActivity implements DialogController.O
                 Log.v("Auth", "Auth error");
                 //TODO: In prod env, should exit the program
                 //show();
+
                 System.exit(0);
 
 
@@ -50,6 +57,7 @@ public class MainActivity extends FragmentActivity implements DialogController.O
                 super.onAuthenticationSucceeded(result);
                 AuthenticationManager.unlock();
                 show();
+
             }
 
             @Override
