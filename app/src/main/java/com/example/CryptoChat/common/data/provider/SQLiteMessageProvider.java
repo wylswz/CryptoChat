@@ -37,20 +37,11 @@ public class SQLiteMessageProvider extends MessageProvider {
         return null;
     }
 
-    @Override
-    public Message getMessageByPk(Long pk) {
-        List<Message> l = this.messageDao.queryBuilder()
-                .where(MessageDao.Properties.DbId.eq(pk))
-                .orderDesc(MessageDao.Properties.CreatedAt)
-                .list();
-        if (l.size()>=1) return l.get(0);
-        return null;
-    }
 
     @Override
-    public List<Message> getMessages(Date from, Date to, Long userDbId) {
+    public List<Message> getMessages(Date from, Date to, String userId) {
         List<Message> l = this.messageDao.queryBuilder()
-                .where(MessageDao.Properties.UserDbId.eq(userDbId))
+                .where(MessageDao.Properties.UserId.eq(userId))
                 .where(MessageDao.Properties.CreatedAt.ge(from))
                 .where(MessageDao.Properties.CreatedAt.lt(to))
                 .orderDesc(MessageDao.Properties.CreatedAt)
@@ -58,17 +49,6 @@ public class SQLiteMessageProvider extends MessageProvider {
         return l;
     }
 
-    @Override
-    public List<Message> getMessages(Long userDbId, int limit, int offset) {
-        List<Message> l = this.messageDao.queryBuilder()
-                .where(MessageDao.Properties.UserDbId.eq(userDbId))
-                .orderDesc(MessageDao.Properties.CreatedAt)
-                .limit(limit)
-                .offset(offset)
-                .list();
-
-        return l;
-    }
 
 
     public List<Message> getMessages(String userId, int limit, int offset) {
@@ -97,13 +77,6 @@ public class SQLiteMessageProvider extends MessageProvider {
 
     }
 
-    @Override
-    public void DropMessageByPk(Long pk) {
-        this.messageDao.queryBuilder()
-                .where(MessageDao.Properties.DbId.eq(pk))
-                .buildDelete().executeDeleteWithoutDetachingEntities();
-        session.clear();
 
-    }
 
 }
