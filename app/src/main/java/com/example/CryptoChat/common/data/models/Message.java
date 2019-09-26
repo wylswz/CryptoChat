@@ -20,13 +20,10 @@ public class Message implements IMessage,
     private String id;
 
 
-    private long dbId;
-
     @NotNull
     private String text;
 
-    @NotNull
-    private Long userDbId;
+
 
     @NotNull
     private String userId;
@@ -37,6 +34,7 @@ public class Message implements IMessage,
 
     @Transient
     private User user;
+
     @Transient
     private Image image;
 
@@ -53,29 +51,28 @@ public class Message implements IMessage,
 
     }
 
-    @Generated(hash = 538719373)
-    public Message(String id, long dbId, @NotNull String text, @NotNull Long userDbId, @NotNull String userId,
-            Date createdAt) {
-        this.id = id;
-        this.dbId = dbId;
-        this.text = text;
-        this.userDbId = userDbId;
-        this.userId = userId;
-        this.createdAt = createdAt;
-    }
 
     @Generated(hash = 637306882)
     public Message() {
     }
+
+    @Generated(hash = 1481737726)
+    public Message(String id, @NotNull String text, @NotNull String userId, Date createdAt) {
+        this.id = id;
+        this.text = text;
+        this.userId = userId;
+        this.createdAt = createdAt;
+    }
+
+
+
 
     @Override
     public String getId() {
         return id;
     }
 
-    public Long getDbId() {
-        return dbId;
-    }
+
 
     @Override
     public String getText() {
@@ -89,7 +86,12 @@ public class Message implements IMessage,
 
     @Override
     public User getUser() {
-        return new User("asd","Name", "avatar", false);
+        return new User("0","Name", "avatar", false);
+        // UserId ==0 -> message by phone owner
+        /* TODO: Add logic: if user id == current user id, then return a fake user with ID = 0
+            Otherwise query the user from database. If it does not exist, create a temporary
+            unknown user (Maybe alert)
+        */
     }
 
     @Override
@@ -118,17 +120,7 @@ public class Message implements IMessage,
         this.id = id;
     }
 
-    public void setDbId(Long dbId) {
-        this.dbId = dbId;
-    }
 
-    public Long getUserDbId() {
-        return this.userDbId;
-    }
-
-    public void setUserDbId(Long userDbId) {
-        this.userDbId = userDbId;
-    }
 
     public String getUserId() {
         return this.userId;
@@ -138,9 +130,7 @@ public class Message implements IMessage,
         this.userId = userId;
     }
 
-    public void setDbId(long dbId) {
-        this.dbId = dbId;
-    }
+
 
 
     public static class Image {

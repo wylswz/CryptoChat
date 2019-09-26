@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.fake.MessagesFixtures;
-import com.example.CryptoChat.common.data.models.DaoMaster;
 import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.models.Message;
 import com.example.CryptoChat.common.data.models.User;
@@ -29,14 +28,13 @@ import com.stfalcon.chatkit.messages.MessagesList;
 import com.stfalcon.chatkit.messages.MessagesListAdapter;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
 public class MessageController extends AppCompatActivity implements MessagesListAdapter.OnLoadMoreListener,
-MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.TypingListener, MessageInput.AttachmentsListener {
+        MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.TypingListener, MessageInput.AttachmentsListener {
     private static final int TOTAL_MESSAGES_COUNT = 100;
 
     protected final String senderId = "0";
@@ -59,7 +57,7 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ds =DBUtils.getDaoSession(this);
+        ds = DBUtils.getDaoSession(this);
         mp = SQLiteMessageProvider.getInstance(ds);
         offset = 0;
         limit = 10;
@@ -82,7 +80,6 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
         input.setTypingListener(this);
         input.setAttachmentsListener(this);
     }
-
 
 
     private void initAdapter() {
@@ -135,7 +132,7 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
                 AppUtils.showToast(this, R.string.copied_message, true);
                 break;
             case R.id.edit_contact_in_chat:
-                ContactSettingsController.open(this,this.receiverId);
+                ContactSettingsController.open(this, this.receiverId);
         }
         return true;
     }
@@ -211,13 +208,11 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
     @Override
     public boolean onSubmit(CharSequence input) {
 
-        Message msg = new Message(UUID.randomUUID().toString(),new User("1","asd","",false),input.toString());
+        Message msg = new Message(UUID.randomUUID().toString(), new User("1", "asd", "", false), input.toString());
         msg.setUserId(receiverId);
-        msg.setUserDbId(1L);
         mp.InsertMessage(msg);
-        messagesAdapter.addToStart(msg,true);
+        messagesAdapter.addToStart(msg, true);
         offset += 1;
-
 
 
         // TODO: Send the message to server side along with receiver ID
