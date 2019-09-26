@@ -123,7 +123,12 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_delete:
-                messagesAdapter.deleteSelectedMessages();
+                List<Message> messages = messagesAdapter.getSelectedMessages();
+                for (Message m : messages) {
+                    mp.DropMessageById(m.getId());
+                    messagesAdapter.delete(m);
+                }
+
                 break;
             case R.id.action_copy:
                 messagesAdapter.copySelectedMessagesText(this, getMessageStringFormatter(), true);
