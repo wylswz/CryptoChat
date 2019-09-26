@@ -4,23 +4,23 @@ import com.stfalcon.chatkit.commons.models.IMessage;
 import com.stfalcon.chatkit.commons.models.MessageContentType;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Transient;
 
 import java.util.Date;
-import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class Message implements IMessage,
         MessageContentType.Image, /*this is for default image activity_messages_controller implementation*/
         MessageContentType /*and this one is for custom content type (in this case - voice message)*/ {
-    @Id
+    @Index(unique = true)
     private String id;
 
-    @Index(unique = true)
-    private Long dbId;
+
+    private long dbId;
 
     @NotNull
     private String text;
@@ -28,8 +28,11 @@ public class Message implements IMessage,
     @NotNull
     private Long userDbId;
 
-    private Date createdAt;
+    @NotNull
+    private String userId;
 
+
+    private Date createdAt;
 
 
     @Transient
@@ -47,14 +50,17 @@ public class Message implements IMessage,
         this.text = text;
         this.user = user;
         this.createdAt = createdAt;
+
     }
 
-    @Generated(hash = 2012611862)
-    public Message(String id, Long dbId, @NotNull String text, @NotNull Long userDbId, Date createdAt) {
+    @Generated(hash = 538719373)
+    public Message(String id, long dbId, @NotNull String text, @NotNull Long userDbId, @NotNull String userId,
+            Date createdAt) {
         this.id = id;
         this.dbId = dbId;
         this.text = text;
         this.userDbId = userDbId;
+        this.userId = userId;
         this.createdAt = createdAt;
     }
 
@@ -67,7 +73,9 @@ public class Message implements IMessage,
         return id;
     }
 
-    public Long getDbId(){return dbId;}
+    public Long getDbId() {
+        return dbId;
+    }
 
     @Override
     public String getText() {
@@ -81,7 +89,7 @@ public class Message implements IMessage,
 
     @Override
     public User getUser() {
-        return this.user;
+        return new User("asd","Name", "avatar", false);
     }
 
     @Override
@@ -120,6 +128,18 @@ public class Message implements IMessage,
 
     public void setUserDbId(Long userDbId) {
         this.userDbId = userDbId;
+    }
+
+    public String getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setDbId(long dbId) {
+        this.dbId = dbId;
     }
 
 

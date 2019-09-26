@@ -15,8 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.fake.MessagesFixtures;
+import com.example.CryptoChat.common.data.models.DaoMaster;
+import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.models.Message;
+import com.example.CryptoChat.common.data.models.User;
+import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.utils.AppUtils;
+import com.example.CryptoChat.utils.DBUtils;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.messages.MessageInput;
@@ -26,7 +31,9 @@ import com.stfalcon.chatkit.messages.MessagesListAdapter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 public class MessageController extends AppCompatActivity implements MessagesListAdapter.OnLoadMoreListener,
 MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.TypingListener, MessageInput.AttachmentsListener {
@@ -42,9 +49,20 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
     private Date lastLoadedDate;
     private MessagesList messagesList;
 
+    private int offset;
+    private int limit;
+
+    private SQLiteMessageProvider mp;
+    private DaoSession ds;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ds =DBUtils.getDaoSession(this);
+        mp = SQLiteMessageProvider.getInstance(ds);
+        offset = 0;
+        limit = 10;
 
         imageLoader = new ImageLoader() {
             @Override
@@ -88,7 +106,8 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
     protected void onStart() {
         super.onStart();
         // TODO: Load local messages instead of random fake messages
-        messagesAdapter.addToStart(MessagesFixtures.getTextMessage(), true);
+        loadMessages();
+
     }
 
     @Override
@@ -104,7 +123,12 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_delete:
-                messagesAdapter.deleteSelectedMessages();
+                List<Message> messages = messagesAdapter.getSelectedMessages();
+                for (Message m : messages) {
+                    mp.DropMessageById(m.getId());
+                    messagesAdapter.delete(m);
+                }
+
                 break;
             case R.id.action_copy:
                 messagesAdapter.copySelectedMessagesText(this, getMessageStringFormatter(), true);
@@ -144,10 +168,13 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
         //imitation of internet connection
         // TODO: Load real messages (with pagination)
         new Handler().postDelayed(() -> {
-            ArrayList<Message> messages = MessagesFixtures.getMessages(lastLoadedDate);
-            lastLoadedDate = messages.get(messages.size() - 1).getCreatedAt();
+            //ArrayList<Message> messages = MessagesFixtures.getMessages(lastLoadedDate);
+            List<Message> messages = mp.getMessages(receiverId, limit, offset);
+            offset = offset + limit;
             messagesAdapter.addToEnd(messages, false);
-        }, 1000);
+        }, 100);
+
+
     }
 
     public static void open(Context context) {
@@ -183,8 +210,15 @@ MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.
 
     @Override
     public boolean onSubmit(CharSequence input) {
-        messagesAdapter.addToStart(
-                MessagesFixtures.getTextMessage(input.toString()), true);
+
+        Message msg = new Message(UUID.randomUUID().toString(),new User("1","asd","",false),input.toString());
+        msg.setUserId(receiverId);
+        msg.setUserDbId(1L);
+        mp.InsertMessage(msg);
+        messagesAdapter.addToStart(msg,true);
+        offset += 1;
+
+
 
         // TODO: Send the message to server side along with receiver ID
         return true;

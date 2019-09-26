@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     package="com.example.CryptoChat">
 
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -35,8 +40,8 @@
 
     </application>
 
-    <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
+
 
     <uses-feature android:name="android.hardware.nfc" android:required="true" />
 </manifest>
