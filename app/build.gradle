@@ -23,6 +23,21 @@ android {
     }
 }
 
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        google() // add repository
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2' // add plugin
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -37,4 +52,5 @@ dependencies {
     implementation 'com.github.stfalcon:chatkit:0.3.3'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'androidx.biometric:biometric:1.0.0-beta02'
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
 }
