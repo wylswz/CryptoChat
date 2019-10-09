@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.models.DaoMaster;
 import com.example.CryptoChat.common.data.models.DaoSession;
+import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.utils.DBUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,6 +34,7 @@ public class MainActivity extends FragmentActivity implements DialogController.O
 
         mDaoSession =DBUtils.getDaoSession(this);
         DBUtils.initDB(this);
+        SQLiteMessageProvider.getInstance(mDaoSession);
 
         /*
          * Navigating by setting same ID for menu items and nav items

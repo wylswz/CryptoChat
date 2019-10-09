@@ -7,8 +7,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.fake.MessagesFixtures;
 import com.example.CryptoChat.common.data.models.DaoSession;
+import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.models.Message;
 import com.example.CryptoChat.common.data.models.User;
+import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.utils.AppUtils;
 import com.example.CryptoChat.utils.DBUtils;
@@ -27,24 +27,24 @@ import com.stfalcon.chatkit.messages.MessageInput;
 import com.stfalcon.chatkit.messages.MessagesList;
 import com.stfalcon.chatkit.messages.MessagesListAdapter;
 
+import org.greenrobot.greendao.DaoException;
+
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
 public class MessageController extends AppCompatActivity implements MessagesListAdapter.OnLoadMoreListener,
         MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.TypingListener, MessageInput.AttachmentsListener {
-    private static final int TOTAL_MESSAGES_COUNT = 100;
+    private static final int TOTAL_MESSAGES_COUNT = 10000;
 
     protected final String senderId = "0";
-    protected final String receiverId = "1";
+    protected String receiverId = "";
     protected ImageLoader imageLoader;
     protected MessagesListAdapter<Message> messagesAdapter;
 
     private Menu menu;
     private int selectionCount;
-    private Date lastLoadedDate;
     private MessagesList messagesList;
 
     private int offset;
@@ -53,21 +53,28 @@ public class MessageController extends AppCompatActivity implements MessagesList
     private SQLiteMessageProvider mp;
     private DaoSession ds;
 
+    private Dialog dialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.receiverId = getIntent().getStringExtra("receiverId");
+
+
 
         ds = DBUtils.getDaoSession(this);
         mp = SQLiteMessageProvider.getInstance(ds);
         offset = 0;
         limit = 10;
+        try {
+            this.dialog = SQLiteDialogProvider.getInstance(ds).getDialogByReceiverId(receiverId);
+        } catch (DaoException e) {
+            this.dialog = null;
+        }
+        Log.i("MessageController", receiverId);
 
-        imageLoader = new ImageLoader() {
-            @Override
-            public void loadImage(ImageView imageView, @Nullable String url, @Nullable Object payload) {
-                Picasso.get().load(url).into(imageView);
-            }
-        };
+
+        imageLoader = (imageView, url, payload) -> Picasso.get().load(url).into(imageView);
 
         setContentView(R.layout.activity_messages_controller);
 
@@ -88,14 +95,9 @@ public class MessageController extends AppCompatActivity implements MessagesList
         messagesAdapter.enableSelectionMode(this);
         messagesAdapter.setLoadMoreListener(this);
         messagesAdapter.registerViewClickListener(R.id.messageUserAvatar,
-                new MessagesListAdapter.OnMessageViewClickListener<Message>() {
-                    @Override
-                    public void onMessageViewClick(View view, Message message) {
-                        AppUtils.showToast(MessageController.this,
-                                message.getUser().getName() + " avatar click",
-                                false);
-                    }
-                });
+                (view, message) -> AppUtils.showToast(MessageController.this,
+                        message.getUser().getName() + " avatar click",
+                        false));
         this.messagesList.setAdapter(messagesAdapter);
     }
 
@@ -165,32 +167,28 @@ public class MessageController extends AppCompatActivity implements MessagesList
         //imitation of internet connection
         // TODO: Load real messages (with pagination)
         new Handler().postDelayed(() -> {
-            //ArrayList<Message> messages = MessagesFixtures.getMessages(lastLoadedDate);
             List<Message> messages = mp.getMessages(receiverId, limit, offset);
             offset = offset + limit;
             messagesAdapter.addToEnd(messages, false);
         }, 100);
-
-
     }
 
-    public static void open(Context context) {
-        context.startActivity(new Intent(context, MessageController.class));
+    public static void open(Context context, String receiverId) {
+        Intent intent = new Intent(context, MessageController.class);
+        intent.putExtra("receiverId", receiverId);
+        context.startActivity(intent);
     }
 
     private MessagesListAdapter.Formatter<Message> getMessageStringFormatter() {
-        return new MessagesListAdapter.Formatter<Message>() {
-            @Override
-            public String format(Message message) {
-                String createdAt = new SimpleDateFormat("MMM d, EEE 'at' h:mm a", Locale.getDefault())
-                        .format(message.getCreatedAt());
+        return message -> {
+            String createdAt = new SimpleDateFormat("MMM d, EEE 'at' h:mm a", Locale.getDefault())
+                    .format(message.getCreatedAt());
 
-                String text = message.getText();
-                if (text == null) text = "[attachment]";
+            String text = message.getText();
+            if (text == null) text = "[attachment]";
 
-                return String.format(Locale.getDefault(), "%s: %s (%s)",
-                        message.getUser().getName(), text, createdAt);
-            }
+            return String.format(Locale.getDefault(), "%s: %s (%s)",
+                    message.getUser().getName(), text, createdAt);
         };
     }
 
@@ -213,7 +211,10 @@ public class MessageController extends AppCompatActivity implements MessagesList
         mp.InsertMessage(msg);
         messagesAdapter.addToStart(msg, true);
         offset += 1;
-
+        if (this.dialog == null) {
+            this.dialog = new Dialog(receiverId,"Photo", receiverId,msg,0);
+            SQLiteDialogProvider.getInstance(ds).addDialog(this.dialog);
+        }
 
         // TODO: Send the message to server side along with receiver ID
         return true;

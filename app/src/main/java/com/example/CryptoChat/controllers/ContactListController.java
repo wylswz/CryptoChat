@@ -65,7 +65,9 @@ public class ContactListController extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -83,7 +85,7 @@ public class ContactListController extends Fragment {
         lm = new LinearLayoutManager(getActivity());
 
         if (view != null) {
-            UserAdapter adapter = new UserAdapter(new FakeContactProvider(),getContext());
+            UserAdapter adapter = new UserAdapter(FakeContactProvider.getInstance(),getContext());
             contactList = view.findViewById(R.id.contact_list);
             contactList.setLayoutManager(lm);
             ItemTouchHelper it = new ItemTouchHelper(new SwipeToDeleteCallback(adapter));
