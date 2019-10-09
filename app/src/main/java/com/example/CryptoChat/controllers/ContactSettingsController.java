@@ -21,15 +21,15 @@ public class ContactSettingsController extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        uid = (String)intent.getStringExtra("uid");
+        uid = (String) intent.getStringExtra("uid");
 
         setContentView(R.layout.activity_contact_settings);
 
         EditText alias = findViewById(R.id.edit_contact_alias);
         alias.setText(uid);
         /*
-        * TODO: Fetch user object from provider and set default alias to EditText field
-        * */
+         * TODO: Fetch user object from provider and set default alias to EditText field
+         * */
 
     }
 

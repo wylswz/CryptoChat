@@ -38,7 +38,7 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void SQLiteMessageProvider(){
+    public void SQLiteMessageProvider() {
         Context ctx = InstrumentationRegistry.getInstrumentation().getContext();
 
         //DBUtils.initDB(ctx);

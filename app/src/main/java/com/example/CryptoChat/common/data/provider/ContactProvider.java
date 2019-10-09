@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 
 /*
-* TODO: Implement singleton pattern with getInstance() method
-* */
+ * TODO: Implement singleton pattern with getInstance() method
+ * */
 public abstract class ContactProvider {
 
     private ArrayList<User> users;
@@ -56,7 +56,6 @@ public abstract class ContactProvider {
         }
         throw new ObjectNotExistException("User object does not exist");
     }
-
 
 
     public User getUser(int idx) {

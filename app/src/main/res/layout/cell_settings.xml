@@ -12,8 +12,7 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        >
+        android:foreground="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/settings_cell_name"

@@ -1,10 +1,6 @@
 package com.example.CryptoChat.controllers;
 
-import android.content.DialogInterface;
 import android.os.Handler;
-
-
-import android.widget.Button;
 
 import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.FragmentActivity;
@@ -14,15 +10,19 @@ import java.util.concurrent.Executor;
 
 public interface Authenticatable {
     public BiometricPrompt.AuthenticationCallback getCallback();
+
     public void verifyAuth();
+
     public void initUI();
+
     public FragmentActivity getBioActivity();
-    public default Handler getHandler(){
+
+    public default Handler getHandler() {
         return new Handler();
     }
 
     public default Executor getExecutor() {
-        return  new Executor() {
+        return new Executor() {
             @Override
             public void execute(Runnable command) {
                 getHandler().post(command);
@@ -31,7 +31,7 @@ public interface Authenticatable {
     }
 
 
-    public default void showBiometricPrompt(){
+    public default void showBiometricPrompt() {
 
 
         BiometricPrompt.PromptInfo promptInfo =

@@ -7,7 +7,8 @@ import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.models.DialogDao;
 
-import java.util.ArrayList;
+import org.greenrobot.greendao.DaoException;
+
 import java.util.List;
 
 /*
@@ -18,7 +19,7 @@ public class SQLiteDialogProvider {
     private DialogDao dialogDao;
     private DaoSession session;
 
-    public static SQLiteDialogProvider getInstance(DaoSession session){
+    public static SQLiteDialogProvider getInstance(DaoSession session) {
         if (instance == null) {
             synchronized (SQLiteMessageProvider.class) {
                 if (instance == null) {
@@ -55,10 +56,23 @@ public class SQLiteDialogProvider {
         return d;
     }
 
-    public Dialog dropDialog(String dialogId){
-        Dialog d = dialogDao.queryBuilder()
-                .where(DialogDao.Properties.Id.eq(dialogId)).uniqueOrThrow();
-        return d;
+    public void dropDialog(String dialogId) {
+        try {
+            dialogDao.queryBuilder()
+                    .where(DialogDao.Properties.Id.eq(dialogId)).buildDelete().executeDeleteWithoutDetachingEntities();
+
+            Log.i("SQLiteDialogProvider", dialogId);
+
+
+        } catch (DaoException e) {
+            Log.e("SQLiteDialogProvider", e.getMessage());
+        }
+
+
+    }
+
+    public void dropDialog(Dialog dialog) {
+        dialogDao.delete(dialog);
     }
 
     public void updateDialog(Dialog dialog) {

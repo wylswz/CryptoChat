@@ -10,7 +10,7 @@ public class FakeContactProvider extends ContactProvider {
     private static FakeContactProvider instance;
     private ArrayList<User> users;
 
-    public static FakeContactProvider getInstance(){
+    public static FakeContactProvider getInstance() {
         if (instance == null) {
             synchronized (FakeContactProvider.class) {
                 if (instance == null) {
@@ -22,16 +22,16 @@ public class FakeContactProvider extends ContactProvider {
     }
 
 
-    public FakeContactProvider(){
+    public FakeContactProvider() {
         super();
         users = new ArrayList<>();
-        for (int i=1;i<100;i++) {
-            users.add(new User(Integer.valueOf(i).toString(),"Contact - " +i,"", true));
+        for (int i = 1; i < 100; i++) {
+            users.add(new User(Integer.valueOf(i).toString(), "Contact - " + i, "", true));
         }
     }
 
     @Override
-    public ArrayList<User> getUsers(){
+    public ArrayList<User> getUsers() {
         return this.users;
     }
 }

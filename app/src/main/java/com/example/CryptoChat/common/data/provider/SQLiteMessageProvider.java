@@ -13,7 +13,7 @@ public class SQLiteMessageProvider extends MessageProvider {
     private MessageDao messageDao;
     private DaoSession session;
 
-    public static SQLiteMessageProvider getInstance(DaoSession session){
+    public static SQLiteMessageProvider getInstance(DaoSession session) {
 
         if (instance == null) {
             synchronized (SQLiteMessageProvider.class) {
@@ -29,12 +29,12 @@ public class SQLiteMessageProvider extends MessageProvider {
 
     @Override
     public Message getMessageById(String Id) {
-        try{
+        try {
             List<Message> l = this.messageDao.queryBuilder()
                     .where(MessageDao.Properties.Id.eq(Id))
                     .orderDesc(MessageDao.Properties.CreatedAt)
                     .list();
-            if (l.size()>=1) return l.get(0);
+            if (l.size() >= 1) return l.get(0);
         } catch (IllegalArgumentException e) {
             return null;
         }
@@ -44,7 +44,7 @@ public class SQLiteMessageProvider extends MessageProvider {
 
 
     @Override
-    public List<Message> getMessages(String userId,Date from, Date to) {
+    public List<Message> getMessages(String userId, Date from, Date to) {
         List<Message> l = this.messageDao.queryBuilder()
                 .where(MessageDao.Properties.UserId.eq(userId))
                 .where(MessageDao.Properties.CreatedAt.ge(from))
@@ -53,7 +53,6 @@ public class SQLiteMessageProvider extends MessageProvider {
                 .list();
         return l;
     }
-
 
 
     public List<Message> getMessages(String userId, int limit, int offset) {
@@ -81,7 +80,6 @@ public class SQLiteMessageProvider extends MessageProvider {
         // Clear the session cache
 
     }
-
 
 
 }
