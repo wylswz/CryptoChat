@@ -206,7 +206,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
     public boolean onSubmit(CharSequence input) {
 
         Message msg = new Message(UUID.randomUUID().toString(), new User("1", "asd", "", false), input.toString());
-        msg.setUserId(receiverId);
+        msg.setReceiverId(receiverId);
         mp.InsertMessage(msg);
         messagesAdapter.addToStart(msg, true);
         offset += 1;
