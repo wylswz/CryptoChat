@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CryptoChat.R;
+import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.fake.MessagesFixtures;
 import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.models.Dialog;
@@ -27,13 +28,15 @@ import com.stfalcon.chatkit.messages.MessageInput;
 import com.stfalcon.chatkit.messages.MessagesList;
 import com.stfalcon.chatkit.messages.MessagesListAdapter;
 
-import org.greenrobot.greendao.DaoException;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+
+/**
+ * TODO: Overide message adapter
+ */
 public class MessageController extends AppCompatActivity implements MessagesListAdapter.OnLoadMoreListener,
         MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.TypingListener, MessageInput.AttachmentsListener {
     private static final int TOTAL_MESSAGES_COUNT = 10000;
@@ -67,7 +70,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
         limit = 10;
         try {
             this.dialog = SQLiteDialogProvider.getInstance(ds).getDialogByReceiverId(receiverId);
-        } catch (DaoException e) {
+        } catch (ObjectNotExistException e) {
             this.dialog = null;
         }
         Log.i("MessageController", receiverId);
@@ -206,7 +209,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
     public boolean onSubmit(CharSequence input) {
 
         Message msg = new Message(UUID.randomUUID().toString(), new User("1", "asd", "", false), input.toString());
-        msg.setUserId(receiverId);
+        msg.setReceiverId(receiverId);
         mp.InsertMessage(msg);
         messagesAdapter.addToStart(msg, true);
         offset += 1;

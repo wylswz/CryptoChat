@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -69,7 +71,12 @@ public class SettingsController extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings_controller, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_settings_controller, container, false);
+        Toolbar tb = getActivity().findViewById(R.id.my_toolbar);
+        tb.setTitle("Settings");
+
+        return view;
     }
 
     @Override

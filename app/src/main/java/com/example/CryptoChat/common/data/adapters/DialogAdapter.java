@@ -1,9 +1,12 @@
 package com.example.CryptoChat.common.data.adapters;
 
+import android.content.Context;
+
 import androidx.annotation.Nullable;
 
 import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
+import com.example.CryptoChat.utils.DBUtils;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.commons.models.IDialog;
 import com.stfalcon.chatkit.commons.models.IMessage;
@@ -14,15 +17,33 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * This class extends DialogsListAdapter provided by ChatKit library therefore it
+ * must follow the pattern of that library
+ *
+ * - Adapter maintains a list locally, which is set whenever instantiated
+ * - When need to write database, write db first then update local list
+ * - Methods like sorting are trivial, our app doesn't sort dialog
+ *
+ * TODO:
+ *  - When new message arrive, following things will be done
+ *  - 1. Insert the new message to local database with receiverId set to "0" and get ID
+ *  - 2. Find if there's a Dialog with receiverID == newMessage.senderId
+ *  - 3. If there exists, then update its latestMessageId with the new message id
+ *  - 4. If not, create a new dialog and set latestMessageId with new message id
+ *  - 5. Notify the adapter
+ *
+ * @param <DIALOG>
+ */
 public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DIALOG> {
+
     private List<DIALOG> items;
     private SQLiteDialogProvider dp;
 
-    public DialogAdapter(ImageLoader imageLoader, SQLiteDialogProvider dp) {
+    public DialogAdapter(ImageLoader imageLoader, Context ctx) {
         super(imageLoader);
         this.items = new ArrayList<>();
-        this.dp = dp;
-        this.setItems((List<DIALOG>) dp.getDialogs());
+        this.dp = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx));
     }
 
 
@@ -156,6 +177,10 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
     public void deleteById(String id) {
         dp.dropDialog(id);
         super.deleteById(id);
+    }
+
+    public List<DIALOG> getItems() {
+        return items;
     }
 
 

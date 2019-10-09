@@ -20,19 +20,13 @@ public class Message implements IMessage,
     private Long pk;
     @Index(unique = true)
     private String id;
-
-
     @NotNull
     private String text;
 
-
     @NotNull
-    private String userId;
-
-
+    private String receiverId;
     private Date createdAt;
-
-    private boolean read;
+    private Boolean read; // Whether the message has been read
 
 
     @Transient
@@ -59,13 +53,13 @@ public class Message implements IMessage,
     public Message() {
     }
 
-    @Generated(hash = 87711191)
-    public Message(Long pk, String id, @NotNull String text, @NotNull String userId, Date createdAt,
-                   boolean read) {
+    @Generated(hash = 732397791)
+    public Message(Long pk, String id, @NotNull String text, @NotNull String receiverId, Date createdAt,
+            Boolean read) {
         this.pk = pk;
         this.id = id;
         this.text = text;
-        this.userId = userId;
+        this.receiverId = receiverId;
         this.createdAt = createdAt;
         this.read = read;
     }
@@ -123,15 +117,15 @@ public class Message implements IMessage,
     }
 
 
-    public String getUserId() {
-        return this.userId;
+    public String getReceiverId() {
+        return this.receiverId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setReceiverId(String receiverId) {
+        this.receiverId = receiverId;
     }
 
-    public boolean getRead() {
+    public Boolean getRead() {
         return this.read;
     }
 
@@ -145,6 +139,10 @@ public class Message implements IMessage,
 
     public void setPk(Long pk) {
         this.pk = pk;
+    }
+
+    public void setRead(Boolean read) {
+        this.read = read;
     }
 
 
