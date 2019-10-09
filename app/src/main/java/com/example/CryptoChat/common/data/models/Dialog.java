@@ -7,6 +7,7 @@ import com.example.CryptoChat.common.data.fake.FakeContactProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.stfalcon.chatkit.commons.models.IDialog;
 
+import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
@@ -24,25 +25,20 @@ public class Dialog implements IDialog<Message> {
 
     @NotNull
     private String id;
-    private String lastMessageId;
+    private String lastMessageId; // Used for message list view
     private String dialogPhoto;
     private String dialogName;
-    private String receiverId;
+    private String receiverId; // id of target user (not primary key)
     private int unreadCount;
 
-    @Transient
-    private ArrayList<User> users;
-    @Transient
-    private Message lastMessage;
 
     public Dialog(String id, String name, String photo,
                   ArrayList<User> users, Message lastMessage, int unreadCount) {
 
+
         this.id = id;
         this.dialogName = name;
         this.dialogPhoto = photo;
-        this.users = users;
-        this.lastMessage = lastMessage;
         this.unreadCount = unreadCount;
         this.receiverId = users.get(0).getId();
     }
@@ -53,8 +49,6 @@ public class Dialog implements IDialog<Message> {
         this.id = UUID.randomUUID().toString();
         this.dialogName = name;
         this.dialogPhoto = photo;
-        this.users = new ArrayList<>();
-        this.lastMessage = lastMessage;
         this.unreadCount = unreadCount;
         this.receiverId = receiverId;
         this.lastMessageId = lastMessage.getId();
@@ -91,8 +85,14 @@ public class Dialog implements IDialog<Message> {
         return dialogName;
     }
 
+    /**
+     * Return users in conversation as an ArrayList
+     * Use ArrayList for compatibility with original library
+     * @return
+     */
     @Override
     public ArrayList<User> getUsers() {
+
 
         ArrayList<User> al = new ArrayList<>();
         try {
@@ -104,14 +104,26 @@ public class Dialog implements IDialog<Message> {
 
     }
 
+    /**
+     * Query last message from database
+     * @return
+     */
     @Override
     public Message getLastMessage() {
-        return SQLiteMessageProvider.getInstance(null).getMessageById(this.lastMessageId);
+        try{
+            return SQLiteMessageProvider.getInstance(null).getMessageById(this.lastMessageId);
+        } catch (DaoException e) {
+            return new Message();
+        }
+
     }
 
+    /**
+     * Update the last message
+     * @param lastMessage
+     */
     @Override
     public void setLastMessage(Message lastMessage) {
-        this.lastMessage = lastMessage;
         this.setLastMessageId(lastMessage.getId());
     }
 
@@ -119,6 +131,11 @@ public class Dialog implements IDialog<Message> {
         return this.lastMessageId;
     }
 
+
+    /**
+     * Get number of unread messages
+     * @return
+     */
     @Override
     public int getUnreadCount() {
         return unreadCount;

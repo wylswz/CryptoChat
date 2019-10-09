@@ -1,8 +1,11 @@
 package com.example.CryptoChat.common.data.provider;
 
+import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.models.Message;
 import com.example.CryptoChat.common.data.models.MessageDao;
+
+import org.greenrobot.greendao.DaoException;
 
 import java.util.Date;
 import java.util.List;
@@ -27,26 +30,28 @@ public class SQLiteMessageProvider extends MessageProvider {
         return instance;
     }
 
+
     @Override
-    public Message getMessageById(String Id) {
-        try {
-            List<Message> l = this.messageDao.queryBuilder()
+    public Message getMessageById(String Id) throws DaoException {
+
+            /**List<Message> l = this.messageDao.queryBuilder()
                     .where(MessageDao.Properties.Id.eq(Id))
                     .orderDesc(MessageDao.Properties.CreatedAt)
                     .list();
             if (l.size() >= 1) return l.get(0);
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
+             */
 
-        return null;
+            return this.messageDao.queryBuilder()
+                    .where(MessageDao.Properties.Id.eq(Id))
+                    .orderDesc(MessageDao.Properties.CreatedAt).uniqueOrThrow();
+
     }
 
 
     @Override
     public List<Message> getMessages(String userId, Date from, Date to) {
         List<Message> l = this.messageDao.queryBuilder()
-                .where(MessageDao.Properties.UserId.eq(userId))
+                .where(MessageDao.Properties.ReceiverId.eq(userId))
                 .where(MessageDao.Properties.CreatedAt.ge(from))
                 .where(MessageDao.Properties.CreatedAt.lt(to))
                 .orderDesc(MessageDao.Properties.CreatedAt)
@@ -57,7 +62,7 @@ public class SQLiteMessageProvider extends MessageProvider {
 
     public List<Message> getMessages(String userId, int limit, int offset) {
         List<Message> l = this.messageDao.queryBuilder()
-                .where(MessageDao.Properties.UserId.eq(userId))
+                .where(MessageDao.Properties.ReceiverId.eq(userId))
                 .orderDesc(MessageDao.Properties.CreatedAt)
                 .limit(limit)
                 .offset(offset)
