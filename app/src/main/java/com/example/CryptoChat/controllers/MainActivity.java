@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
@@ -18,7 +20,7 @@ import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.utils.DBUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends FragmentActivity implements DialogController.OnFragmentInteractionListener,
+public class MainActivity extends AppCompatActivity implements DialogController.OnFragmentInteractionListener,
         ContactListController.OnFragmentInteractionListener, SettingsController.OnFragmentInteractionListener, Authenticatable {
 
 
@@ -27,6 +29,10 @@ public class MainActivity extends FragmentActivity implements DialogController.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
         verifyAuth();
         initUI();
         hide();

@@ -7,6 +7,7 @@ public class User implements IUser {
     private String id;
     private String name;
     private String avatar;
+    private String alias;
     private boolean online;
 
     public User(String id, String name, String avatar, boolean online) {
@@ -14,6 +15,7 @@ public class User implements IUser {
         this.name = name;
         this.avatar = avatar;
         this.online = online;
+        this.alias = name;
     }
 
     @Override
@@ -31,6 +33,13 @@ public class User implements IUser {
         return avatar;
     }
 
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
+    public String getAlias() {
+        return this.alias;
+    }
     public boolean isOnline() {
         return online;
     }
