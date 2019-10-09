@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.CryptoChat.R;
+
 public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
     private UserAdapter userAdapter;
     private Drawable icon;
     private final ColorDrawable background;
-
 
 
     public SwipeToDeleteCallback(UserAdapter adapter) {
@@ -33,10 +33,10 @@ public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
     }
 
     @Override
-    public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder){
+    public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         final int swipeFlag = ItemTouchHelper.LEFT;
         final int dragFlag = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        return makeMovementFlags(dragFlag,swipeFlag);
+        return makeMovementFlags(dragFlag, swipeFlag);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
         int position = viewHolder.getAdapterPosition();
         if (direction == ItemTouchHelper.LEFT) {
             userAdapter.deleteItem(position);
-        } else{
+        } else {
 
         }
 

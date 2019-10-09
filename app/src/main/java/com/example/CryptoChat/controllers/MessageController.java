@@ -61,7 +61,6 @@ public class MessageController extends AppCompatActivity implements MessagesList
         this.receiverId = getIntent().getStringExtra("receiverId");
 
 
-
         ds = DBUtils.getDaoSession(this);
         mp = SQLiteMessageProvider.getInstance(ds);
         offset = 0;
@@ -212,9 +211,12 @@ public class MessageController extends AppCompatActivity implements MessagesList
         messagesAdapter.addToStart(msg, true);
         offset += 1;
         if (this.dialog == null) {
-            this.dialog = new Dialog(receiverId,"Photo", receiverId,msg,0);
+            this.dialog = new Dialog(receiverId, "Photo", receiverId, msg, 0);
             SQLiteDialogProvider.getInstance(ds).addDialog(this.dialog);
         }
+        this.dialog.setLastMessageId(msg.getId());
+        SQLiteDialogProvider.getInstance(ds).updateDialog(this.dialog);
+
 
         // TODO: Send the message to server side along with receiver ID
         return true;

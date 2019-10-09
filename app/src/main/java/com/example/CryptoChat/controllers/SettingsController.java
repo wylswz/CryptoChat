@@ -80,6 +80,7 @@ public class SettingsController extends Fragment {
         RecyclerView settingsListView = getView().findViewById(R.id.settings_list_view);
 
     }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

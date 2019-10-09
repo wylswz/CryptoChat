@@ -5,6 +5,7 @@ import com.stfalcon.chatkit.commons.models.MessageContentType;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Transient;
@@ -15,6 +16,8 @@ import java.util.Date;
 public class Message implements IMessage,
         MessageContentType.Image, /*this is for default image activity_messages_controller implementation*/
         MessageContentType /*and this one is for custom content type (in this case - voice message)*/ {
+    @Id(autoincrement = true)
+    private Long pk;
     @Index(unique = true)
     private String id;
 
@@ -52,13 +55,14 @@ public class Message implements IMessage,
     }
 
 
-
     @Generated(hash = 637306882)
     public Message() {
     }
 
-    @Generated(hash = 1393013971)
-    public Message(String id, @NotNull String text, @NotNull String userId, Date createdAt, boolean read) {
+    @Generated(hash = 87711191)
+    public Message(Long pk, String id, @NotNull String text, @NotNull String userId, Date createdAt,
+                   boolean read) {
+        this.pk = pk;
         this.id = id;
         this.text = text;
         this.userId = userId;
@@ -133,6 +137,14 @@ public class Message implements IMessage,
 
     public void setRead(boolean read) {
         this.read = read;
+    }
+
+    public Long getPk() {
+        return this.pk;
+    }
+
+    public void setPk(Long pk) {
+        this.pk = pk;
     }
 
 

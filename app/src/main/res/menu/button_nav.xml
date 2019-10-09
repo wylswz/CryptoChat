@@ -3,16 +3,16 @@
     <item
         android:id="@id/nav_destination_dialogController"
         android:icon="@drawable/messages"
-        android:title="Message"/>
+        android:title="Message" />
 
     <item
         android:id="@id/nav_destination_contactController"
         android:icon="@drawable/people"
-        android:title="People"/>
+        android:title="People" />
 
     <item
         android:id="@id/nav_destination_settingsController"
         android:icon="@drawable/setting"
-        android:title="Settings"/>
+        android:title="Settings" />
 
 </menu>

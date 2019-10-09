@@ -8,14 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.adapters.DialogAdapter;
-import com.example.CryptoChat.common.data.fake.DialogsFixtures;
 import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.utils.DBUtils;
@@ -33,11 +31,10 @@ import java.util.Objects;
  * Activities that contain this fragment must implement the
  * {@link DialogController.OnFragmentInteractionListener} interface
  * to handle interaction events.
-
  */
 public class DialogController extends Fragment implements
         DialogsListAdapter.OnDialogClickListener<Dialog>,
-        DialogsListAdapter.OnDialogLongClickListener<Dialog>{
+        DialogsListAdapter.OnDialogLongClickListener<Dialog> {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
@@ -47,8 +44,6 @@ public class DialogController extends Fragment implements
     private DialogsList dialogs;
     private ImageLoader imageLoader = (imageView, url, payload) -> Picasso.get().load(url).into(imageView);
     private OnFragmentInteractionListener mListener;
-
-
 
 
     @Override
@@ -102,7 +97,7 @@ public class DialogController extends Fragment implements
     @Override
     public void onDialogClick(Dialog dialog) {
         //DefaultMessagesActivity.open(this);
-        MessageController.open(Objects.requireNonNull(this.getContext()),dialog.getReceiverId());
+        MessageController.open(Objects.requireNonNull(this.getContext()), dialog.getReceiverId());
         // TODO: User real receiver id queried from database
     }
 
@@ -120,6 +115,13 @@ public class DialogController extends Fragment implements
 
         AlertDialog delWarn = builder.create();
         delWarn.show();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.adapter.notifyDataSetChanged();
 
     }
 

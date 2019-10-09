@@ -17,6 +17,7 @@ import java.util.List;
 public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DIALOG> {
     private List<DIALOG> items;
     private SQLiteDialogProvider dp;
+
     public DialogAdapter(ImageLoader imageLoader, SQLiteDialogProvider dp) {
         super(imageLoader);
         this.items = new ArrayList<>();
@@ -32,17 +33,20 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
 
     }
 
+    @Override
     public void addItem(int position, DIALOG dialog) {
         dp.addDialog((Dialog) dialog);
-        super.addItem(position,dialog);
+        super.addItem(position, dialog);
 
     }
 
     /**
      * Move an item
+     *
      * @param fromPosition the actual position of the item
-     * @param toPosition the new position of the item
+     * @param toPosition   the new position of the item
      */
+    @Override
     public void moveItem(int fromPosition, int toPosition) {
         super.moveItem(fromPosition, toPosition);
     }
@@ -53,9 +57,10 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
      * @param position position in dialogs list
      * @param item     new dialog item
      */
+    @Override
     public void updateItem(int position, DIALOG item) {
         super.updateItem(position, item);
-        dp.updateDialog((Dialog)item);
+        dp.updateDialog((Dialog) item);
     }
 
     /**
@@ -63,9 +68,10 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
      *
      * @param item new dialog item
      */
+    @Override
     public void updateItemById(DIALOG item) {
         super.updateItemById(item);
-        dp.updateDialog((Dialog)item);
+        dp.updateDialog((Dialog) item);
     }
 
     /**
@@ -73,6 +79,7 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
      *
      * @param item dialog item
      */
+    @Override
     public void upsertItem(DIALOG item) {
         super.upsertItem(item);
     }
@@ -84,6 +91,7 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
      * @return the found item, or null
      */
     @Nullable
+    @Override
     public DIALOG getItemById(String id) {
         return super.getItemById(id);
     }
@@ -95,13 +103,14 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
      * @param message  New message
      * @return false if dialog doesn't exist.
      */
+    @Override
     @SuppressWarnings("unchecked")
     public boolean updateDialogWithMessage(String dialogId, IMessage message) {
         boolean dialogExist = false;
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(dialogId)) {
                 items.get(i).setLastMessage(message);
-                dp.updateDialog((Dialog)items.get(i));
+                dp.updateDialog((Dialog) items.get(i));
                 notifyItemChanged(i);
                 if (i != 0) {
                     Collections.swap(items, i, 0);
@@ -117,6 +126,7 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
     /**
      * Sort dialog by last message date
      */
+    @Override
     public void sortByLastMessageDate() {
         Collections.sort(items, new Comparator<DIALOG>() {
             @Override
@@ -136,12 +146,18 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
      *
      * @param comparator Comparator
      */
+    @Override
     public void sort(Comparator<DIALOG> comparator) {
         Collections.sort(items, comparator);
         notifyDataSetChanged();
     }
 
-
-
+    @Override
+    public void deleteById(String id) {
+        dp.dropDialog(id);
+        super.deleteById(id);
     }
+
+
+}
 

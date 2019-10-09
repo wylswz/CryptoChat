@@ -1,6 +1,5 @@
 package com.example.CryptoChat.controllers;
 
-import android.app.Application;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +13,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.CryptoChat.R;
-import com.example.CryptoChat.common.data.models.DaoMaster;
 import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.utils.DBUtils;
@@ -25,6 +23,7 @@ public class MainActivity extends FragmentActivity implements DialogController.O
 
 
     private DaoSession mDaoSession;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +31,7 @@ public class MainActivity extends FragmentActivity implements DialogController.O
         initUI();
         hide();
 
-        mDaoSession =DBUtils.getDaoSession(this);
+        mDaoSession = DBUtils.getDaoSession(this);
         DBUtils.initDB(this);
         SQLiteMessageProvider.getInstance(mDaoSession);
 
@@ -120,12 +119,12 @@ public class MainActivity extends FragmentActivity implements DialogController.O
 
     }
 
-    private void hide(){
+    private void hide() {
         findViewById(R.id.activity_main_layout).setVisibility(View.INVISIBLE);
 
     }
 
-    private void show(){
+    private void show() {
         findViewById(R.id.activity_main_layout).setVisibility(View.VISIBLE);
 
     }

@@ -30,11 +30,13 @@ public class SettingsAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public View cell;
+
         public MyViewHolder(View v) {
             super(v);
             cell = v;
 
         }
+
         public void init(String name) {
             TextView nameText = (TextView) cell.findViewById(R.id.settings_cell_name);
             nameText.setText(name);

@@ -5,20 +5,22 @@ import android.util.Log;
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.fake.FakeContactProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
-import com.example.CryptoChat.utils.DBUtils;
 import com.stfalcon.chatkit.commons.models.IDialog;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Transient;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-import org.greenrobot.greendao.annotation.Generated;
-
 @Entity
 public class Dialog implements IDialog<Message> {
+
+    @Id(autoincrement = true)
+    private Long pk;
 
     @NotNull
     private String id;
@@ -34,7 +36,7 @@ public class Dialog implements IDialog<Message> {
     private Message lastMessage;
 
     public Dialog(String id, String name, String photo,
-                   ArrayList<User> users, Message lastMessage, int unreadCount) {
+                  ArrayList<User> users, Message lastMessage, int unreadCount) {
 
         this.id = id;
         this.dialogName = name;
@@ -58,9 +60,10 @@ public class Dialog implements IDialog<Message> {
         this.lastMessageId = lastMessage.getId();
     }
 
-    @Generated(hash = 989136184)
-    public Dialog(@NotNull String id, String lastMessageId, String dialogPhoto,
-            String dialogName, String receiverId, int unreadCount) {
+    @Generated(hash = 869846398)
+    public Dialog(Long pk, @NotNull String id, String lastMessageId, String dialogPhoto,
+                  String dialogName, String receiverId, int unreadCount) {
+        this.pk = pk;
         this.id = id;
         this.lastMessageId = lastMessageId;
         this.dialogPhoto = dialogPhoto;
@@ -91,8 +94,8 @@ public class Dialog implements IDialog<Message> {
     @Override
     public ArrayList<User> getUsers() {
 
-        ArrayList<User> al =  new ArrayList<>();
-        try{
+        ArrayList<User> al = new ArrayList<>();
+        try {
             al.add(FakeContactProvider.getInstance().getUser(receiverId));
         } catch (ObjectNotExistException e) {
             Log.e("Dialog", "User not exist");
@@ -111,6 +114,7 @@ public class Dialog implements IDialog<Message> {
         this.lastMessage = lastMessage;
         this.setLastMessageId(lastMessage.getId());
     }
+
     public String getLastMessageId() {
         return this.lastMessageId;
     }
@@ -120,7 +124,7 @@ public class Dialog implements IDialog<Message> {
         return unreadCount;
     }
 
-    public String getReceiverId(){
+    public String getReceiverId() {
         return this.receiverId;
     }
 
@@ -133,7 +137,6 @@ public class Dialog implements IDialog<Message> {
     }
 
 
-
     public void setLastMessageId(String lastMessageId) {
         this.lastMessageId = lastMessageId;
     }
@@ -144,6 +147,22 @@ public class Dialog implements IDialog<Message> {
 
     public void setDialogName(String dialogName) {
         this.dialogName = dialogName;
+    }
+
+    public void setReceLongiverId(String receiverId) {
+        this.receiverId = receiverId;
+    }
+
+    public Long getPk() {
+        return this.pk;
+    }
+
+    public void setPk(long pk) {
+        this.pk = pk;
+    }
+
+    public void setPk(Long pk) {
+        this.pk = pk;
     }
 
     public void setReceiverId(String receiverId) {
