@@ -7,9 +7,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CryptoChat.R;
+import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
+import com.example.CryptoChat.common.data.fake.FakeContactProvider;
+import com.example.CryptoChat.common.data.models.User;
 
 public class ContactSettingsController extends AppCompatActivity {
 
@@ -25,8 +29,9 @@ public class ContactSettingsController extends AppCompatActivity {
 
         setContentView(R.layout.activity_contact_settings);
 
-        EditText alias = findViewById(R.id.edit_contact_alias);
+        EditText alias = findViewById(R.id.edit_contact_alias_text);
         alias.setText(uid);
+
         /*
          * TODO: Fetch user object from provider and set default alias to EditText field
          * */
@@ -48,6 +53,15 @@ public class ContactSettingsController extends AppCompatActivity {
                 /*
                  * TODO: Update user info here
                  * */
+                try{
+                    User u = FakeContactProvider.getInstance().getUser(uid);
+                    EditText alias = findViewById(R.id.edit_contact_alias_text);
+                    u.setAlias(alias.getText().toString());
+                    FakeContactProvider.getInstance().setUser(u);
+                } catch (ObjectNotExistException e) {
+
+                }
+
                 onBackPressed();
 
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.CryptoChat.R;
@@ -50,7 +51,10 @@ public class DialogController extends Fragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_dialog_controller, container, false);
+        Toolbar myToolbar = getActivity().findViewById(R.id.my_toolbar);
+        myToolbar.setTitle("Messages");
         return view;
     }
 
@@ -61,7 +65,7 @@ public class DialogController extends Fragment implements
         View view = getView();
         DialogsListAdapter<Dialog> baseAdapter = new DialogsListAdapter<>(imageLoader);
 
-        this.adapter = new DialogAdapter(this.imageLoader, SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(getContext())));
+        this.adapter = new DialogAdapter(this.imageLoader, getContext());
 
         dialogs = (DialogsList) view.findViewById(R.id.dialogsList);
         List<Dialog> dialoglist = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(getContext())).getDialogs();

@@ -37,7 +37,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.init(cp.getUser(position).getName());
+        holder.init(cp.getUser(position).getAlias());
         holder.cell.findViewById(R.id.contact_cell_constraint).setOnClickListener(view -> {
             MessageController.open(getContext(), cp.getUser(position).getId());
             Log.i("ContactListAdapter", "Clicked");

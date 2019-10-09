@@ -1,5 +1,6 @@
 package com.example.CryptoChat.common.data.fake;
 
+import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.models.User;
 import com.example.CryptoChat.common.data.provider.ContactProvider;
 
@@ -33,5 +34,33 @@ public class FakeContactProvider extends ContactProvider {
     @Override
     public ArrayList<User> getUsers() {
         return this.users;
+    }
+
+    public void setUser(User user, int position) {
+        users.set(position,user);
+    }
+
+    public void setUser(User user) {
+        int i=0;
+        for (User u : users) {
+            if(u.getId().equals(user.getId())) {
+                users.set(i, user);
+            } else {
+                i+=1;
+            }
+        }
+    }
+
+    public User getUser(int position) {
+        return users.get(position);
+    }
+
+    public User getUser(String id)  throws ObjectNotExistException {
+        for (User u : users) {
+            if(u.getId().equals(id)) {
+                return u;
+            }
+        }
+        throw new ObjectNotExistException("User object does not exist");
     }
 }

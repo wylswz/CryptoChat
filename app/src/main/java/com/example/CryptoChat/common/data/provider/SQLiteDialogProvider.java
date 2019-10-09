@@ -3,6 +3,7 @@ package com.example.CryptoChat.common.data.provider;
 
 import android.util.Log;
 
+import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.models.DialogDao;
@@ -43,17 +44,28 @@ public class SQLiteDialogProvider {
         return l;
     }
 
-    public Dialog getDialogById(String Id) {
-        Dialog d = dialogDao.queryBuilder()
-                .where(DialogDao.Properties.Id.eq(Id))
-                .uniqueOrThrow();
-        return d;
+    public Dialog getDialogById(String Id) throws ObjectNotExistException {
+        try{
+            Dialog d = dialogDao.queryBuilder()
+                    .where(DialogDao.Properties.Id.eq(Id))
+                    .uniqueOrThrow();
+            return d;
+        } catch (DaoException e) {
+            throw new ObjectNotExistException("Dialog does not exist");
+        }
+
+
     }
 
-    public Dialog getDialogByReceiverId(String receiverId) {
-        Dialog d = dialogDao.queryBuilder()
-                .where(DialogDao.Properties.ReceiverId.eq(receiverId)).uniqueOrThrow();
-        return d;
+    public Dialog getDialogByReceiverId(String receiverId) throws ObjectNotExistException {
+        try{
+            Dialog d = dialogDao.queryBuilder()
+                    .where(DialogDao.Properties.ReceiverId.eq(receiverId)).uniqueOrThrow();
+            return d;
+        }catch (DaoException e) {
+            throw new ObjectNotExistException("Dialog does not exist");
+        }
+
     }
 
     public void dropDialog(String dialogId) {
