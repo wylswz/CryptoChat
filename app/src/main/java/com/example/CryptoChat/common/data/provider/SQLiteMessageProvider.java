@@ -29,17 +29,22 @@ public class SQLiteMessageProvider extends MessageProvider {
 
     @Override
     public Message getMessageById(String Id) {
-        List<Message> l = this.messageDao.queryBuilder()
-                .where(MessageDao.Properties.Id.eq(Id))
-                .orderDesc(MessageDao.Properties.CreatedAt)
-                .list();
-        if (l.size()>=1) return l.get(0);
+        try{
+            List<Message> l = this.messageDao.queryBuilder()
+                    .where(MessageDao.Properties.Id.eq(Id))
+                    .orderDesc(MessageDao.Properties.CreatedAt)
+                    .list();
+            if (l.size()>=1) return l.get(0);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+
         return null;
     }
 
 
     @Override
-    public List<Message> getMessages(Date from, Date to, String userId) {
+    public List<Message> getMessages(String userId,Date from, Date to) {
         List<Message> l = this.messageDao.queryBuilder()
                 .where(MessageDao.Properties.UserId.eq(userId))
                 .where(MessageDao.Properties.CreatedAt.ge(from))

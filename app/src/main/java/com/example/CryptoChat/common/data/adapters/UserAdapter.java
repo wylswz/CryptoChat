@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.provider.ContactProvider;
+import com.example.CryptoChat.controllers.MessageController;
+import com.stfalcon.chatkit.commons.models.MessageContentType;
 
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {
@@ -31,12 +33,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         View contact = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_contact, parent, false);
         //TextView nameField = (TextView) conatct.findViewById(R.id.contact_cell_name);
         MyViewHolder vh = new MyViewHolder(contact);
+
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.init(cp.getUser(position).getName());
+        holder.cell.findViewById(R.id.contact_cell_constraint).setOnClickListener(view -> {
+            MessageController.open(getContext(),cp.getUser(position).getId());
+            Log.i("ContactListAdapter", "Clicked");
+        });
+
     }
 
     @Override

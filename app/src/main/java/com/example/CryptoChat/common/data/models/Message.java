@@ -5,7 +5,6 @@ import com.stfalcon.chatkit.commons.models.MessageContentType;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Transient;
@@ -24,12 +23,13 @@ public class Message implements IMessage,
     private String text;
 
 
-
     @NotNull
     private String userId;
 
 
     private Date createdAt;
+
+    private boolean read;
 
 
     @Transient
@@ -48,30 +48,28 @@ public class Message implements IMessage,
         this.text = text;
         this.user = user;
         this.createdAt = createdAt;
-
+        this.read = false;
     }
+
 
 
     @Generated(hash = 637306882)
     public Message() {
     }
 
-    @Generated(hash = 1481737726)
-    public Message(String id, @NotNull String text, @NotNull String userId, Date createdAt) {
+    @Generated(hash = 1393013971)
+    public Message(String id, @NotNull String text, @NotNull String userId, Date createdAt, boolean read) {
         this.id = id;
         this.text = text;
         this.userId = userId;
         this.createdAt = createdAt;
+        this.read = read;
     }
-
-
-
 
     @Override
     public String getId() {
         return id;
     }
-
 
 
     @Override
@@ -86,7 +84,7 @@ public class Message implements IMessage,
 
     @Override
     public User getUser() {
-        return new User("0","Name", "avatar", false);
+        return new User("0", "Name", "avatar", false);
         // UserId ==0 -> message by phone owner
         /* TODO: Add logic: if user id == current user id, then return a fake user with ID = 0
             Otherwise query the user from database. If it does not exist, create a temporary
@@ -121,7 +119,6 @@ public class Message implements IMessage,
     }
 
 
-
     public String getUserId() {
         return this.userId;
     }
@@ -130,7 +127,13 @@ public class Message implements IMessage,
         this.userId = userId;
     }
 
+    public boolean getRead() {
+        return this.read;
+    }
 
+    public void setRead(boolean read) {
+        this.read = read;
+    }
 
 
     public static class Image {

@@ -14,12 +14,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.CryptoChat.R;
+import com.example.CryptoChat.common.data.adapters.DialogAdapter;
 import com.example.CryptoChat.common.data.fake.DialogsFixtures;
 import com.example.CryptoChat.common.data.models.Dialog;
+import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
+import com.example.CryptoChat.utils.DBUtils;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.dialogs.DialogsList;
 import com.stfalcon.chatkit.dialogs.DialogsListAdapter;
+
+import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -36,15 +42,10 @@ public class DialogController extends Fragment implements
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 
-    private DialogsListAdapter<Dialog> adapter;
+    private DialogAdapter adapter;
 
     private DialogsList dialogs;
-    private ImageLoader imageLoader = new ImageLoader() {
-        @Override
-        public void loadImage(ImageView imageView, @Nullable String url, @Nullable Object payload) {
-            Picasso.get().load(url).into(imageView);
-        }
-    };
+    private ImageLoader imageLoader = (imageView, url, payload) -> Picasso.get().load(url).into(imageView);
     private OnFragmentInteractionListener mListener;
 
 
@@ -63,10 +64,14 @@ public class DialogController extends Fragment implements
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View view = getView();
+        DialogsListAdapter<Dialog> baseAdapter = new DialogsListAdapter<>(imageLoader);
 
-        this.adapter = new DialogsListAdapter<>(this.imageLoader);
+        this.adapter = new DialogAdapter(this.imageLoader, SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(getContext())));
+
         dialogs = (DialogsList) view.findViewById(R.id.dialogsList);
-        this.adapter.setItems(DialogsFixtures.getDialogs());
+        List<Dialog> dialoglist = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(getContext())).getDialogs();
+        Log.v("DialogController", dialoglist.toString());
+        this.adapter.setItems(dialoglist);
         adapter.setOnDialogClickListener(this);
         adapter.setOnDialogLongClickListener(this);
 
@@ -97,7 +102,8 @@ public class DialogController extends Fragment implements
     @Override
     public void onDialogClick(Dialog dialog) {
         //DefaultMessagesActivity.open(this);
-        MessageController.open(this.getContext());
+        MessageController.open(Objects.requireNonNull(this.getContext()),dialog.getReceiverId());
+        // TODO: User real receiver id queried from database
     }
 
 
