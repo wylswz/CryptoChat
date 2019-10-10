@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "81546644075",
+    "firebase_url": "https://project-bd594.firebaseio.com",
+    "project_id": "project-bd594",
+    "storage_bucket": "project-bd594.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81546644075:android:a56a4e07b1cfa08d793f2e",
+        "android_client_info": {
+          "package_name": "com.example.CryptoChat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81546644075-pd95qj51l83v24p9ensus4v5i2bj9f1d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.CryptoChat",
+            "certificate_hash": "b9200f8ed60a7d20764b4724777d5c454f88255c"
+          }
+        },
+        {
+          "client_id": "81546644075-s6k2jlvhu042r15hsr792hgrk6pf61ht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeD1WMgj3Z5IVH0mFhBlyPYIhURVsOKfc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81546644075-s6k2jlvhu042r15hsr792hgrk6pf61ht.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
