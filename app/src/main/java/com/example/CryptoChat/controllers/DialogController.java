@@ -1,5 +1,6 @@
 package com.example.CryptoChat.controllers;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -53,8 +55,11 @@ public class DialogController extends Fragment implements
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_dialog_controller, container, false);
-        Toolbar myToolbar = getActivity().findViewById(R.id.my_toolbar);
-        myToolbar.setTitle("Messages");
+
+
+
+
+        //setTitle("Messages");
         return view;
     }
 
@@ -62,6 +67,7 @@ public class DialogController extends Fragment implements
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Messages");
         View view = getView();
         DialogsListAdapter<Dialog> baseAdapter = new DialogsListAdapter<>(imageLoader);
 

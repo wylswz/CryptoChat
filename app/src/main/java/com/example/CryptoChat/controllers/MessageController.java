@@ -10,9 +10,11 @@ import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
+import com.example.CryptoChat.common.data.fake.FakeContactProvider;
 import com.example.CryptoChat.common.data.fake.MessagesFixtures;
 import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.models.Dialog;
@@ -61,8 +63,8 @@ public class MessageController extends AppCompatActivity implements MessagesList
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_messages_controller);
         this.receiverId = getIntent().getStringExtra("receiverId");
-
 
         ds = DBUtils.getDaoSession(this);
         mp = SQLiteMessageProvider.getInstance(ds);
@@ -78,7 +80,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
 
         imageLoader = (imageView, url, payload) -> Picasso.get().load(url).into(imageView);
 
-        setContentView(R.layout.activity_messages_controller);
+
 
 
         this.messagesList = findViewById(R.id.messagesList);
@@ -88,6 +90,14 @@ public class MessageController extends AppCompatActivity implements MessagesList
         input.setInputListener(this);
         input.setTypingListener(this);
         input.setAttachmentsListener(this);
+
+        try{
+            User receiver = FakeContactProvider.getInstance().getUser(receiverId);
+            getSupportActionBar().setTitle(receiver.getAlias());
+
+        } catch (ObjectNotExistException e) {
+            Log.v("MessageController", "Contact not found when setting toolbar title");
+        }
     }
 
 
@@ -136,7 +146,10 @@ public class MessageController extends AppCompatActivity implements MessagesList
                 AppUtils.showToast(this, R.string.copied_message, true);
                 break;
             case R.id.edit_contact_in_chat:
-                ContactSettingsController.open(this, this.receiverId);
+
+                    ContactSettingsController.open(this, this.receiverId);
+
+
         }
         return true;
     }
@@ -214,8 +227,14 @@ public class MessageController extends AppCompatActivity implements MessagesList
         messagesAdapter.addToStart(msg, true);
         offset += 1;
         if (this.dialog == null) {
-            this.dialog = new Dialog(receiverId, "Photo", receiverId, msg, 0);
-            SQLiteDialogProvider.getInstance(ds).addDialog(this.dialog);
+            try{
+                User receiver = FakeContactProvider.getInstance().getUser(receiverId);
+                this.dialog = new Dialog(receiver.getAlias(), "Photo", receiverId, msg, 0);
+                SQLiteDialogProvider.getInstance(ds).addDialog(this.dialog);
+            } catch (ObjectNotExistException e) {
+                Log.e("MessageController", "Contact not found when creating dialog" );
+            }
+
         }
         this.dialog.setLastMessageId(msg.getId());
         SQLiteDialogProvider.getInstance(ds).updateDialog(this.dialog);

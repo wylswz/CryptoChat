@@ -13,7 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.fake.FakeContactProvider;
+import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.models.User;
+import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
+import com.example.CryptoChat.utils.DBUtils;
 
 public class ContactSettingsController extends AppCompatActivity {
 
@@ -26,11 +29,15 @@ public class ContactSettingsController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         uid = (String) intent.getStringExtra("uid");
+        try{
+            User u = FakeContactProvider.getInstance().getUser(uid);
+            setContentView(R.layout.activity_contact_settings);
+            EditText alias = findViewById(R.id.edit_contact_alias_text);
+            alias.setText(u.getAlias());
+        } catch (ObjectNotExistException e) {
 
-        setContentView(R.layout.activity_contact_settings);
+        }
 
-        EditText alias = findViewById(R.id.edit_contact_alias_text);
-        alias.setText(uid);
 
         /*
          * TODO: Fetch user object from provider and set default alias to EditText field
@@ -58,6 +65,13 @@ public class ContactSettingsController extends AppCompatActivity {
                     EditText alias = findViewById(R.id.edit_contact_alias_text);
                     u.setAlias(alias.getText().toString());
                     FakeContactProvider.getInstance().setUser(u);
+                    // TODO: Update corresponding dialog name
+                    Dialog d = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(this))
+                            .getDialogByReceiverId(this.uid);
+                    d.setDialogName(u.getAlias());
+                    SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(this))
+                            .updateDialog(d);
+
                 } catch (ObjectNotExistException e) {
 
                 }
