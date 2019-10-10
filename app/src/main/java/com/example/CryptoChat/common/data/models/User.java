@@ -8,6 +8,7 @@ public class User implements IUser {
     private String name;
     private String avatar;
     private String alias;
+
     private boolean online;
 
     public User(String id, String name, String avatar, boolean online) {

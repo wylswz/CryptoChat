@@ -30,12 +30,10 @@ public class MainActivity extends AppCompatActivity implements DialogController.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-
-        verifyAuth();
         initUI();
         hide();
+        verifyAuth();
+
 
         mDaoSession = DBUtils.getDaoSession(this);
         DBUtils.initDB(this);
@@ -81,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements DialogController.
     public void verifyAuth() {
         if (!AuthenticationManager.getAuthState()) {
             showBiometricPrompt();
+        } else {
+            show();
         }
     }
 
@@ -108,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements DialogController.
 
     @Override
     public void onResume() {
-        //verifyAuth();
         super.onResume();
+        //verifyAuth();
 
     }
 

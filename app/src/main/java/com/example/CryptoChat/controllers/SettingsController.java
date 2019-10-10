@@ -1,5 +1,6 @@
 package com.example.CryptoChat.controllers;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -73,8 +75,8 @@ public class SettingsController extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_settings_controller, container, false);
-        Toolbar tb = getActivity().findViewById(R.id.my_toolbar);
-        tb.setTitle("Settings");
+
+
 
         return view;
     }
@@ -83,6 +85,7 @@ public class SettingsController extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Settings");
 
         RecyclerView settingsListView = getView().findViewById(R.id.settings_list_view);
 

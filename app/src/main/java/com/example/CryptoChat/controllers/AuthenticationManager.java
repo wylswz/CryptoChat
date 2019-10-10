@@ -11,7 +11,7 @@ public class AuthenticationManager {
         /**
          * Lock after 60 seconds
          */
-        if (Calendar.getInstance().getTime().getTime() - lastUnlock.getTime() >= 1000 * 60) {
+        if (Calendar.getInstance().getTime().getTime() - lastUnlock.getTime() >= 1000 * 120) {
             lock();
             return false;
         }
