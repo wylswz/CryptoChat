@@ -5,6 +5,7 @@ import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.models.User;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 
 /*
@@ -37,6 +38,7 @@ public abstract class ContactProvider {
             }
         }
         getUsers().add(new User(id, name, "", true));
+        sortUsers();
     }
 
     public void addUser(User user) throws DuplicatedException {
@@ -46,6 +48,14 @@ public abstract class ContactProvider {
             }
         }
         getUsers().add(user);
+        sortUsers();
+
+    }
+
+    public void sortUsers() {
+        this.users.sort((user, t1) ->
+            user.getAlias().compareTo(t1.getAlias())
+        );
     }
 
     public User getUser(String id) throws ObjectNotExistException {
@@ -67,6 +77,7 @@ public abstract class ContactProvider {
     }
 
     public int getCount() {
+
         return getUsers().size();
     }
 }

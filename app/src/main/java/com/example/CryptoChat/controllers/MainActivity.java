@@ -7,7 +7,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.biometric.BiometricPrompt;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
@@ -17,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
+import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.utils.DBUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
