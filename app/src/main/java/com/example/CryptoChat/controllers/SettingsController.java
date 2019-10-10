@@ -4,9 +4,12 @@ import android.app.ActionBar;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
 
 
 import androidx.annotation.Nullable;
@@ -16,6 +19,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.CryptoChat.R;
+import com.example.CryptoChat.common.data.adapters.UserAdapter;
+import com.example.CryptoChat.common.data.exceptions.DuplicatedException;
+import com.example.CryptoChat.common.data.fake.FakeContactProvider;
+import com.example.CryptoChat.common.data.models.User;
 
 
 /**
@@ -87,7 +94,32 @@ public class SettingsController extends Fragment {
         super.onActivityCreated(savedInstanceState);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Settings");
 
-        RecyclerView settingsListView = getView().findViewById(R.id.settings_list_view);
+        Button asAlice = (Button)getView().findViewById(R.id.debug_as_test_user_1);
+        Button asBob = (Button)getView().findViewById(R.id.debug_as_test_user_2);
+        asAlice.setOnClickListener(view -> {
+            User bob = new User("id_bob","Bob", "Bob",true);
+            try{
+                FakeContactProvider.getInstance().addUser(bob);
+                UserAdapter adapter = new UserAdapter(FakeContactProvider.getInstance(), getContext());
+                adapter.notifyDataSetChanged();
+            } catch (DuplicatedException d) {
+                Log.e("SettingsController", "Duplicated when adding bob");
+            }
+
+        });
+
+        asBob.setOnClickListener(view -> {
+            User alice = new User("id_alice","Alice", "Alice",true);
+            try{
+                FakeContactProvider.getInstance().addUser(alice);
+                UserAdapter adapter = new UserAdapter(FakeContactProvider.getInstance(), getContext());
+                adapter.notifyDataSetChanged();
+                Log.i("Test: ", FakeContactProvider.getInstance().getUser(0).getAlias());
+            } catch (DuplicatedException d) {
+                Log.e("SettingsController", "Duplicated when adding alice");
+            }
+        });
+
 
     }
 

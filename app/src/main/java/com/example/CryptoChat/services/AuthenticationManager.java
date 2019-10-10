@@ -1,4 +1,4 @@
-package com.example.CryptoChat.controllers;
+package com.example.CryptoChat.services;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -6,6 +6,7 @@ import java.util.Date;
 public class AuthenticationManager {
     static private boolean authenticated = false;
     static private Date lastUnlock = Calendar.getInstance().getTime();
+    static private String Uid;
 
     synchronized static public boolean getAuthState() {
         /**
@@ -23,12 +24,21 @@ public class AuthenticationManager {
         authenticated = state;
     }
 
-    synchronized static void lock() {
+    synchronized public static void lock() {
         authenticated = false;
     }
 
-    synchronized static void unlock() {
+    synchronized public static void unlock() {
         lastUnlock = Calendar.getInstance().getTime();
         authenticated = true;
+    }
+
+    synchronized public static String getUid(){
+        return Uid;
+
+    }
+
+    synchronized public static void setUid (String uid) {
+        Uid = uid;
     }
 }

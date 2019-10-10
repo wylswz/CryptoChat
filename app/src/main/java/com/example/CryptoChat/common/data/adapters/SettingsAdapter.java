@@ -34,12 +34,10 @@ public class SettingsAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHold
         public MyViewHolder(View v) {
             super(v);
             cell = v;
-
         }
 
         public void init(String name) {
-            TextView nameText = (TextView) cell.findViewById(R.id.settings_cell_name);
-            nameText.setText(name);
+
         }
     }
 }
