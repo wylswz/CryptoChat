@@ -18,7 +18,7 @@
         <activity
             android:name="com.example.CryptoChat.controllers.MainActivity"
             android:noHistory="false"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
