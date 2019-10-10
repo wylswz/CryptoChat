@@ -1,6 +1,7 @@
 package com.example.CryptoChat.common.data.fake;
 
 import com.example.CryptoChat.common.data.exceptions.DuplicatedException;
+
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.models.User;
 import com.example.CryptoChat.common.data.provider.ContactProvider;
@@ -66,6 +67,7 @@ public class FakeContactProvider extends ContactProvider {
         throw new ObjectNotExistException("User object does not exist");
     }
 
+
     public void sortUsers() {
         this.users.sort((user, t1) ->
                 user.getAlias().compareTo(t1.getAlias())
@@ -92,4 +94,5 @@ public class FakeContactProvider extends ContactProvider {
         sortUsers();
 
     }
+
 }

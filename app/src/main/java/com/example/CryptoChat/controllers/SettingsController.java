@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -92,6 +93,7 @@ public class SettingsController extends Fragment {
 
         super.onActivityCreated(savedInstanceState);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Settings");
+
         Button asAlice = (Button)getView().findViewById(R.id.debug_as_test_user_1);
         Button asBob = (Button)getView().findViewById(R.id.debug_as_test_user_2);
         asAlice.setOnClickListener(view -> {
@@ -117,6 +119,7 @@ public class SettingsController extends Fragment {
                 Log.e("SettingsController", "Duplicated when adding alice");
             }
         });
+
 
     }
 
