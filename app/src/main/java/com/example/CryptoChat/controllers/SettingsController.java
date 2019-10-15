@@ -1,5 +1,6 @@
 package com.example.CryptoChat.controllers;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Context;
 import android.net.Uri;
@@ -9,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
+import android.widget.Toast;
 
 
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ import com.example.CryptoChat.common.data.adapters.UserAdapter;
 import com.example.CryptoChat.common.data.exceptions.DuplicatedException;
 import com.example.CryptoChat.common.data.fake.FakeContactProvider;
 import com.example.CryptoChat.common.data.models.User;
+import com.example.CryptoChat.services.AuthenticationManager;
 
 
 /**
@@ -88,6 +90,7 @@ public class SettingsController extends Fragment {
         return view;
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
@@ -104,6 +107,9 @@ public class SettingsController extends Fragment {
                 adapter.notifyDataSetChanged();
             } catch (DuplicatedException d) {
                 Log.e("SettingsController", "Duplicated when adding bob");
+            } finally {
+                AuthenticationManager.setUid("id_alice");
+                Toast.makeText(getContext(),"You are now Alice", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -114,9 +120,11 @@ public class SettingsController extends Fragment {
                 FakeContactProvider.getInstance().addUser(alice);
                 UserAdapter adapter = UserAdapter.getInstance(FakeContactProvider.getInstance(),getContext());
                 adapter.notifyDataSetChanged();
-                Log.i("Test: ", FakeContactProvider.getInstance().getUser(0).getAlias());
             } catch (DuplicatedException d) {
                 Log.e("SettingsController", "Duplicated when adding alice");
+            } finally {
+                AuthenticationManager.setUid("id_bob");
+                Toast.makeText(getContext(),"You are now Bob", Toast.LENGTH_SHORT).show();
             }
         });
 
