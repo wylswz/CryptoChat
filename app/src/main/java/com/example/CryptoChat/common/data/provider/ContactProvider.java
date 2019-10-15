@@ -15,6 +15,8 @@ public abstract class ContactProvider {
 
     private ArrayList<User> users;
 
+
+
     public ContactProvider() {
         users = new ArrayList<User>();
     }
@@ -79,5 +81,9 @@ public abstract class ContactProvider {
     public int getCount() {
 
         return getUsers().size();
+    }
+
+    public void sortByAlias(){
+        this.users.sort((user, t1) -> user.getAlias().compareTo(t1.getAlias()));
     }
 }

@@ -72,18 +72,32 @@ public class SQLiteMessageProvider extends MessageProvider {
     }
 
     @Override
-    public void InsertMessage(Message m) {
+    public void insertMessage(Message m) {
         this.messageDao.insert(m);
     }
 
     @Override
-    public void DropMessageById(String Id) {
+    public void dropMessageById(String Id) {
         this.messageDao.queryBuilder()
                 .where(MessageDao.Properties.Id.eq(Id))
                 .buildDelete().executeDeleteWithoutDetachingEntities();
         session.clear();
         // Clear the session cache
 
+    }
+
+    @Override
+    public void dropMessageByUser(String userId) {
+        this.messageDao.queryBuilder()
+                .where(MessageDao.Properties.ReceiverId.eq(userId))
+                .buildDelete().executeDeleteWithoutDetachingEntities();
+
+        session.clear();
+    }
+
+    @Override
+    public void clear() {
+        this.messageDao.deleteAll();
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.CryptoChat.common.data.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,8 +20,23 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     private ContactProvider cp;
     private Context context;
 
+    @SuppressLint("StaticFieldLeak")
+    private static UserAdapter instance;
 
-    public UserAdapter(ContactProvider cp, Context context) {
+    public static UserAdapter getInstance(ContactProvider cp, Context ctx) {
+        if (instance == null) {
+            synchronized (UserAdapter.class) {
+                if(instance == null) {
+                    instance = new UserAdapter(cp, ctx);
+                }
+            }
+
+        }
+
+        return instance;
+    }
+
+    private UserAdapter(ContactProvider cp, Context context) {
         this.cp = cp;
         this.context = context;
     }
@@ -74,6 +90,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
     public Context getContext() {
         return this.context;
+    }
+
+    public void sort(){
+        this.cp.sortByAlias();
+        this.notifyDataSetChanged();
     }
 
 }

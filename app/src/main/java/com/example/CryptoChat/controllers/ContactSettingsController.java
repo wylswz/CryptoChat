@@ -3,6 +3,7 @@ package com.example.CryptoChat.controllers;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -11,10 +12,12 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CryptoChat.R;
+import com.example.CryptoChat.common.data.adapters.UserAdapter;
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.fake.FakeContactProvider;
 import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.models.User;
+import com.example.CryptoChat.common.data.provider.ContactProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.utils.DBUtils;
 
@@ -65,6 +68,7 @@ public class ContactSettingsController extends AppCompatActivity {
                     EditText alias = findViewById(R.id.edit_contact_alias_text);
                     u.setAlias(alias.getText().toString());
                     FakeContactProvider.getInstance().setUser(u);
+                    UserAdapter.getInstance(null,null).sort();
                     // TODO: Update corresponding dialog name
                     Dialog d = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(this))
                             .getDialogByReceiverId(this.uid);
@@ -73,7 +77,8 @@ public class ContactSettingsController extends AppCompatActivity {
                             .updateDialog(d);
 
                 } catch (ObjectNotExistException e) {
-
+                    Log.e("ContactSettingController", "User Not Exist when confirming " +
+                            "contact settings");
                 }
 
                 onBackPressed();
