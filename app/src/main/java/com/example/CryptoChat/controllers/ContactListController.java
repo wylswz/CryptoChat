@@ -89,11 +89,12 @@ public class ContactListController extends Fragment {
         lm = new LinearLayoutManager(getActivity());
 
         if (view != null) {
-            UserAdapter adapter = new UserAdapter(FakeContactProvider.getInstance(), getContext());
+            UserAdapter adapter = UserAdapter.getInstance(FakeContactProvider.getInstance(),getContext());
             contactList = view.findViewById(R.id.contact_list);
             contactList.setLayoutManager(lm);
             ItemTouchHelper it = new ItemTouchHelper(new SwipeToDeleteCallback(adapter));
             it.attachToRecyclerView(contactList);
+            adapter.sort();
             contactList.setAdapter(adapter);
             Log.v("Test", "=============================================");
         }

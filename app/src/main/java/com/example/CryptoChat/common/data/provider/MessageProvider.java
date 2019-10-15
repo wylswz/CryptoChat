@@ -12,9 +12,13 @@ public abstract class MessageProvider {
 
     abstract public List<Message> getMessages(String userId, int limit, int offset);
 
-    abstract public void InsertMessage(Message m);
+    abstract public void insertMessage(Message m);
 
-    abstract public void DropMessageById(String Id);
+    abstract public void dropMessageById(String Id);
+
+    abstract public void dropMessageByUser(String userId);
+
+    abstract public void clear();
 
 
 }

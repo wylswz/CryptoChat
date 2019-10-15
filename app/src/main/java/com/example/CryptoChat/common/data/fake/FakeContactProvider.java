@@ -95,4 +95,8 @@ public class FakeContactProvider extends ContactProvider {
 
     }
 
+    public void sortByAlias(){
+        this.users.sort((user, t1) -> user.getAlias().compareTo(t1.getAlias()));
+    }
+
 }

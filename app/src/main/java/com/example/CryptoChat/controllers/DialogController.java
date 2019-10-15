@@ -1,6 +1,5 @@
 package com.example.CryptoChat.controllers;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.net.Uri;
@@ -12,13 +11,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.adapters.DialogAdapter;
 import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.utils.DBUtils;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
@@ -118,7 +117,12 @@ public class DialogController extends Fragment implements
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(getResources().getString(R.string.delete_dialog_confirm)).setTitle("Delete");
 
-        builder.setPositiveButton(R.string.yes, (dialogInterface, i) -> adapter.deleteById(dialog.getId()));
+        builder.setPositiveButton(R.string.yes, (dialogInterface, i) -> {
+            adapter.deleteById(dialog.getId());
+            SQLiteMessageProvider.getInstance(DBUtils.getDaoSession(getContext())).dropMessageByUser(dialog.getReceiverId());
+
+
+        });
         builder.setNegativeButton(R.string.no, (dialogInterface, i) -> {
 
         });

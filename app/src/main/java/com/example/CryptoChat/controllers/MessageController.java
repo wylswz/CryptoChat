@@ -10,9 +10,9 @@ import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.CryptoChat.R;
+import com.example.CryptoChat.common.data.adapters.MessageAdapter;
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.fake.FakeContactProvider;
 import com.example.CryptoChat.common.data.fake.MessagesFixtures;
@@ -46,7 +46,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
     protected final String senderId = "0";
     protected String receiverId = "";
     protected ImageLoader imageLoader;
-    protected MessagesListAdapter<Message> messagesAdapter;
+    protected MessageAdapter<Message> messagesAdapter;
 
     private Menu menu;
     private int selectionCount;
@@ -75,7 +75,6 @@ public class MessageController extends AppCompatActivity implements MessagesList
         } catch (ObjectNotExistException e) {
             this.dialog = null;
         }
-        Log.i("MessageController", receiverId);
 
 
         imageLoader = (imageView, url, payload) -> Picasso.get().load(url).into(imageView);
@@ -91,19 +90,13 @@ public class MessageController extends AppCompatActivity implements MessagesList
         input.setTypingListener(this);
         input.setAttachmentsListener(this);
 
-        try{
-            User receiver = FakeContactProvider.getInstance().getUser(receiverId);
-            getSupportActionBar().setTitle(receiver.getAlias());
 
-        } catch (ObjectNotExistException e) {
-            Log.v("MessageController", "Contact not found when setting toolbar title");
-        }
     }
 
 
     private void initAdapter() {
 
-        messagesAdapter = new MessagesListAdapter<>(senderId, imageLoader);
+        messagesAdapter = new MessageAdapter<Message>(senderId, imageLoader,getApplicationContext());
         messagesAdapter.enableSelectionMode(this);
         messagesAdapter.setLoadMoreListener(this);
         messagesAdapter.registerViewClickListener(R.id.messageUserAvatar,
@@ -116,7 +109,13 @@ public class MessageController extends AppCompatActivity implements MessagesList
     @Override
     protected void onStart() {
         super.onStart();
-        // TODO: Load local messages instead of random fake messages
+        try{
+            User receiver = FakeContactProvider.getInstance().getUser(receiverId);
+            getSupportActionBar().setTitle(receiver.getAlias());
+
+        } catch (ObjectNotExistException e) {
+            Log.v("MessageController", "Contact not found when setting toolbar title");
+        }
         loadMessages();
 
     }
@@ -136,7 +135,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
             case R.id.action_delete:
                 List<Message> messages = messagesAdapter.getSelectedMessages();
                 for (Message m : messages) {
-                    mp.DropMessageById(m.getId());
+                    mp.dropMessageById(m.getId());
                     messagesAdapter.delete(m);
                 }
 
@@ -223,7 +222,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
 
         Message msg = new Message(UUID.randomUUID().toString(), new User("1", "asd", "", false), input.toString());
         msg.setReceiverId(receiverId);
-        mp.InsertMessage(msg);
+        mp.insertMessage(msg);
         messagesAdapter.addToStart(msg, true);
         offset += 1;
         if (this.dialog == null) {
