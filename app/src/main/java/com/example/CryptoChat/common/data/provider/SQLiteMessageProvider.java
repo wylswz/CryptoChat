@@ -6,6 +6,7 @@ import com.example.CryptoChat.common.data.models.Message;
 import com.example.CryptoChat.common.data.models.MessageDao;
 
 import org.greenrobot.greendao.DaoException;
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.util.Date;
 import java.util.List;
@@ -61,8 +62,9 @@ public class SQLiteMessageProvider extends MessageProvider {
 
 
     public List<Message> getMessages(String userId, int limit, int offset) {
-        List<Message> l = this.messageDao.queryBuilder()
-                .where(MessageDao.Properties.ReceiverId.eq(userId))
+        QueryBuilder<Message> qb = this.messageDao.queryBuilder();
+        qb.or(MessageDao.Properties.ReceiverId.eq(userId), MessageDao.Properties.SenderId.eq(userId));
+        List<Message> l = qb
                 .orderDesc(MessageDao.Properties.CreatedAt)
                 .limit(limit)
                 .offset(offset)
@@ -88,9 +90,10 @@ public class SQLiteMessageProvider extends MessageProvider {
 
     @Override
     public void dropMessageByUser(String userId) {
-        this.messageDao.queryBuilder()
-                .where(MessageDao.Properties.ReceiverId.eq(userId))
-                .buildDelete().executeDeleteWithoutDetachingEntities();
+        QueryBuilder<Message> qb = this.messageDao.queryBuilder();
+        qb.or(MessageDao.Properties.ReceiverId.eq(userId), MessageDao.Properties.SenderId.eq(userId));
+
+        qb.buildDelete().executeDeleteWithoutDetachingEntities();
 
         session.clear();
     }

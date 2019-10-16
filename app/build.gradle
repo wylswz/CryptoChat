@@ -47,5 +47,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.1.0'
     implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.google.firebase:firebase-firestore:21.1.1'
+    implementation 'com.mikhaellopez:circularimageview:4.0.2'
+    compile 'ai.api:sdk:2.0.7@aar'
+    //noinspection GradleCompatible
+    compile 'com.android.support:appcompat-v7:23.2.1'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -1,5 +1,7 @@
 package com.example.CryptoChat.services;
 
+import com.example.CryptoChat.common.data.models.User;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -31,6 +33,7 @@ public class AuthenticationManager {
     synchronized public static void unlock() {
         lastUnlock = Calendar.getInstance().getTime();
         authenticated = true;
+        setUid("0");
     }
 
     synchronized public static String getUid(){
@@ -62,6 +65,10 @@ public class AuthenticationManager {
      */
     synchronized public static void setAvatar(){
 
+    }
+
+    public static User getMe(){
+        return new User(AuthenticationManager.getUid(), "Test", AuthenticationManager.getAvatar(), false);
     }
 
 }
