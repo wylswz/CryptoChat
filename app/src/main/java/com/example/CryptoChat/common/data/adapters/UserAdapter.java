@@ -20,23 +20,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     private ContactProvider cp;
     private Context context;
 
-    @SuppressLint("StaticFieldLeak")
-    private static UserAdapter instance;
-
-    public static UserAdapter getInstance(ContactProvider cp, Context ctx) {
-        if (instance == null) {
-            synchronized (UserAdapter.class) {
-                if(instance == null) {
-                    instance = new UserAdapter(cp, ctx);
-                }
-            }
-
-        }
-
-        return instance;
-    }
-
-    private UserAdapter(ContactProvider cp, Context context) {
+    public UserAdapter(ContactProvider cp, Context context) {
         this.cp = cp;
         this.context = context;
     }

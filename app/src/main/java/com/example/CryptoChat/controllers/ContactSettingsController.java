@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import com.example.CryptoChat.common.data.models.User;
 import com.example.CryptoChat.common.data.provider.ContactProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.utils.DBUtils;
+import com.squareup.picasso.Picasso;
 
 public class ContactSettingsController extends AppCompatActivity {
 
@@ -37,6 +39,9 @@ public class ContactSettingsController extends AppCompatActivity {
             setContentView(R.layout.activity_contact_settings);
             EditText alias = findViewById(R.id.edit_contact_alias_text);
             alias.setText(u.getAlias());
+
+            ImageView iv = (ImageView)findViewById(R.id.edit_contact_image);
+            Picasso.get().load(u.getAvatar()).into(iv);
         } catch (ObjectNotExistException e) {
 
         }
@@ -68,7 +73,6 @@ public class ContactSettingsController extends AppCompatActivity {
                     EditText alias = findViewById(R.id.edit_contact_alias_text);
                     u.setAlias(alias.getText().toString());
                     FakeContactProvider.getInstance().setUser(u);
-                    UserAdapter.getInstance(null,null).sort();
                     // TODO: Update corresponding dialog name
                     Dialog d = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(this))
                             .getDialogByReceiverId(this.uid);

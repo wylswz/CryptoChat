@@ -5,7 +5,6 @@ import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.models.User;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 
 /*

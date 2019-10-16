@@ -22,7 +22,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.156"
         tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="TODO" />
+        android:contentDescription="TODO"
+        />
 
     <EditText
         android:id="@+id/edit_contact_alias_text"

@@ -38,7 +38,30 @@ public class AuthenticationManager {
 
     }
 
+
     synchronized public static void setUid (String uid) {
         Uid = uid;
     }
+
+
+    /**
+     * Get mac address
+     * @return
+     */
+    synchronized public static String getMac(){
+
+        return "";
+    }
+
+    synchronized public static String getAvatar(){
+        return "https://i.imgur.com/pv1tBmT.png";
+    }
+
+    /**
+     * Set my avatar
+     */
+    synchronized public static void setAvatar(){
+
+    }
+
 }
