@@ -9,34 +9,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.PointerIconCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.provider.ContactProvider;
 import com.example.CryptoChat.controllers.MessageController;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {
     private ContactProvider cp;
     private Context context;
 
-    @SuppressLint("StaticFieldLeak")
-    private static UserAdapter instance;
-
-    public static UserAdapter getInstance(ContactProvider cp, Context ctx) {
-        if (instance == null) {
-            synchronized (UserAdapter.class) {
-                if(instance == null) {
-                    instance = new UserAdapter(cp, ctx);
-                }
-            }
-
-        }
-
-        return instance;
-    }
-
-    private UserAdapter(ContactProvider cp, Context context) {
+    public UserAdapter(ContactProvider cp, Context context) {
         this.cp = cp;
         this.context = context;
     }
@@ -53,7 +40,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.init(cp.getUser(position).getAlias());
+        holder.init(cp.getUser(position).getAlias(), cp.getUser(position).getAvatar());
         holder.cell.findViewById(R.id.contact_cell_constraint).setOnClickListener(view -> {
             MessageController.open(getContext(), cp.getUser(position).getId());
             Log.i("ContactListAdapter", "Clicked");
@@ -76,10 +63,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
         }
 
-        public void init(String name) {
+        public void init(String name, String avatar) {
             TextView nameText = (TextView) cell.findViewById(R.id.contact_cell_name);
+            CircularImageView imv = cell.findViewById(R.id.contact_cell_avatar);
             nameText.setText(name);
+            Picasso.get().load(avatar).into(imv);
         }
+
     }
 
     public void deleteItem(int position) {
