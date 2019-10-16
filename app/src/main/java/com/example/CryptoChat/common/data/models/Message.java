@@ -1,5 +1,6 @@
 package com.example.CryptoChat.common.data.models;
 
+import com.example.CryptoChat.R;
 import com.stfalcon.chatkit.commons.models.IMessage;
 import com.stfalcon.chatkit.commons.models.MessageContentType;
 
@@ -27,6 +28,7 @@ public class Message implements IMessage,
     private String receiverId;
     private Date createdAt;
     private Boolean read; // Whether the message has been read
+    private String imageUrl;
 
 
     @Transient
@@ -46,6 +48,7 @@ public class Message implements IMessage,
         this.user = user;
         this.createdAt = createdAt;
         this.read = false;
+        this.imageUrl = user.getAvatar();
     }
 
 
@@ -53,15 +56,16 @@ public class Message implements IMessage,
     public Message() {
     }
 
-    @Generated(hash = 732397791)
+    @Generated(hash = 2100642007)
     public Message(Long pk, String id, @NotNull String text, @NotNull String receiverId, Date createdAt,
-            Boolean read) {
+            Boolean read, String imageUrl) {
         this.pk = pk;
         this.id = id;
         this.text = text;
         this.receiverId = receiverId;
         this.createdAt = createdAt;
         this.read = read;
+        this.imageUrl = imageUrl;
     }
 
     @Override
@@ -82,7 +86,7 @@ public class Message implements IMessage,
 
     @Override
     public User getUser() {
-        return new User("0", "Name", "avatar", false);
+        return new User("0", "Name", "drawable://" + R.drawable.default_avatar, false);
         // UserId ==0 -> message by phone owner
         /* TODO: Add logic: if user id == current user id, then return a fake user with ID = 0
             Otherwise query the user from database. If it does not exist, create a temporary
@@ -143,6 +147,10 @@ public class Message implements IMessage,
 
     public void setRead(Boolean read) {
         this.read = read;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
 

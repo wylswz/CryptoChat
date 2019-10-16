@@ -41,10 +41,10 @@ public class DialogController extends Fragment implements
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 
-    private DialogAdapter adapter;
+    private DialogAdapter<Dialog> adapter;
 
     private DialogsList dialogs;
-    private ImageLoader imageLoader = (imageView, url, payload) -> Picasso.get().load(url).into(imageView);
+    private ImageLoader imageLoader;
     private OnFragmentInteractionListener mListener;
 
 
@@ -56,7 +56,10 @@ public class DialogController extends Fragment implements
         View view = inflater.inflate(R.layout.fragment_dialog_controller, container, false);
 
 
-
+        this.imageLoader= (imageView, url, payload) -> {
+            Picasso.get().load(url).into(imageView);
+            Log.i("DialogController", url);
+        };
 
         //setTitle("Messages");
         return view;
@@ -68,13 +71,13 @@ public class DialogController extends Fragment implements
         super.onActivityCreated(savedInstanceState);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Messages");
         View view = getView();
-        DialogsListAdapter<Dialog> baseAdapter = new DialogsListAdapter<>(imageLoader);
 
-        this.adapter = new DialogAdapter(this.imageLoader, getContext());
+        this.adapter = new DialogAdapter<Dialog>(this.imageLoader, getContext());
 
         dialogs = (DialogsList) view.findViewById(R.id.dialogsList);
         List<Dialog> dialoglist = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(getContext())).getDialogs();
         Log.v("DialogController", dialoglist.toString());
+
         this.adapter.setItems(dialoglist);
         adapter.setOnDialogClickListener(this);
         adapter.setOnDialogLongClickListener(this);

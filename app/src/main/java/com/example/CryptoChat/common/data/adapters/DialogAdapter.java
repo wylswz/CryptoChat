@@ -1,6 +1,7 @@
 package com.example.CryptoChat.common.data.adapters;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 

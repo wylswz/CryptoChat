@@ -1,5 +1,8 @@
 package com.example.CryptoChat.common.data.fake;
 
+import android.net.Uri;
+
+import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.exceptions.DuplicatedException;
 
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
@@ -29,7 +32,7 @@ public class FakeContactProvider extends ContactProvider {
         super();
         users = new ArrayList<>();
         for (int i = 1; i < 100; i++) {
-            users.add(new User(Integer.valueOf(i).toString(), "Contact - " + i, "", true));
+            users.add(new User(Integer.valueOf(i).toString(), "Contact - " + i, "https://api.adorable.io/avatars/285/abott@adorable.png", true));
         }
     }
 

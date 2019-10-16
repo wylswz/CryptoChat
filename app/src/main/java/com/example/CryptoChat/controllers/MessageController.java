@@ -228,7 +228,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
         if (this.dialog == null) {
             try{
                 User receiver = FakeContactProvider.getInstance().getUser(receiverId);
-                this.dialog = new Dialog(receiver.getAlias(), "Photo", receiverId, msg, 0);
+                this.dialog = new Dialog(receiver.getAlias(), receiver.getAvatar(), receiverId, msg, 0);
                 SQLiteDialogProvider.getInstance(ds).addDialog(this.dialog);
             } catch (ObjectNotExistException e) {
                 Log.e("MessageController", "Contact not found when creating dialog" );
