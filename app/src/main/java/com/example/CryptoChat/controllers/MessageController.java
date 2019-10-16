@@ -15,13 +15,13 @@ import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.adapters.MessageAdapter;
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.fake.FakeContactProvider;
-import com.example.CryptoChat.common.data.fake.MessagesFixtures;
 import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.models.Message;
 import com.example.CryptoChat.common.data.models.User;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
+import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.utils.AppUtils;
 import com.example.CryptoChat.utils.DBUtils;
 import com.squareup.picasso.Picasso;
@@ -99,10 +99,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
         messagesAdapter = new MessageAdapter<Message>(senderId, imageLoader,getApplicationContext());
         messagesAdapter.enableSelectionMode(this);
         messagesAdapter.setLoadMoreListener(this);
-        messagesAdapter.registerViewClickListener(R.id.messageUserAvatar,
-                (view, message) -> AppUtils.showToast(MessageController.this,
-                        message.getUser().getName() + " avatar click",
-                        false));
+
         this.messagesList.setAdapter(messagesAdapter);
     }
 
@@ -219,24 +216,32 @@ public class MessageController extends AppCompatActivity implements MessagesList
 
     @Override
     public boolean onSubmit(CharSequence input) {
+try{
+    Message msg = new Message(UUID.randomUUID().toString(), AuthenticationManager.getMe(), FakeContactProvider.getInstance().getUser(receiverId), input.toString());
+    msg.setReceiverId(receiverId);
+    mp.insertMessage(msg);
+    Message fake_resp = new Message(UUID.randomUUID().toString(), FakeContactProvider.getInstance().getUser(receiverId),AuthenticationManager.getMe(), "羡慕"+input.toString());
+    mp.insertMessage(fake_resp);
+    messagesAdapter.addToStart(msg, true);
+    messagesAdapter.addToStart(fake_resp,true);
 
-        Message msg = new Message(UUID.randomUUID().toString(), new User("1", "asd", "", false), input.toString());
-        msg.setReceiverId(receiverId);
-        mp.insertMessage(msg);
-        messagesAdapter.addToStart(msg, true);
-        offset += 1;
-        if (this.dialog == null) {
-            try{
-                User receiver = FakeContactProvider.getInstance().getUser(receiverId);
-                this.dialog = new Dialog(receiver.getAlias(), receiver.getAvatar(), receiverId, msg, 0);
-                SQLiteDialogProvider.getInstance(ds).addDialog(this.dialog);
-            } catch (ObjectNotExistException e) {
-                Log.e("MessageController", "Contact not found when creating dialog" );
-            }
-
+    offset += 1;
+    if (this.dialog == null) {
+        try{
+            User receiver = FakeContactProvider.getInstance().getUser(receiverId);
+            this.dialog = new Dialog(receiver.getAlias(), receiver.getAvatar(), receiverId, msg, 0);
+            SQLiteDialogProvider.getInstance(ds).addDialog(this.dialog);
+        } catch (ObjectNotExistException e) {
+            Log.e("MessageController", "Contact not found when creating dialog" );
         }
-        this.dialog.setLastMessageId(msg.getId());
-        SQLiteDialogProvider.getInstance(ds).updateDialog(this.dialog);
+
+    }
+    this.dialog.setLastMessageId(fake_resp.getId());
+    SQLiteDialogProvider.getInstance(ds).updateDialog(this.dialog);
+}catch (ObjectNotExistException e) {
+
+}
+
 
 
         // TODO: Send the message to server side along with receiver ID
@@ -245,7 +250,6 @@ public class MessageController extends AppCompatActivity implements MessagesList
 
     @Override
     public void onAddAttachments() {
-        messagesAdapter.addToStart(
-                MessagesFixtures.getImageMessage(), true);
+
     }
 }

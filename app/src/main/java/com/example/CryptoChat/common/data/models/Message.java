@@ -1,6 +1,11 @@
 package com.example.CryptoChat.common.data.models;
 
+import android.util.Log;
+
 import com.example.CryptoChat.R;
+import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
+import com.example.CryptoChat.common.data.fake.FakeContactProvider;
+import com.example.CryptoChat.services.AuthenticationManager;
 import com.stfalcon.chatkit.commons.models.IMessage;
 import com.stfalcon.chatkit.commons.models.MessageContentType;
 
@@ -26,6 +31,9 @@ public class Message implements IMessage,
 
     @NotNull
     private String receiverId;
+
+    @NotNull
+    private String senderId;
     private Date createdAt;
     private Boolean read; // Whether the message has been read
     private String imageUrl;
@@ -38,17 +46,19 @@ public class Message implements IMessage,
     private Image image;
 
 
-    public Message(String id, User user, String text) {
-        this(id, user, text, new Date());
+    public Message(String id, User author, User receiver, String text) {
+        this(id, author,receiver, text, new Date());
     }
 
-    public Message(String id, User user, String text, Date createdAt) {
+    public Message(String id, User user, User receiver, String text, Date createdAt) {
         this.id = id;
         this.text = text;
         this.user = user;
         this.createdAt = createdAt;
         this.read = false;
-        this.imageUrl = user.getAvatar();
+        this.imageUrl = "";
+        this.senderId = user.getId();
+        this.receiverId = receiver.getId();
     }
 
 
@@ -56,13 +66,14 @@ public class Message implements IMessage,
     public Message() {
     }
 
-    @Generated(hash = 2100642007)
-    public Message(Long pk, String id, @NotNull String text, @NotNull String receiverId, Date createdAt,
-            Boolean read, String imageUrl) {
+    @Generated(hash = 363325421)
+    public Message(Long pk, String id, @NotNull String text, @NotNull String receiverId, @NotNull String senderId,
+            Date createdAt, Boolean read, String imageUrl) {
         this.pk = pk;
         this.id = id;
         this.text = text;
         this.receiverId = receiverId;
+        this.senderId = senderId;
         this.createdAt = createdAt;
         this.read = read;
         this.imageUrl = imageUrl;
@@ -86,12 +97,28 @@ public class Message implements IMessage,
 
     @Override
     public User getUser() {
-        return new User("0", "Name", "drawable://" + R.drawable.default_avatar, false);
+
         // UserId ==0 -> message by phone owner
         /* TODO: Add logic: if user id == current user id, then return a fake user with ID = 0
             Otherwise query the user from database. If it does not exist, create a temporary
             unknown user (Maybe alert)
         */
+        if (this.senderId.equals(AuthenticationManager.getUid())) {
+            //
+            return new User("0", "Me", AuthenticationManager.getAvatar(), false);
+        } else {
+            try{
+                User u = FakeContactProvider.getInstance().getUser(senderId);
+                return u;
+            } catch (ObjectNotExistException e) {
+                Log.e("Message", "User not exist when rendering last sender avatar");
+            }
+
+
+        }
+        return null;
+        //return new User("9", "Unknown", AuthenticationManager.getAvatar(), false);
+
     }
 
     @Override
@@ -151,6 +178,14 @@ public class Message implements IMessage,
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getSenderId() {
+        return this.senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
     }
 
 
