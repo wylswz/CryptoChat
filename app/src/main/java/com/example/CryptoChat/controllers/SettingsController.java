@@ -103,6 +103,7 @@ public class SettingsController extends Fragment {
             User bob = new User("id_bob","Bob", "Bob",true);
             try{
                 FakeContactProvider.getInstance().addUser(bob);
+                FakeContactProvider.getInstance().deleteUser("id_alice");
             } catch (DuplicatedException d) {
                 Log.e("SettingsController", "Duplicated when adding bob");
             } finally {
@@ -116,6 +117,7 @@ public class SettingsController extends Fragment {
             User alice = new User("id_alice","Alice", "Alice",true);
             try{
                 FakeContactProvider.getInstance().addUser(alice);
+                FakeContactProvider.getInstance().deleteUser("id_bob");
             } catch (DuplicatedException d) {
                 Log.e("SettingsController", "Duplicated when adding alice");
             } finally {

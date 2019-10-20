@@ -103,7 +103,8 @@ public class Message implements IMessage,
             Otherwise query the user from database. If it does not exist, create a temporary
             unknown user (Maybe alert)
         */
-        if (this.senderId.equals(AuthenticationManager.getUid())) {
+        Log.i("Message", senderId + "/" + AuthenticationManager.getUid());
+        if (this.senderId.equals(AuthenticationManager.getUid()) || this.senderId.equals("0")) {
             //
             return new User("0", "Me", AuthenticationManager.getAvatar(), false);
         } else {
@@ -111,7 +112,7 @@ public class Message implements IMessage,
                 User u = FakeContactProvider.getInstance().getUser(senderId);
                 return u;
             } catch (ObjectNotExistException e) {
-                Log.e("Message", "User not exist when rendering last sender avatar");
+                Log.e("Message", "User not exist when rendering last sender avatar with id " + senderId + "/" + AuthenticationManager.getUid());
             }
 
 

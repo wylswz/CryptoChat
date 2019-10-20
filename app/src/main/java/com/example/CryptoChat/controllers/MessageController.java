@@ -43,8 +43,8 @@ public class MessageController extends AppCompatActivity implements MessagesList
         MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.TypingListener, MessageInput.AttachmentsListener {
     private static final int TOTAL_MESSAGES_COUNT = 10000;
 
-    protected final String senderId = "0";
-    protected String receiverId = "";
+    protected String senderId;
+    protected String receiverId;
     protected ImageLoader imageLoader;
     protected MessageAdapter<Message> messagesAdapter;
 
@@ -65,6 +65,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_controller);
         this.receiverId = getIntent().getStringExtra("receiverId");
+        this.senderId = AuthenticationManager.getUid();
 
         ds = DBUtils.getDaoSession(this);
         mp = SQLiteMessageProvider.getInstance(ds);
@@ -178,6 +179,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
         //imitation of internet connection
         // TODO: Load real messages (with pagination)
         new Handler().postDelayed(() -> {
+
             List<Message> messages = mp.getMessages(receiverId, limit, offset);
             offset = offset + limit;
             messagesAdapter.addToEnd(messages, false);
