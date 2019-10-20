@@ -91,5 +91,22 @@ public class SQLiteDialogProvider {
         dialogDao.deleteAll();
     }
 
+    public void incrementUnread(String receiverId, int count) {
+        Dialog dialog = dialogDao.queryBuilder()
+                .where(DialogDao.Properties.ReceiverId.eq(receiverId))
+                .uniqueOrThrow();
+        dialog.setUnreadCount(dialog.getUnreadCount() + count);
+        updateDialog(dialog);
+    }
+
+    public void resetUnread(String receiverId) {
+        Dialog dialog = dialogDao.queryBuilder()
+                .where(DialogDao.Properties.ReceiverId.eq(receiverId))
+                .uniqueOrThrow();
+
+        dialog.setUnreadCount(0);
+        updateDialog(dialog);
+    }
+
 
 }

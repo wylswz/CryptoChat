@@ -27,16 +27,27 @@
 
     <EditText
         android:id="@+id/edit_contact_alias_text"
-        android:layout_width="295dp"
-        android:layout_height="41dp"
+        android:layout_width="142dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/alias"
         app:layout_constraintEnd_toEndOf="@+id/edit_contact_image"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="@+id/edit_contact_image"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/edit_contact_image" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/alias"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_contact_alias_text"
+        app:layout_constraintStart_toStartOf="@+id/edit_contact_image"
+        app:layout_constraintTop_toTopOf="@+id/edit_contact_alias_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

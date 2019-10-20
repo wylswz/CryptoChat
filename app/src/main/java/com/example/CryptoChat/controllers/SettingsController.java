@@ -39,6 +39,7 @@ public class SettingsController extends Fragment {
     // TODO: Rename and change types of parameters
 
     private OnFragmentInteractionListener mListener;
+    private FakeContactProvider cp;
 
     public SettingsController() {
         // Required empty public constructor
@@ -65,6 +66,7 @@ public class SettingsController extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        cp = FakeContactProvider.getInstance();
     }
 
     @Override
@@ -86,11 +88,12 @@ public class SettingsController extends Fragment {
 
         Button asAlice = (Button)getView().findViewById(R.id.debug_as_test_user_1);
         Button asBob = (Button)getView().findViewById(R.id.debug_as_test_user_2);
+        Button keyEx = (Button)getView().findViewById(R.id.debug_exchange_keypair);
         asAlice.setOnClickListener(view -> {
             User bob = new User("id_bob","Bob", "Bob",true);
             try{
-                FakeContactProvider.getInstance().addUser(bob);
-                FakeContactProvider.getInstance().deleteUser("id_alice");
+                cp.addUser(bob);
+                cp.deleteUser("id_alice");
             } catch (DuplicatedException d) {
                 Log.e("SettingsController", "Duplicated when adding bob");
             } finally {
@@ -103,14 +106,19 @@ public class SettingsController extends Fragment {
         asBob.setOnClickListener(view -> {
             User alice = new User("id_alice","Alice", "Alice",true);
             try{
-                FakeContactProvider.getInstance().addUser(alice);
-                FakeContactProvider.getInstance().deleteUser("id_bob");
+                cp.addUser(alice);
+                cp.deleteUser("id_bob");
             } catch (DuplicatedException d) {
                 Log.e("SettingsController", "Duplicated when adding alice");
             } finally {
                 AuthenticationManager.setUid("id_bob");
                 Toast.makeText(getContext(),"You are now Bob", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        keyEx.setOnClickListener(view -> {
+            NFCKeyExchangeController.open(getContext());
+
         });
 
 

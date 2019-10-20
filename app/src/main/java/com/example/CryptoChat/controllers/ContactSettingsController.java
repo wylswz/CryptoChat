@@ -28,14 +28,17 @@ public class ContactSettingsController extends AppCompatActivity {
     protected Menu menu;
     protected String uid;
 
+    private FakeContactProvider cp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        cp = FakeContactProvider.getInstance();
         Intent intent = getIntent();
         uid = (String) intent.getStringExtra("uid");
         try{
-            User u = FakeContactProvider.getInstance().getUser(uid);
+            User u = cp.getUser(uid);
             setContentView(R.layout.activity_contact_settings);
             EditText alias = findViewById(R.id.edit_contact_alias_text);
             alias.setText(u.getAlias());
@@ -69,10 +72,10 @@ public class ContactSettingsController extends AppCompatActivity {
                  * TODO: Update user info here
                  * */
                 try{
-                    User u = FakeContactProvider.getInstance().getUser(uid);
+                    User u = cp.getUser(uid);
                     EditText alias = findViewById(R.id.edit_contact_alias_text);
                     u.setAlias(alias.getText().toString());
-                    FakeContactProvider.getInstance().setUser(u);
+                    cp.setUser(u);
                     // TODO: Update corresponding dialog name
                     Dialog d = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(this))
                             .getDialogByReceiverId(this.uid);

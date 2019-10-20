@@ -2,7 +2,6 @@ package com.example.CryptoChat.common.data.models;
 
 import android.util.Log;
 
-import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.fake.FakeContactProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
@@ -107,10 +106,11 @@ public class Message implements IMessage,
             } catch (ObjectNotExistException e) {
                 Log.e("Message", "User not exist when rendering last sender avatar with id " + senderId + "/" + AuthenticationManager.getUid());
             }
-
-
         }
-        return null;
+        // The message is neither from phone user
+        // Nor contacts in the list
+        // May happen when change current userID in debug page
+        return AuthenticationManager.getMe();
 
     }
 
