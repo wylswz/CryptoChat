@@ -1,6 +1,7 @@
 #  Service
 This is where Database APIs are provided
-# using fireBase
+## using fireBase
+https://firebase.google.com/docs/database/android/read-and-write
 ## chat app:
 https://code.tutsplus.com/zh-hans/tutorials/how-to-create-an-android-chat-app-using-firebase--cms-27397
 
