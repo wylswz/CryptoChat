@@ -63,12 +63,12 @@ public class SQLiteMessageProvider extends MessageProvider {
 
     public List<Message> getMessages(String userId, int limit, int offset) {
         QueryBuilder<Message> qb = this.messageDao.queryBuilder();
-        qb.or(MessageDao.Properties.ReceiverId.eq(userId), MessageDao.Properties.SenderId.eq(userId));
-        List<Message> l = qb
+        List<Message> l = qb.whereOr(MessageDao.Properties.ReceiverId.eq(userId),MessageDao.Properties.SenderId.eq(userId))
                 .orderDesc(MessageDao.Properties.CreatedAt)
                 .limit(limit)
                 .offset(offset)
                 .list();
+
 
         return l;
     }
@@ -91,9 +91,8 @@ public class SQLiteMessageProvider extends MessageProvider {
     @Override
     public void dropMessageByUser(String userId) {
         QueryBuilder<Message> qb = this.messageDao.queryBuilder();
-        qb.or(MessageDao.Properties.ReceiverId.eq(userId), MessageDao.Properties.SenderId.eq(userId));
-
-        qb.buildDelete().executeDeleteWithoutDetachingEntities();
+        qb.whereOr(MessageDao.Properties.ReceiverId.eq(userId), MessageDao.Properties.SenderId.eq(userId))
+                .buildDelete().executeDeleteWithoutDetachingEntities();
 
         session.clear();
     }
