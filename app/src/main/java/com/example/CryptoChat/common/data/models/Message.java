@@ -106,7 +106,8 @@ public class Message implements IMessage,
         Log.i("Message", senderId + "/" + AuthenticationManager.getUid());
         if (this.senderId.equals(AuthenticationManager.getUid()) || this.senderId.equals("0")) {
             //
-            return new User("0", "Me", AuthenticationManager.getAvatar(), false);
+            return AuthenticationManager.getMe();
+            //return new User("0", "Me", AuthenticationManager.getAvatar(), false);
         } else {
             try{
                 User u = FakeContactProvider.getInstance().getUser(senderId);

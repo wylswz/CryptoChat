@@ -222,10 +222,7 @@ try{
     Message msg = new Message(UUID.randomUUID().toString(), AuthenticationManager.getMe(), FakeContactProvider.getInstance().getUser(receiverId), input.toString());
     msg.setReceiverId(receiverId);
     mp.insertMessage(msg);
-    Message fake_resp = new Message(UUID.randomUUID().toString(), FakeContactProvider.getInstance().getUser(receiverId),AuthenticationManager.getMe(), "羡慕"+input.toString());
-    mp.insertMessage(fake_resp);
     messagesAdapter.addToStart(msg, true);
-    messagesAdapter.addToStart(fake_resp,true);
 
     offset += 1;
     if (this.dialog == null) {
@@ -238,7 +235,7 @@ try{
         }
 
     }
-    this.dialog.setLastMessageId(fake_resp.getId());
+    this.dialog.setLastMessageId(msg.getId());
     SQLiteDialogProvider.getInstance(ds).updateDialog(this.dialog);
 }catch (ObjectNotExistException e) {
 
