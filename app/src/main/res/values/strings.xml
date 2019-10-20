@@ -30,6 +30,10 @@
     <string name="no">NO</string>
     <string name="save">Save</string>
     <string name="alias">Alias</string>
-
+    <string name="set_alice">Set as Alice</string>
+    <string name="set_bob">Set as Bob</string>
+    <string name="alice">Alice</string>
+    <string name="bob">Bob</string>
+    <string name="nfc_hint">Touch device to add contact</string>
 
 </resources>

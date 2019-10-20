@@ -36,7 +36,9 @@ public class ContactListController extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private UserAdapter adapter;
     private RecyclerView.LayoutManager lm;
+    private FakeContactProvider cp;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,6 +68,7 @@ public class ContactListController extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        cp = FakeContactProvider.getInstance();
 
     }
 
@@ -87,7 +90,7 @@ public class ContactListController extends Fragment {
         lm = new LinearLayoutManager(getActivity());
 
         if (view != null) {
-            UserAdapter adapter = new  UserAdapter(FakeContactProvider.getInstance(),getContext());
+            adapter = new  UserAdapter(cp,getContext());
             contactList = view.findViewById(R.id.contact_list);
             contactList.setLayoutManager(lm);
             ItemTouchHelper it = new ItemTouchHelper(new SwipeToDeleteCallback(adapter));

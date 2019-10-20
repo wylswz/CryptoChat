@@ -1,5 +1,6 @@
 package com.example.CryptoChat.controllers;
 
+import android.Manifest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,10 +16,18 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.models.DaoSession;
+import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.utils.DBUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements DialogController.OnFragmentInteractionListener,
         ContactListController.OnFragmentInteractionListener, SettingsController.OnFragmentInteractionListener, Authenticatable {
@@ -30,6 +39,19 @@ public class MainActivity extends AppCompatActivity implements DialogController.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Dexter.withActivity(this)
+                .withPermissions(
+                        Manifest.permission.NFC,
+                        Manifest.permission.USE_BIOMETRIC,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.INTERNET
+                ).withListener(new MultiplePermissionsListener() {
+            @Override public void onPermissionsChecked(MultiplePermissionsReport report) {/* ... */}
+            @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
+        }).check();
+        // Check permission
+
         initUI();
         hide();
         verifyAuth();
@@ -37,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements DialogController.
         mDaoSession = DBUtils.getDaoSession(this);
         DBUtils.initDB(this);
         SQLiteMessageProvider.getInstance(mDaoSession);
+        SQLiteDialogProvider.getInstance(mDaoSession);
 
         /*
          * Navigating by setting same ID for menu items and nav items
@@ -131,6 +154,5 @@ public class MainActivity extends AppCompatActivity implements DialogController.
 
     private void show() {
         findViewById(R.id.activity_main_layout).setVisibility(View.VISIBLE);
-
     }
 }

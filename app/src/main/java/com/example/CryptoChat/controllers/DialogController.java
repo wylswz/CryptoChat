@@ -126,8 +126,6 @@ public class DialogController extends Fragment implements
             dp.dropDialog(dialog.getId());
             adapter.deleteById(dialog.getId());
             mp.dropMessageByUser(dialog.getReceiverId());
-
-
         });
         builder.setNegativeButton(R.string.no, (dialogInterface, i) -> {
 

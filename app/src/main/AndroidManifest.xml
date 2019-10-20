@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.CryptoChat">
 
-    <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission-sdk-23 android:name="android.permission.NFC" />
+    <uses-permission-sdk-23 android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:allowClearUserData="true"
-        >
+        android:fullBackupContent="@xml/backup_descriptor"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name="com.example.CryptoChat.controllers.MainActivity"
             android:noHistory="false"
@@ -43,11 +45,16 @@
             android:theme="@style/AppTheme">
         </activity>
 
+        <activity
+            android:name=".controllers.NFCKeyExchangeController"
+            android:theme="@style/AppTheme" />
+
 
     </application>
 
 
     <uses-feature
         android:name="android.hardware.nfc"
-        android:required="true" />
+        android:required="true"
+        tools:ignore="ManifestOrder" />
 </manifest>
