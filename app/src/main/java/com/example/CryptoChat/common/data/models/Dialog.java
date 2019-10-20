@@ -3,8 +3,9 @@ package com.example.CryptoChat.common.data.models;
 import android.util.Log;
 
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
-import com.example.CryptoChat.common.data.fake.FakeContactProvider;
+
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.stfalcon.chatkit.commons.models.IDialog;
 
 import org.greenrobot.greendao.DaoException;
@@ -96,8 +97,8 @@ public class Dialog implements IDialog<Message> {
 
         ArrayList<User> al = new ArrayList<>();
         try {
-            al.add(FakeContactProvider.getInstance().getUser(receiverId));
-        } catch (ObjectNotExistException e) {
+            al.add(SQLiteUserProvider.getInstance(null).getUser(receiverId));
+        } catch (Exception e) {
             Log.e("Dialog", "User not exist");
         }
         return al;

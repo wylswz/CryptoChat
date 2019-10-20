@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.adapters.SwipeToDeleteCallback;
 import com.example.CryptoChat.common.data.adapters.UserAdapter;
-import com.example.CryptoChat.common.data.fake.FakeContactProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 
 
 /**
@@ -38,7 +38,7 @@ public class ContactListController extends Fragment {
 
     private UserAdapter adapter;
     private RecyclerView.LayoutManager lm;
-    private FakeContactProvider cp;
+    private SQLiteUserProvider cp;
 
     private OnFragmentInteractionListener mListener;
 
@@ -68,7 +68,7 @@ public class ContactListController extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        cp = FakeContactProvider.getInstance();
+        cp = SQLiteUserProvider.getInstance(null);
 
     }
 

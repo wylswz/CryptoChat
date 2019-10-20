@@ -3,7 +3,7 @@ package com.example.CryptoChat.common.data.models;
 import android.util.Log;
 
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
-import com.example.CryptoChat.common.data.fake.FakeContactProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
 import com.stfalcon.chatkit.commons.models.IMessage;
 import com.stfalcon.chatkit.commons.models.MessageContentType;
@@ -101,9 +101,9 @@ public class Message implements IMessage,
             return AuthenticationManager.getMe();
         } else {
             try{
-                User u = FakeContactProvider.getInstance().getUser(senderId);
+                User u = SQLiteUserProvider.getInstance(null).getUser(senderId);
                 return u;
-            } catch (ObjectNotExistException e) {
+            } catch (Exception e) {
                 Log.e("Message", "User not exist when rendering last sender avatar with id " + senderId + "/" + AuthenticationManager.getUid());
             }
         }

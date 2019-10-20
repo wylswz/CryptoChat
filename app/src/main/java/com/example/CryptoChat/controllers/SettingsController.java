@@ -17,8 +17,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.exceptions.DuplicatedException;
-import com.example.CryptoChat.common.data.fake.FakeContactProvider;
 import com.example.CryptoChat.common.data.models.User;
+import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
 
 
@@ -39,7 +39,7 @@ public class SettingsController extends Fragment {
     // TODO: Rename and change types of parameters
 
     private OnFragmentInteractionListener mListener;
-    private FakeContactProvider cp;
+    private SQLiteUserProvider cp;
 
     public SettingsController() {
         // Required empty public constructor
@@ -66,7 +66,7 @@ public class SettingsController extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cp = FakeContactProvider.getInstance();
+        cp = SQLiteUserProvider.getInstance(null);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class SettingsController extends Fragment {
             try{
                 cp.addUser(bob);
                 cp.deleteUser("id_alice");
-            } catch (DuplicatedException d) {
+            } catch (Exception d) {
                 Log.e("SettingsController", "Duplicated when adding bob");
             } finally {
                 AuthenticationManager.setUid("id_alice");
@@ -108,7 +108,7 @@ public class SettingsController extends Fragment {
             try{
                 cp.addUser(alice);
                 cp.deleteUser("id_bob");
-            } catch (DuplicatedException d) {
+            } catch (Exception d) {
                 Log.e("SettingsController", "Duplicated when adding alice");
             } finally {
                 AuthenticationManager.setUid("id_bob");
