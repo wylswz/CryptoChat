@@ -13,8 +13,6 @@ public class SendMsg {
     public String uid;
     public String author;
     public String body;
-    public int starCount = 0;
-    public Map<String, Boolean> stars = new HashMap<>();
 
     public SendMsg() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
@@ -33,8 +31,6 @@ public class SendMsg {
         result.put("uid", uid);
         result.put("author", author);
         result.put("body", body);
-        result.put("starCount", starCount);
-        result.put("stars", stars);
 
         return result;
     }
