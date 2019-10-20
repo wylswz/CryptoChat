@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SendMsgDetail extends BaseActivity{
+// implements View.OnClickListener
 
     private static final String TAG = "SendMsgDetail";
 
@@ -46,7 +47,6 @@ public class SendMsgDetail extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //
         //setContentView(R.layout.sendMsg_activity);
 
         // Get sendmsg key from intent
@@ -62,8 +62,7 @@ public class SendMsgDetail extends BaseActivity{
         //        .child("msg-comments").child(mSendMsgKey);
 
         /*** Initialize UI Views
-        mAuthorView = findViewById(R.id.);
-        mTitleView = findViewById(R.id.msgTitle);
+        mAuthorView = findViewById(R.id.msgAuthor);
         mBodyView = findViewById(R.id.msgBody);
          */
     }
