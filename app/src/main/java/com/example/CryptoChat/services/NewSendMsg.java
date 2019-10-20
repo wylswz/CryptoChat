@@ -28,8 +28,9 @@ public class NewSendMsg extends BaseActivity {
     private DatabaseReference mDatabase;
     // [END declare_database_ref]
 
-    private EditText mTitleField;
+    private EditText mAuthorField;
     private EditText mBodyField;
+    private EditText mReceiverField;
     private FloatingActionButton mSubmitButton;
 
     @Override
@@ -41,8 +42,9 @@ public class NewSendMsg extends BaseActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         // [END initialize_database_ref]
 /*** corrspond to UI
-        mTitleField = findViewById(R.id.fieldTitle);
+        mAuthorField = findViewById(R.id.fieldAuthor);
         mBodyField = findViewById(R.id.fieldBody);
+        mReceiverField = findViewById(R.id.fieldReceiver);
         mSubmitButton = findViewById(R.id.fabSubmitMsh);
 */
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
@@ -54,17 +56,24 @@ public class NewSendMsg extends BaseActivity {
     }
 
     private void submitMsg() {
-        final String title = mTitleField.getText().toString();
+        final String author = mAuthorField.getText().toString();
         final String body = mBodyField.getText().toString();
+        final String receiver = mReceiverField.getText().toString();
 
         // Title is required
-        if (TextUtils.isEmpty(title)) {
-            mTitleField.setError(REQUIRED);
+        if (TextUtils.isEmpty(author)) {
+            mAuthorField.setError(REQUIRED);
             return;
         }
 
         // Body is required
         if (TextUtils.isEmpty(body)) {
+            mBodyField.setError(REQUIRED);
+            return;
+        }
+
+        // Receiver is required
+        if (TextUtils.isEmpty(receiver)) {
             mBodyField.setError(REQUIRED);
             return;
         }
@@ -91,7 +100,7 @@ public class NewSendMsg extends BaseActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             // Write new msg
-                            writeNewMsg(userId, user.username, body);
+                            writeNewMsg(userId, user.username, body, receiver);
                         }
 
                         // Finish this Activity, back to the stream
@@ -112,8 +121,9 @@ public class NewSendMsg extends BaseActivity {
     }
 
     private void setEditingEnabled(boolean enabled) {
-        mTitleField.setEnabled(enabled);
+        mAuthorField.setEnabled(enabled);
         mBodyField.setEnabled(enabled);
+        mReceiverField.setEnabled(enabled);
         if (enabled) {
             mSubmitButton.show();
         } else {
@@ -122,11 +132,11 @@ public class NewSendMsg extends BaseActivity {
     }
 
     // [START write_fan_out]
-    private void writeNewMsg(String userId, String username, String body) {
+    private void writeNewMsg(String userId, String username, String body, String receiver) {
         // Create new message at /user-messages/$userid/$messageid and at
         // /messages/$messageid simultaneously
         String key = mDatabase.child("messages").push().getKey();
-        SendMsg sendMsg = new SendMsg(userId, username, body);
+        SendMsg sendMsg = new SendMsg(userId, username, body, receiver);
         Map<String, Object> sendMsgValues = sendMsg.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
