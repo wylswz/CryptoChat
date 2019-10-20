@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements DialogController.
         hide();
         verifyAuth();
 
-
         mDaoSession = DBUtils.getDaoSession(this);
         DBUtils.initDB(this);
         SQLiteMessageProvider.getInstance(mDaoSession);
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements DialogController.
             @Override
             public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                 super.onAuthenticationError(errorCode, errString);
-                Log.v("Auth", "Auth error");
+                Log.e("Auth", "Auth error");
                 //TODO: In prod env, should exit the program
                 show();
 
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements DialogController.
                 super.onAuthenticationFailed();
                 AuthenticationManager.lock();
 
-                Log.v("Auth", "Auth failed");
+                Log.e("Auth", "Auth failed");
             }
         };
     }

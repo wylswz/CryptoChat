@@ -98,16 +98,8 @@ public class Message implements IMessage,
     @Override
     public User getUser() {
 
-        // UserId ==0 -> message by phone owner
-        /* TODO: Add logic: if user id == current user id, then return a fake user with ID = 0
-            Otherwise query the user from database. If it does not exist, create a temporary
-            unknown user (Maybe alert)
-        */
-        Log.i("Message", senderId + "/" + AuthenticationManager.getUid());
         if (this.senderId.equals(AuthenticationManager.getUid()) || this.senderId.equals("0")) {
-            //
             return AuthenticationManager.getMe();
-            //return new User("0", "Me", AuthenticationManager.getAvatar(), false);
         } else {
             try{
                 User u = FakeContactProvider.getInstance().getUser(senderId);
@@ -119,7 +111,6 @@ public class Message implements IMessage,
 
         }
         return null;
-        //return new User("9", "Unknown", AuthenticationManager.getAvatar(), false);
 
     }
 

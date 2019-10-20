@@ -40,7 +40,6 @@ public class SQLiteDialogProvider {
     public List<Dialog> getDialogs() {
         List<Dialog> l = dialogDao.queryBuilder()
                 .list();
-        Log.v("SQLiteDialogProvider", l.toString());
         return l;
     }
 
@@ -72,9 +71,6 @@ public class SQLiteDialogProvider {
         try {
             dialogDao.queryBuilder()
                     .where(DialogDao.Properties.Id.eq(dialogId)).buildDelete().executeDeleteWithoutDetachingEntities();
-
-            Log.i("SQLiteDialogProvider", dialogId);
-
 
         } catch (DaoException e) {
             Log.e("SQLiteDialogProvider", e.getMessage());

@@ -43,7 +43,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         holder.init(cp.getUser(position).getAlias(), cp.getUser(position).getAvatar());
         holder.cell.findViewById(R.id.contact_cell_constraint).setOnClickListener(view -> {
             MessageController.open(getContext(), cp.getUser(position).getId());
-            Log.i("ContactListAdapter", "Clicked");
         });
 
     }
@@ -74,7 +73,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
     public void deleteItem(int position) {
         this.cp.deleteUser(position);
-        Log.v("Remaining", cp.getCount() + "");
         notifyItemRemoved(position);
     }
 
