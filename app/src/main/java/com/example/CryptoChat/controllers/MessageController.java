@@ -15,13 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.adapters.MessageAdapter;
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
-import com.example.CryptoChat.common.data.fake.FakeContactProvider;
 import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.models.Message;
 import com.example.CryptoChat.common.data.models.User;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.utils.AppUtils;
 import com.example.CryptoChat.utils.DBUtils;
@@ -50,6 +50,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
     protected MessageAdapter<Message> messagesAdapter;
     private SQLiteMessageProvider mp;
     private SQLiteDialogProvider dp;
+    private SQLiteUserProvider cp;
     private DaoSession ds;
 
 
@@ -81,6 +82,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
         ds = DBUtils.getDaoSession(this);
         mp = SQLiteMessageProvider.getInstance(ds);
         dp = SQLiteDialogProvider.getInstance(ds);
+        cp = SQLiteUserProvider.getInstance(ds);
         offset = 0;
         limit = 10;
         try {
@@ -106,10 +108,10 @@ public class MessageController extends AppCompatActivity implements MessagesList
     protected void onStart() {
         super.onStart();
         try {
-            User receiver = FakeContactProvider.getInstance().getUser(receiverId);
+            User receiver = cp.getUser(receiverId);
             getSupportActionBar().setTitle(receiver.getAlias());
 
-        } catch (ObjectNotExistException e) {
+        } catch (Exception e) {
             Log.e("MessageController", "Contact not found when setting toolbar title");
         }
 
@@ -222,7 +224,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
     @Override
     public boolean onSubmit(CharSequence input) {
         try {
-            Message msg = new Message(UUID.randomUUID().toString(), AuthenticationManager.getMe(), FakeContactProvider.getInstance().getUser(receiverId), input.toString());
+            Message msg = new Message(UUID.randomUUID().toString(), AuthenticationManager.getMe(), cp.getUser(receiverId), input.toString());
             msg.setReceiverId(receiverId);
             mp.insertMessage(msg);
             messagesAdapter.addToStart(msg,true);
@@ -230,17 +232,17 @@ public class MessageController extends AppCompatActivity implements MessagesList
             offset += 1;
             if (this.dialog == null) {
                 try {
-                    User receiver = FakeContactProvider.getInstance().getUser(receiverId);
+                    User receiver = cp.getUser(receiverId);
                     this.dialog = new Dialog(receiver.getAlias(), receiver.getAvatar(), receiverId, msg, 0);
                     dp.addDialog(this.dialog);
-                } catch (ObjectNotExistException e) {
+                } catch (Exception e) {
                     Log.e("MessageController", "Contact not found when creating dialog");
                 }
 
             }
             this.dialog.setLastMessageId(msg.getId());
             dp.updateDialog(this.dialog);
-        } catch (ObjectNotExistException e) {
+        } catch (Exception e) {
             Log.e("MessageController", "User not exist when sending message");
         }
 

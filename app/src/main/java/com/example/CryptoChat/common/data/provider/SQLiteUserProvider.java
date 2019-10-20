@@ -9,19 +9,17 @@ import org.greenrobot.greendao.DaoException;
 import java.util.ArrayList;
 import org.greenrobot.greendao.query.QueryBuilder;
 
-import java.util.List;
-
-public class UserProvider extends ContactProvider {
-    private static UserProvider instance = null;
+public class SQLiteUserProvider extends ContactProvider {
+    private static SQLiteUserProvider instance = null;
     private UserDao userDao;
     private DaoSession session;
 
-    public static UserProvider getInstance(DaoSession session) {
+    public static SQLiteUserProvider getInstance(DaoSession session) {
 
         if (instance == null) {
             synchronized (SQLiteMessageProvider.class) {
                 if (instance == null) {
-                    instance = new UserProvider();
+                    instance = new SQLiteUserProvider();
                     instance.userDao = session.getUserDao();
                     instance.session = session;
                 }
@@ -38,7 +36,10 @@ public class UserProvider extends ContactProvider {
     @Override
     public User getUser(int idx) throws DaoException{
         sortUsers();
-        return this.userDao.queryBuilder().offset(idx).uniqueOrThrow();
+        return this.userDao.queryBuilder()
+                .offset(idx)
+                .limit(1)
+                .uniqueOrThrow();
     }
 
     @Override
@@ -59,7 +60,10 @@ public class UserProvider extends ContactProvider {
     @Override
     public void deleteUser(int idx){
         sortUsers();
-        this.userDao.queryBuilder().offset(idx).buildDelete()
+        this.userDao.queryBuilder()
+                .offset(idx)
+                .limit(1)
+                .buildDelete()
                 .executeDeleteWithoutDetachingEntities();
         session.clear();
     }
@@ -77,6 +81,10 @@ public class UserProvider extends ContactProvider {
 
     public void setUser(User user){
         this.userDao.update(user);
+    }
+
+    public void addUser(User user) {
+        this.userDao.insert(user);
     }
 
 

@@ -18,6 +18,7 @@ import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.utils.DBUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements DialogController.
         DBUtils.initDB(this);
         SQLiteMessageProvider.getInstance(mDaoSession);
         SQLiteDialogProvider.getInstance(mDaoSession);
+        SQLiteUserProvider.getInstance(mDaoSession);
 
         /*
          * Navigating by setting same ID for menu items and nav items

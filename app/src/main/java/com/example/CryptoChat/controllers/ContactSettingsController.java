@@ -15,11 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.common.data.adapters.UserAdapter;
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
-import com.example.CryptoChat.common.data.fake.FakeContactProvider;
 import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.models.User;
 import com.example.CryptoChat.common.data.provider.ContactProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.utils.DBUtils;
 import com.squareup.picasso.Picasso;
 
@@ -28,13 +28,13 @@ public class ContactSettingsController extends AppCompatActivity {
     protected Menu menu;
     protected String uid;
 
-    private FakeContactProvider cp;
+    private SQLiteUserProvider cp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        cp = FakeContactProvider.getInstance();
+        cp = SQLiteUserProvider.getInstance(null);
         Intent intent = getIntent();
         uid = (String) intent.getStringExtra("uid");
         try{
@@ -45,7 +45,7 @@ public class ContactSettingsController extends AppCompatActivity {
 
             ImageView iv = (ImageView)findViewById(R.id.edit_contact_image);
             Picasso.get().load(u.getAvatar()).into(iv);
-        } catch (ObjectNotExistException e) {
+        } catch (Exception e) {
 
         }
 
