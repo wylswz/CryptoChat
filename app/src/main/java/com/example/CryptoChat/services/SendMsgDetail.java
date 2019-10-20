@@ -40,6 +40,7 @@ public class SendMsgDetail extends BaseActivity{
 
     private TextView mAuthorView;
     private TextView mBodyView;
+    private TextView mReceiverView;
     //private EditText mCommentField;
     //private Button mCommentButton;
     //private RecyclerView mCommentsRecycler;
@@ -64,6 +65,7 @@ public class SendMsgDetail extends BaseActivity{
         /*** Initialize UI Views
         mAuthorView = findViewById(R.id.msgAuthor);
         mBodyView = findViewById(R.id.msgBody);
+         mReceiverView
          */
     }
 
@@ -81,6 +83,7 @@ public class SendMsgDetail extends BaseActivity{
                 // [START_EXCLUDE]
                 mAuthorView.setText(sendMsg.author);
                 mBodyView.setText(sendMsg.body);
+                mReceiverView.setText(sendMsg.receiver);
                 // [END_EXCLUDE]
             }
 
