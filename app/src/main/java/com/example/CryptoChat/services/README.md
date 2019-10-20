@@ -10,6 +10,9 @@ https://blog.csdn.net/sinat_14849739/article/details/70833387
 https://blog.csdn.net/qq_35599978/article/details/71155153
 ## Camera:
 
+https://developer.android.com/guide/topics/media/camera
+
+
 https://blog.csdn.net/qq_35599978/article/details/72729794
 ## Gesture:
 
