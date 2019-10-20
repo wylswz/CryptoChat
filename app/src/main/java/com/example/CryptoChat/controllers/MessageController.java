@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,13 +41,17 @@ import java.util.UUID;
  * TODO: Overide message adapter
  */
 public class MessageController extends AppCompatActivity implements MessagesListAdapter.OnLoadMoreListener,
-        MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.TypingListener, MessageInput.AttachmentsListener {
+        MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.TypingListener, MessageInput.AttachmentsListener,MessageInput.OnFocusChangeListener {
     private static final int TOTAL_MESSAGES_COUNT = 10000;
 
     protected String senderId;
     protected String receiverId;
     protected ImageLoader imageLoader;
     protected MessageAdapter<Message> messagesAdapter;
+    private SQLiteMessageProvider mp;
+    private SQLiteDialogProvider dp;
+    private DaoSession ds;
+
 
     private Menu menu;
     private int selectionCount;
@@ -55,49 +60,42 @@ public class MessageController extends AppCompatActivity implements MessagesList
     private int offset;
     private int limit;
 
-    private SQLiteMessageProvider mp;
-    private DaoSession ds;
+
+
 
     private Dialog dialog;
+
+    public static void open(Context context, String receiverId) {
+        Intent intent = new Intent(context, MessageController.class);
+        intent.putExtra("receiverId", receiverId);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_messages_controller);
         this.receiverId = getIntent().getStringExtra("receiverId");
         this.senderId = AuthenticationManager.getUid();
+        setContentView(R.layout.activity_messages_controller);
 
         ds = DBUtils.getDaoSession(this);
         mp = SQLiteMessageProvider.getInstance(ds);
+        dp = SQLiteDialogProvider.getInstance(ds);
         offset = 0;
         limit = 10;
         try {
-            this.dialog = SQLiteDialogProvider.getInstance(ds).getDialogByReceiverId(receiverId);
+            this.dialog = dp.getDialogByReceiverId(receiverId);
         } catch (ObjectNotExistException e) {
             this.dialog = null;
         }
 
-
         imageLoader = (imageView, url, payload) -> Picasso.get().load(url).into(imageView);
-
-
-
-
-        this.messagesList = findViewById(R.id.messagesList);
-        initAdapter();
-
-        MessageInput input = findViewById(R.id.input);
-        input.setInputListener(this);
-        input.setTypingListener(this);
-        input.setAttachmentsListener(this);
-
 
     }
 
-
     private void initAdapter() {
 
-        messagesAdapter = new MessageAdapter<Message>(senderId, imageLoader,getApplicationContext());
+        messagesAdapter = new MessageAdapter<Message>(senderId, imageLoader);
         messagesAdapter.enableSelectionMode(this);
         messagesAdapter.setLoadMoreListener(this);
 
@@ -107,13 +105,21 @@ public class MessageController extends AppCompatActivity implements MessagesList
     @Override
     protected void onStart() {
         super.onStart();
-        try{
+        try {
             User receiver = FakeContactProvider.getInstance().getUser(receiverId);
             getSupportActionBar().setTitle(receiver.getAlias());
 
         } catch (ObjectNotExistException e) {
-            Log.v("MessageController", "Contact not found when setting toolbar title");
+            Log.e("MessageController", "Contact not found when setting toolbar title");
         }
+
+        this.messagesList = findViewById(R.id.messagesList);
+        initAdapter();
+        MessageInput input = findViewById(R.id.input);
+        input.setInputListener(this);
+        input.setTypingListener(this);
+        input.setAttachmentsListener(this);
+
         loadMessages();
 
     }
@@ -144,7 +150,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
                 break;
             case R.id.edit_contact_in_chat:
 
-                    ContactSettingsController.open(this, this.receiverId);
+                ContactSettingsController.open(this, this.receiverId);
 
 
         }
@@ -162,7 +168,6 @@ public class MessageController extends AppCompatActivity implements MessagesList
 
     @Override
     public void onLoadMore(int page, int totalItemsCount) {
-        Log.i("TAG", "onLoadMore: " + page + " " + totalItemsCount);
         if (totalItemsCount < TOTAL_MESSAGES_COUNT) {
             loadMessages();
         }
@@ -175,6 +180,9 @@ public class MessageController extends AppCompatActivity implements MessagesList
         menu.findItem(R.id.action_copy).setVisible(count > 0);
     }
 
+    /**
+     * Load message sent by/to receiver
+     */
     protected void loadMessages() {
         //imitation of internet connection
         // TODO: Load real messages (with pagination)
@@ -186,11 +194,6 @@ public class MessageController extends AppCompatActivity implements MessagesList
         }, 100);
     }
 
-    public static void open(Context context, String receiverId) {
-        Intent intent = new Intent(context, MessageController.class);
-        intent.putExtra("receiverId", receiverId);
-        context.startActivity(intent);
-    }
 
     private MessagesListAdapter.Formatter<Message> getMessageStringFormatter() {
         return message -> {
@@ -218,29 +221,28 @@ public class MessageController extends AppCompatActivity implements MessagesList
 
     @Override
     public boolean onSubmit(CharSequence input) {
-try{
-    Message msg = new Message(UUID.randomUUID().toString(), AuthenticationManager.getMe(), FakeContactProvider.getInstance().getUser(receiverId), input.toString());
-    msg.setReceiverId(receiverId);
-    mp.insertMessage(msg);
-    messagesAdapter.addToStart(msg, true);
+        try {
+            Message msg = new Message(UUID.randomUUID().toString(), AuthenticationManager.getMe(), FakeContactProvider.getInstance().getUser(receiverId), input.toString());
+            msg.setReceiverId(receiverId);
+            mp.insertMessage(msg);
+            messagesAdapter.addToStart(msg,true);
 
-    offset += 1;
-    if (this.dialog == null) {
-        try{
-            User receiver = FakeContactProvider.getInstance().getUser(receiverId);
-            this.dialog = new Dialog(receiver.getAlias(), receiver.getAvatar(), receiverId, msg, 0);
-            SQLiteDialogProvider.getInstance(ds).addDialog(this.dialog);
+            offset += 1;
+            if (this.dialog == null) {
+                try {
+                    User receiver = FakeContactProvider.getInstance().getUser(receiverId);
+                    this.dialog = new Dialog(receiver.getAlias(), receiver.getAvatar(), receiverId, msg, 0);
+                    dp.addDialog(this.dialog);
+                } catch (ObjectNotExistException e) {
+                    Log.e("MessageController", "Contact not found when creating dialog");
+                }
+
+            }
+            this.dialog.setLastMessageId(msg.getId());
+            dp.updateDialog(this.dialog);
         } catch (ObjectNotExistException e) {
-            Log.e("MessageController", "Contact not found when creating dialog" );
+            Log.e("MessageController", "User not exist when sending message");
         }
-
-    }
-    this.dialog.setLastMessageId(msg.getId());
-    SQLiteDialogProvider.getInstance(ds).updateDialog(this.dialog);
-}catch (ObjectNotExistException e) {
-
-}
-
 
 
         // TODO: Send the message to server side along with receiver ID
@@ -249,6 +251,11 @@ try{
 
     @Override
     public void onAddAttachments() {
+
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean b) {
 
     }
 }

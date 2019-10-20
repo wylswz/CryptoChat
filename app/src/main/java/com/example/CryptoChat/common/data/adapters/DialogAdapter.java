@@ -39,25 +39,25 @@ import java.util.List;
 public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DIALOG> {
 
     private List<DIALOG> items;
-    private SQLiteDialogProvider dp;
+    //private SQLiteDialogProvider dp;
 
-    public DialogAdapter(ImageLoader imageLoader, Context ctx) {
+    public DialogAdapter(ImageLoader imageLoader) {
         super(imageLoader);
         this.items = new ArrayList<>();
-        this.dp = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx));
+        //this.dp = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx));
     }
 
 
     @Override
     public void addItem(DIALOG dialog) {
-        dp.addDialog((Dialog) dialog);
+        //dp.addDialog((Dialog) dialog);
         super.addItem(dialog);
 
     }
 
     @Override
     public void addItem(int position, DIALOG dialog) {
-        dp.addDialog((Dialog) dialog);
+        //dp.addDialog((Dialog) dialog);
         super.addItem(position, dialog);
 
     }
@@ -82,7 +82,7 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
     @Override
     public void updateItem(int position, DIALOG item) {
         super.updateItem(position, item);
-        dp.updateDialog((Dialog) item);
+        //dp.updateDialog((Dialog) item);
     }
 
     /**
@@ -93,7 +93,7 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
     @Override
     public void updateItemById(DIALOG item) {
         super.updateItemById(item);
-        dp.updateDialog((Dialog) item);
+        //dp.updateDialog((Dialog) item);
     }
 
     /**
@@ -132,7 +132,7 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getId().equals(dialogId)) {
                 items.get(i).setLastMessage(message);
-                dp.updateDialog((Dialog) items.get(i));
+                //dp.updateDialog((Dialog) items.get(i));
                 notifyItemChanged(i);
                 if (i != 0) {
                     Collections.swap(items, i, 0);
@@ -176,7 +176,7 @@ public class DialogAdapter<DIALOG extends IDialog> extends DialogsListAdapter<DI
 
     @Override
     public void deleteById(String id) {
-        dp.dropDialog(id);
+        //dp.dropDialog(id);
         super.deleteById(id);
     }
 

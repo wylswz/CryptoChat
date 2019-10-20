@@ -35,13 +35,6 @@ public class SQLiteMessageProvider extends MessageProvider {
     @Override
     public Message getMessageById(String Id) throws DaoException {
 
-            /**List<Message> l = this.messageDao.queryBuilder()
-                    .where(MessageDao.Properties.Id.eq(Id))
-                    .orderDesc(MessageDao.Properties.CreatedAt)
-                    .list();
-            if (l.size() >= 1) return l.get(0);
-             */
-
             return this.messageDao.queryBuilder()
                     .where(MessageDao.Properties.Id.eq(Id))
                     .orderDesc(MessageDao.Properties.CreatedAt).uniqueOrThrow();

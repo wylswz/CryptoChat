@@ -36,9 +36,7 @@ public class ContactListController extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-
     private RecyclerView.LayoutManager lm;
-
 
     private OnFragmentInteractionListener mListener;
 
@@ -96,7 +94,6 @@ public class ContactListController extends Fragment {
             it.attachToRecyclerView(contactList);
             adapter.sort();
             contactList.setAdapter(adapter);
-            Log.v("Test", "=============================================");
         }
 
     }

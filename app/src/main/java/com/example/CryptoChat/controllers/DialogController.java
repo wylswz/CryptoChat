@@ -42,6 +42,8 @@ public class DialogController extends Fragment implements
 
 
     private DialogAdapter<Dialog> adapter;
+    private SQLiteDialogProvider dp;
+    private SQLiteMessageProvider mp;
 
     private DialogsList dialogs;
     private ImageLoader imageLoader;
@@ -58,7 +60,6 @@ public class DialogController extends Fragment implements
 
         this.imageLoader= (imageView, url, payload) -> {
             Picasso.get().load(url).into(imageView);
-            Log.i("DialogController", url);
         };
 
         //setTitle("Messages");
@@ -72,11 +73,12 @@ public class DialogController extends Fragment implements
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Messages");
         View view = getView();
 
-        this.adapter = new DialogAdapter<Dialog>(this.imageLoader, getContext());
+        this.adapter = new DialogAdapter<Dialog>(this.imageLoader);
 
         dialogs = (DialogsList) view.findViewById(R.id.dialogsList);
-        List<Dialog> dialoglist = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(getContext())).getDialogs();
-        Log.v("DialogController", dialoglist.toString());
+        dp = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(getContext()));
+        mp = SQLiteMessageProvider.getInstance(DBUtils.getDaoSession(getContext()));
+        List<Dialog> dialoglist = dp.getDialogs();
 
         this.adapter.setItems(dialoglist);
         adapter.setOnDialogClickListener(this);
@@ -121,8 +123,9 @@ public class DialogController extends Fragment implements
         builder.setMessage(getResources().getString(R.string.delete_dialog_confirm)).setTitle("Delete");
 
         builder.setPositiveButton(R.string.yes, (dialogInterface, i) -> {
+            dp.dropDialog(dialog.getId());
             adapter.deleteById(dialog.getId());
-            SQLiteMessageProvider.getInstance(DBUtils.getDaoSession(getContext())).dropMessageByUser(dialog.getReceiverId());
+            mp.dropMessageByUser(dialog.getReceiverId());
 
 
         });
