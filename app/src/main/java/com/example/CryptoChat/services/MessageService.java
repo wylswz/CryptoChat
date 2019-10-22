@@ -20,10 +20,12 @@ import java.util.Map;
 
 class MessageUpdate extends Thread {
     public CountDownTimer updateOnline;
-
+    private boolean activated;
 
     public MessageUpdate(){
+        activated = true;
         updateOnline = new CountDownTimer(System.currentTimeMillis(), 1000) {
+
             @Override
             public void onTick(long l) {
                 FirebaseAPIs.readMsgFromDB();
@@ -34,6 +36,14 @@ class MessageUpdate extends Thread {
                 this.start();
             }
         };
+    }
+
+    public void notifyStop(){
+        activated = false;
+    }
+
+    public void notifyResume(){
+        activated = true;
     }
 
     @Override
@@ -63,6 +73,7 @@ public class MessageService extends Service {
     private DatabaseReference mDatabase;
     private Looper serviceLooper;
     private ServiceHandler serviceHandler;
+    private MessageUpdate t;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -80,12 +91,13 @@ public class MessageService extends Service {
 //        // Get the HandlerThread's Looper and use it for our Handler
         serviceLooper = thread.getLooper();
         serviceHandler = new ServiceHandler(serviceLooper);
-        Thread t = new MessageUpdate();
+        t = new MessageUpdate();
         t.start();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        t.notifyResume();
         Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
 
         // For each start request, send a message to start a job and deliver the
@@ -100,8 +112,8 @@ public class MessageService extends Service {
 
     @Override
     public void onDestroy() {
+        t.notifyStop();
         Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
     }
-
 
 }
