@@ -3,6 +3,7 @@ package com.example.CryptoChat.services;
 import com.example.CryptoChat.common.data.adapters.MessageAdapter;
 import com.example.CryptoChat.common.data.models.Message;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
+import com.example.CryptoChat.controllers.MessageController;
 import com.example.CryptoChat.utils.DBUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,6 +32,8 @@ public class FirebaseAPIs {
     private static DatabaseReference mRef = fbClient.getReference();
     private static String TAG = "READFROMFIREBASE";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    
+    private static Context a_context;
 
 
     //Read from Firebase
@@ -45,11 +48,8 @@ public class FirebaseAPIs {
                 //if(msg.getReceiverId().equals(AuthenticationManager.getUid())) {
                 //    SQLiteMessageProvider.getInstance(null).insertMessage(msg);
                 //}
-                
-                //save the data get from Firebase to Local
-                //saveToLocal(context, "Message", msgMap);
-                
-                //delete all messages under "messages-uid"
+
+               //saveToLocal(a_context, "Message", msgMap);
                 FirebaseDatabase.getInstance().getReference().child("messages").child(AuthenticationManager.getUid()).removeValue();
 
                 //TODO: Notify MessageAdapter for real time update
@@ -76,8 +76,9 @@ public class FirebaseAPIs {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                User user = dataSnapshot.getValue(User.class);
-                Log.d(TAG, "Value is: " + user);
+                Map<String, Object> userMap = (HashMap)dataSnapshot.child("users").child(AuthenticationManager.getUid()).getValue();
+               // User user = dataSnapshot.getValue(User.class);
+                //Log.d(TAG, "Value is: " + user);
             }
 
             @Override
@@ -96,19 +97,17 @@ public class FirebaseAPIs {
         msgMap.put("senderId", msg.getSenderId());
         msgMap.put("receiverId", msg.getReceiverId());
         msgMap.put("text", msg.getText());
-        // should be fromId, not ToId
-        // fromId == uid
-        // that's why child(uid) didn't work when readMsgFromDB
-        // Now it is fixed
+        // fromId, not toId
+        // fromId is uid
         mRef.child("messages").child(fromUserId).child(msg.getId()).setValue(msgMap);
     }
 
     //write user to Firebase
     public static void writeUser(User user) {
-        User user1 = user;
-        String userId = user1.getId();
-        String userName = user1.getName();
-        mRef.child("users").setValue(user1);
+        HashMap<String, String> userMap = new HashMap<>();
+        userMap.put("id", user.getId());
+        userMap.put("name", user.getName());
+        mRef.child("users").child(user.getId()).setValue(userMap);
     }
 
     // update users-friends
@@ -124,7 +123,7 @@ public class FirebaseAPIs {
     }
 
     // callback, delete user data
-    public static void delete(User user) {
+    public static void deleteUser(User user) {
         String userId = user.getId();
         mRef.child("users").child(userId).setValue(user)
             .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -154,7 +153,6 @@ public class FirebaseAPIs {
                     }
                 });
     }
-    
     private static void saveToLocal(Context context,String filename, Map<String, Object> map){
         SharedPreferences.Editor note = context.getSharedPreferences(filename, Context.MODE_PRIVATE).edit();
         Iterator<Map.Entry<String, Object>> iterator= map.entrySet().iterator();
