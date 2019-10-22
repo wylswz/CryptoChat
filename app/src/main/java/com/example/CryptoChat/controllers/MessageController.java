@@ -37,9 +37,6 @@ import java.util.Locale;
 import java.util.UUID;
 
 
-/**
- * TODO: Overide message adapter
- */
 public class MessageController extends AppCompatActivity implements MessagesListAdapter.OnLoadMoreListener,
         MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.TypingListener, MessageInput.AttachmentsListener,MessageInput.OnFocusChangeListener {
     private static final int TOTAL_MESSAGES_COUNT = 10000;
@@ -187,7 +184,6 @@ public class MessageController extends AppCompatActivity implements MessagesList
      */
     protected void loadMessages() {
         //imitation of internet connection
-        // TODO: Load real messages (with pagination)
         new Handler().postDelayed(() -> {
 
             List<Message> messages = mp.getMessages(receiverId, limit, offset);

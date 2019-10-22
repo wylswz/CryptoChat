@@ -12,9 +12,6 @@ import org.greenrobot.greendao.DaoException;
 
 import java.util.List;
 
-/*
- * TODO: Implement singleton pattern with getInstance() method
- * */
 public class SQLiteDialogProvider {
     public static SQLiteDialogProvider instance;
     private DialogDao dialogDao;
@@ -52,7 +49,6 @@ public class SQLiteDialogProvider {
         } catch (DaoException e) {
             throw new ObjectNotExistException("Dialog does not exist");
         }
-
 
     }
 

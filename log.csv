@@ -1,0 +1,87 @@
+663689f,yunlu,2 days ago,SQLUserProvider
+b3a48ff,Yunlu Wen,2 days ago,Merge pull request #19 from wylswz/chat-ui
+901c285,yunlu,2 days ago,Temp
+a657775,Fei Zhou,2 days ago,Added UserProvider
+425a774,kelly330,2 days ago,Update README.md
+999b3e7,kelly330,2 days ago,Update README.md
+cc92573,Yunlu Wen,2 days ago,Merge pull request #18 from wylswz/chat-ui
+75190bc,yunlu,2 days ago,Separate adapter
+a318849,kelly330,2 days ago,Delete SendMsgView.java
+7659115,kelly330,2 days ago,Delete Constants.java
+8e99376,kelly330,2 days ago,Delete BaseActivity.java
+cbe64a1,kelly330,2 days ago,Delete SendMsg.java
+87bb957,kelly330,2 days ago,Delete User.java
+606e59c,Yunlu Wen,2 days ago,Merge pull request #17 from wylswz/chat-ui
+1516db7,yunlu,2 days ago,fixed
+80093c6,Yunlu Wen,2 days ago,Merge pull request #16 from wylswz/chat-ui
+1ebc1b9,Yunlu Wen,2 days ago,Merge branch 'master' into chat-ui
+db8e150,yunlu,2 days ago,Merge branch 'chat-ui' of https://github.com/wylswz/CryptoChat into chat-ui
+19daf5f,yunlu,2 days ago,Service
+f020938,kelly330,2 days ago,Update README.md
+0d40a3f,yunlu,2 days ago,fix whereOr
+4610287,kelly330,2 days ago,Update SendMsgDetail.java
+0d0f503,kelly330,2 days ago,Add files via upload
+be7d35e,kelly330,2 days ago,Add files via upload
+944a6da,kelly330,2 days ago,Update README.md
+c4ab48a,kelly330,2 days ago,Update README.md
+aa7b130,kelly330,2 days ago,Update README.md
+b7e1256,kelly330,2 days ago,Add files via upload
+930b856,yunlu,6 days ago,fix - senderId/receiverId in Message model
+107df65,yunlu,6 days ago,default avatar
+1797322,Yunlu Wen,2 days ago,Merge pull request #15 from wylswz/chat-ui
+b928294,yunlu,2 days ago,fix whereOr
+54d37b9,kelly330,2 days ago,Update SendMsgDetail.java
+f6b0436,kelly330,2 days ago,Add files via upload
+91a8d5c,kelly330,2 days ago,Add files via upload
+ff67e5e,kelly330,2 days ago,Update README.md
+350bd5b,kelly330,2 days ago,Update README.md
+6202548,kelly330,2 days ago,Update README.md
+7a194a8,kelly330,2 days ago,Add files via upload
+b4d0e72,Yunlu Wen,6 days ago,Merge pull request #14 from wylswz/chat-ui
+2e97ddb,yunlu,6 days ago,fix - senderId/receiverId in Message model
+11da65b,yunlu,6 days ago,default avatar
+5d21bc3,Yunlu Wen,7 days ago,Merge pull request #13 from wylswz/chat-ui
+89cef3d,yunlu,7 days ago,Toast for debug
+744010e,yunlu,7 days ago,Delete messages when deleting dialog
+0bd4bb2,kelly330,12 days ago,Update README.md
+d920b6c,kelly330,12 days ago,Update build.gradle
+fc93417,kelly330,12 days ago,Add files via upload
+581acb3,kelly330,12 days ago,Update build.gradle
+94cec93,Yunlu Wen,12 days ago,Merge pull request #11 from wylswz/chat-ui
+e887b19,yunlu,12 days ago,debug setup
+b230ae0,yunlu,12 days ago,resolve
+181ac3b,yunlu,12 days ago,debug setup
+3a42f16,yunlu,12 days ago,Toolbar fixed
+076c89f,yunlu,13 days ago,Theme tweak + comment
+e3c6fda,yunlu,13 days ago,Adjust code structure
+0ef4211,yunlu,12 days ago,debug setup
+491336d,Yunlu Wen,12 days ago,Merge pull request #10 from wylswz/database
+7c88822,Yunlu Wen,12 days ago,Merge pull request #8 from kelly330/patch-1
+606e20c,Yunlu Wen,12 days ago,Merge pull request #9 from wylswz/chat-ui
+e0b6b02,yunlu,12 days ago,Toolbar fixed
+99e5608,kelly330,12 days ago,Update build.gradle
+652f6d2,Yunlu Wen,13 days ago,Merge pull request #7 from wylswz/chat-ui
+a358f15,yunlu,13 days ago,Theme tweak + comment
+fe106e8,yunlu,13 days ago,Adjust code structure
+ae25183,Yunlu Wen,13 days ago,Merge pull request #6 from wylswz/chat-ui
+77e7142,yunlu,13 days ago,Layout adjusted
+686e649,Yunlu Wen,13 days ago,Merge pull request #5 from wylswz/chat-ui
+0a0c843,yunlu,13 days ago,None
+18c1dfe,yunlu,13 days ago,gitignore
+3ea3837,yunlu,13 days ago,Dialog adapter
+c8f45ba,Yunlu Wen,4 weeks ago,Merge pull request #4 from wylswz/chat-ui
+704376f,yunlu,4 weeks ago,sender ID==0
+769f63e,Yunlu Wen,4 weeks ago,Merge pull request #3 from wylswz/chat-ui
+60dfbbe,yunlu,4 weeks ago,message deletion
+2c15624,yunlu,4 weeks ago,Message db update
+d37cbe6,Yunlu Wen,4 weeks ago,Merge pull request #2 from wylswz/chat-ui
+cebb634,yunlu,4 weeks ago,Greendao setup
+5b5f513,yunlu,4 weeks ago,greendao gradle
+8be9d93,yunlu,4 weeks ago,Exit on fingerprint fail
+9b647dd,yunlu,4 weeks ago,fingerprint unlock
+52bbba1,yunlu,4 weeks ago,asd
+2fad3e8,Yunlu Wen,4 weeks ago,Merge pull request #1 from wylswz/chat-ui
+f6ca106,yunlu,4 weeks ago,edit user ui
+50bc4c1,yunlu,5 weeks ago,READMEs
+e9dc700,yunlu,5 weeks ago,contact list
+17e2b2a,Yunlu Wen,5 weeks ago,Initial commit
