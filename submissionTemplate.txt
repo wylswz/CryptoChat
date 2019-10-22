@@ -7,7 +7,7 @@ Group No: 43
 Group Members:
 
 1: [yunluw, yunluw@student.unimelb.edu.au] 
-2: [Username, Email] 
+2: [liangy6, liangy6@student.unimelb.edu.au] 
 3: [Username, Email] 
 4: [Username, Email] 
 
