@@ -1,5 +1,6 @@
 package com.example.CryptoChat.services;
 
+import com.example.CryptoChat.common.data.adapters.MessageAdapter;
 import com.example.CryptoChat.common.data.models.Message;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.utils.DBUtils;
@@ -32,7 +33,7 @@ public class FirebaseAPIs {
 
     //Read from Firebase
     //listen on message change
-    public static void readMsgFromDB() {
+    public static void readMsgFromDB(MessageAdapter adapter) {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -48,6 +49,7 @@ public class FirebaseAPIs {
                 //TODO: Save messages to SQLite
                 //TODO: Delete messages from firebase
                 //TODO: Notify MessageAdapter for real time update
+                //TODO: If adapter is not null, push new messages inside and notify data change
 
                 if (msgMap != null) {
                     Log.d(TAG, "Value is: " + msgMap.toString());

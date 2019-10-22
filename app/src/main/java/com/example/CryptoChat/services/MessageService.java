@@ -11,6 +11,7 @@ import android.os.Message;
 import android.os.Process;
 import android.widget.Toast;
 
+import com.example.CryptoChat.common.data.adapters.MessageAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
@@ -22,17 +23,18 @@ class MessageUpdate extends Thread {
     public CountDownTimer updateOnline;
     private boolean activated;
 
-    public MessageUpdate(){
+    public MessageUpdate(MessageAdapter adapter){
         activated = true;
         updateOnline = new CountDownTimer(System.currentTimeMillis(), 1000) {
 
             @Override
             public void onTick(long l) {
-                FirebaseAPIs.readMsgFromDB();
+                FirebaseAPIs.readMsgFromDB(adapter);
             }
 
             @Override
             public void onFinish() {
+                if (activated)
                 this.start();
             }
         };
@@ -74,6 +76,7 @@ public class MessageService extends Service {
     private Looper serviceLooper;
     private ServiceHandler serviceHandler;
     private MessageUpdate t;
+    private MessageAdapter<com.example.CryptoChat.common.data.models.Message> adapter;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -91,13 +94,14 @@ public class MessageService extends Service {
 //        // Get the HandlerThread's Looper and use it for our Handler
         serviceLooper = thread.getLooper();
         serviceHandler = new ServiceHandler(serviceLooper);
-        t = new MessageUpdate();
+        t = new MessageUpdate(adapter);
         t.start();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         t.notifyResume();
+        //TODO: Check if t is running, if not start
         Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
 
         // For each start request, send a message to start a job and deliver the
@@ -108,6 +112,17 @@ public class MessageService extends Service {
 
         // If we get killed, after returning from here, restart
         return START_STICKY;
+    }
+
+
+    //TODO: Stop service
+
+    public void stop(){
+        //TODO: Set notifyStop MessageUpdate
+    }
+
+    public void setAdapter(MessageAdapter adapter) {
+        //TODO: When in message activity, stop, set adapter and start with new adapter
     }
 
     @Override
