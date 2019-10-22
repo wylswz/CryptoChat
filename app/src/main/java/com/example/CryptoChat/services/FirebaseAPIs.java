@@ -50,7 +50,7 @@ public class FirebaseAPIs {
                 //}
                 
                 //TODO: save to local SQLlite
-               //saveToLocal(a_context, "Message", msgMap);
+               //saveToLocal(context:this, "Message", msgMap);
                 
                 //delete all messages under "messages-uid"
                 FirebaseDatabase.getInstance().getReference().child("messages").child(AuthenticationManager.getUid()).removeValue();
