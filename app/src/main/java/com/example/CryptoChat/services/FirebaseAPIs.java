@@ -47,9 +47,10 @@ public class FirebaseAPIs {
                 //if(msg.getReceiverId().equals(AuthenticationManager.getUid())) {
                 //    SQLiteMessageProvider.getInstance(null).insertMessage(msg);
                 //}
-
-
-                saveToLocal(a_context, "Message", msgMap);                
+                
+                //save the data get from Firebase to Local
+                //saveToLocal(a_context, "Message", msgMap);
+                //delete all messages under "messages-uid"
                 FirebaseDatabase.getInstance().getReference().child("messages").child(AuthenticationManager.getUid()).removeValue();
 
                 //TODO: Notify MessageAdapter for real time update
