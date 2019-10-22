@@ -1,0 +1,22 @@
+################################################################################                     
+                    COMP90018 Programming Project Submission
+################################################################################
+
+Group No: 43
+
+Group Members:
+
+1: [yunluw, yunluw@student.unimelb.edu.au] 
+2: [Username, Email] 
+3: [Username, Email] 
+4: [Username, Email] 
+
+YouTube Link:
+
+README:
+
+- Open this project with android studio
+- Build -> Make Project
+- Connect your device with at least android 8.1 installed (The application 
+is developed based on API Level 27)
+- Run app on device
