@@ -8,7 +8,7 @@ import java.util.Date;
 public class AuthenticationManager {
     static private boolean authenticated = false;
     static private Date lastUnlock = Calendar.getInstance().getTime();
-    static private String Uid;
+    static private String Uid="0";
 
     synchronized static public boolean getAuthState() {
         /**

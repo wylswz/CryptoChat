@@ -54,6 +54,9 @@
         <activity
             android:name=".controllers.NFCKeyExchangeController"
             android:theme="@style/AppTheme" />
+        <service android:name=".services.MessageService">
+
+        </service>
     </application>
 
 </manifest>

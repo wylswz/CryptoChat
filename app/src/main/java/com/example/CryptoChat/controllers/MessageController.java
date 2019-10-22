@@ -23,6 +23,7 @@ import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
+import com.example.CryptoChat.services.FirebaseAPIs;
 import com.example.CryptoChat.utils.AppUtils;
 import com.example.CryptoChat.utils.DBUtils;
 import com.squareup.picasso.Picasso;
@@ -224,6 +225,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
             msg.setReceiverId(receiverId);
             mp.insertMessage(msg);
             messagesAdapter.addToStart(msg,true);
+            FirebaseAPIs.writeMsg(msg, senderId, receiverId);
 
             offset += 1;
             if (this.dialog == null) {

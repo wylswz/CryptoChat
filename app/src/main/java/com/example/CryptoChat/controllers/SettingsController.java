@@ -20,6 +20,7 @@ import com.example.CryptoChat.common.data.exceptions.DuplicatedException;
 import com.example.CryptoChat.common.data.models.User;
 import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
+import com.example.CryptoChat.services.FirebaseAPIs;
 import com.example.CryptoChat.utils.DBUtils;
 
 
@@ -90,10 +91,12 @@ public class SettingsController extends Fragment {
         Button asAlice = (Button)getView().findViewById(R.id.debug_as_test_user_1);
         Button asBob = (Button)getView().findViewById(R.id.debug_as_test_user_2);
         Button keyEx = (Button)getView().findViewById(R.id.debug_exchange_keypair);
+
         asAlice.setOnClickListener(view -> {
             User bob = new User("id_bob","Bob", "Bob",true);
             try{
                 cp.addUser(bob);
+                FirebaseAPIs.writeUser(bob);
                 cp.deleteUser("id_alice");
             } catch (Exception d) {
                 Log.e("SettingsController", "Duplicated when adding bob");

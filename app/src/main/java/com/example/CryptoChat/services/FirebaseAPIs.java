@@ -1,23 +1,23 @@
 package com.example.CryptoChat.services;
 
-import com.example.CryptoChat.common.data.models.Friend;
 import com.example.CryptoChat.common.data.models.Message;
+import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
+import com.example.CryptoChat.utils.DBUtils;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.auth.*;
 
 import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-
-import com.google.firebase.database.ChildEventListener;
 import com.example.CryptoChat.common.data.models.User;
 
 import java.util.HashMap;
@@ -25,19 +25,34 @@ import java.util.Map;
 
 public class FirebaseAPIs {
     private static FirebaseDatabase fbClient = FirebaseDatabase.getInstance();
-    private static DatabaseReference mRef = fbClient.getReference("messages");
+    private static DatabaseReference mRef = fbClient.getReference();
     private static String TAG = "READFROMFIREBASE";
+    private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
 
     //Read from Firebase
     //listen on message change
     public static void readMsgFromDB() {
-        mRef.addValueEventListener(new ValueEventListener() {
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                Message msg = dataSnapshot.getValue(Message.class);
-                Log.d(TAG, "Value is: " + msg);
+                Map<String, Object> msgMap = (HashMap)dataSnapshot.child("messages").child(AuthenticationManager.getUid()).getValue(false);
+                //if(msg.getReceiverId().equals(AuthenticationManager.getUid())) {
+                //    SQLiteMessageProvider.getInstance(null).insertMessage(msg);
+                //}
+
+                deleteMsg(msgMap);
+
+                //TODO: Save messages to SQLite
+                //TODO: Delete messages from firebase
+                //TODO: Notify MessageAdapter for real time update
+
+                if (msgMap != null) {
+                    Log.d(TAG, "Value is: " + msgMap.toString());
+                }
+
             }
 
             @Override
@@ -69,16 +84,21 @@ public class FirebaseAPIs {
 
     // update firebase
     // write message to Firebase
-    public static void writeMsg(Context msg, String fromUserId, String toUserId) {
-        Context message = msg;
-        mRef.child("messages").child(fromUserId).setValue(message);
+    public static void writeMsg(Message msg, String fromUserId, String toUserId) {
+        HashMap<String, String> msgMap = new HashMap<>();
+        msgMap.put("id", msg.getId());
+        msgMap.put("senderId", msg.getSenderId());
+        msgMap.put("receiverId", msg.getReceiverId());
+        msgMap.put("text", msg.getText());
+        mRef.child("messages").child(toUserId).child(msg.getId()).setValue(msgMap);
     }
 
     //write user to Firebase
     public static void writeUser(User user) {
         User user1 = user;
         String userId = user1.getId();
-        mRef.child("users").child(userId).setValue(userId);
+        String userName = user1.getName();
+        mRef.child("users").setValue(user1);
     }
 
     // update users-friends
@@ -110,9 +130,8 @@ public class FirebaseAPIs {
     });
 }
     // callback, delete message data
-    public static void delete(Message msg) {
-        String msgId = msg.getId();
-        mRef.child("users").child(msgId).setValue(msg)
+    public static void deleteMsg(Map msg) {
+        mRef.child("messages").child(AuthenticationManager.getUid()).setValue(msg)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess (Void aVoid){
@@ -125,5 +144,7 @@ public class FirebaseAPIs {
                     }
                 });
     }
+
+
 }
 
