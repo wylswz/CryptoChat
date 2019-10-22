@@ -8,7 +8,7 @@
   - UI for NFC communication
   - UI for contact setting
   - Theme
-- Migrate thrid party chat ui library to make it work with local data models.
+- Migrate thrid party chat ui library to make it work with local data models as well as cloud message passing apis.
   - Make use of this library https://github.com/stfalcon-studio/ChatKit
   - Override adapters to fit our data model
   - Override models and connect them with SQLite (using GreenDao)
