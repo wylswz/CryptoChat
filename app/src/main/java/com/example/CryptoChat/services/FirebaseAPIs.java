@@ -23,12 +23,16 @@ import com.example.CryptoChat.common.data.models.User;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Iterator;
+import android.content.SharedPreferences;
 
 public class FirebaseAPIs {
     private static FirebaseDatabase fbClient = FirebaseDatabase.getInstance();
     private static DatabaseReference mRef = fbClient.getReference();
     private static String TAG = "READFROMFIREBASE";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    
+    private static Context a_context;
 
 
     //Read from Firebase
@@ -44,10 +48,10 @@ public class FirebaseAPIs {
                 //    SQLiteMessageProvider.getInstance(null).insertMessage(msg);
                 //}
 
-                deleteMsg(msgMap);
 
-                //TODO: Save messages to SQLite
-                //TODO: Delete messages from firebase
+                saveToLocal(a_context, "Message", msgMap);                
+                FirebaseDatabase.getInstance().getReference().child("messages").child(AuthenticationManager.getUid()).removeValue();
+
                 //TODO: Notify MessageAdapter for real time update
                 //TODO: If adapter is not null, push new messages inside and notify data change
 
@@ -146,7 +150,16 @@ public class FirebaseAPIs {
                     }
                 });
     }
-
+    
+    private static void saveToLocal(Context context,String filename, Map<String, Object> map){
+        SharedPreferences.Editor note = context.getSharedPreferences(filename, Context.MODE_PRIVATE).edit();
+        Iterator<Map.Entry<String, Object>> iterator= map.entrySet().iterator();
+        while (iterator.hasNext()){
+            Map.Entry<String, Object> entry = (Map.Entry<String, Object>) iterator.next();
+            note.putString(entry.getKey(), (String) entry.getValue());
+        }
+        note.commit();
+    }
 
 }
 
