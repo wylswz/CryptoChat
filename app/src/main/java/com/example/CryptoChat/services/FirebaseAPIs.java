@@ -31,8 +31,6 @@ public class FirebaseAPIs {
     private static DatabaseReference mRef = fbClient.getReference();
     private static String TAG = "READFROMFIREBASE";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    
-    private static Context a_context;
 
 
     //Read from Firebase
@@ -49,7 +47,8 @@ public class FirebaseAPIs {
                 //}
                 
                 //save the data get from Firebase to Local
-                //saveToLocal(a_context, "Message", msgMap);
+                //saveToLocal(context, "Message", msgMap);
+                
                 //delete all messages under "messages-uid"
                 FirebaseDatabase.getInstance().getReference().child("messages").child(AuthenticationManager.getUid()).removeValue();
 
