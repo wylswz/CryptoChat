@@ -97,7 +97,11 @@ public class FirebaseAPIs {
         msgMap.put("senderId", msg.getSenderId());
         msgMap.put("receiverId", msg.getReceiverId());
         msgMap.put("text", msg.getText());
-        mRef.child("messages").child(toUserId).child(msg.getId()).setValue(msgMap);
+        // should be fromId, not ToId
+        // fromId == uid
+        // that's why child(uid) didn't work when readMsgFromDB
+        // Now it is fixed
+        mRef.child("messages").child(fromUserId).child(msg.getId()).setValue(msgMap);
     }
 
     //write user to Firebase
