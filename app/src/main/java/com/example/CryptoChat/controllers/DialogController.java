@@ -59,7 +59,12 @@ public class DialogController extends Fragment implements
 
 
         this.imageLoader= (imageView, url, payload) -> {
-            Picasso.get().load(url).into(imageView);
+            try{
+                Picasso.get().load(url).into(imageView);
+
+            } catch (IllegalArgumentException e) {
+
+            }
         };
 
         //setTitle("Messages");

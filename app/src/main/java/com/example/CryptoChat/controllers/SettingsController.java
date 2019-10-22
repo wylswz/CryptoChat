@@ -20,6 +20,7 @@ import com.example.CryptoChat.common.data.exceptions.DuplicatedException;
 import com.example.CryptoChat.common.data.models.User;
 import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
+import com.example.CryptoChat.utils.DBUtils;
 
 
 /**
@@ -66,7 +67,7 @@ public class SettingsController extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cp = SQLiteUserProvider.getInstance(null);
+        cp = SQLiteUserProvider.getInstance(DBUtils.getDaoSession(getContext()));
     }
 
     @Override
