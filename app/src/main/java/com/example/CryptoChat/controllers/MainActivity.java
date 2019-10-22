@@ -1,7 +1,9 @@
 package com.example.CryptoChat.controllers;
 
 import android.Manifest;
-import android.app.Notification;
+
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -157,5 +159,10 @@ public class MainActivity extends AppCompatActivity implements DialogController.
 
     private void show() {
         findViewById(R.id.activity_main_layout).setVisibility(View.VISIBLE);
+    }
+
+    public static void open(Context ctx){
+        Intent i = new Intent(ctx,MainActivity.class);
+        ctx.startActivity(i);
     }
 }

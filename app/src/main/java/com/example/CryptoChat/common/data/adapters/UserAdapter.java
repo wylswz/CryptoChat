@@ -61,9 +61,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
         public void init(String name, String avatar) {
             TextView nameText = (TextView) cell.findViewById(R.id.contact_cell_name);
-            CircularImageView imv = cell.findViewById(R.id.contact_cell_avatar);
-            nameText.setText(name);
-            Picasso.get().load(avatar).into(imv);
+            try{
+                CircularImageView imv = cell.findViewById(R.id.contact_cell_avatar);
+                nameText.setText(name);
+                Picasso.get().load(avatar).into(imv);
+            } catch (IllegalArgumentException e) {
+
+            }
+
+
         }
 
     }
