@@ -93,7 +93,7 @@ public class SettingsController extends Fragment {
         Button keyEx = (Button)getView().findViewById(R.id.debug_exchange_keypair);
 
         asAlice.setOnClickListener(view -> {
-            User bob = new User("id_bob","Bob", "Bob",true);
+            User bob = new User("id_bob","Bob", "http://i.imgur.com/R3Jm1CL.png",true);
             try{
                 cp.addUser(bob);
                 FirebaseAPIs.writeUser(bob);
@@ -108,7 +108,7 @@ public class SettingsController extends Fragment {
         });
 
         asBob.setOnClickListener(view -> {
-            User alice = new User("id_alice","Alice", "Alice",true);
+            User alice = new User("id_alice","Alice", "http://i.imgur.com/R3Jm1CL.png",true);
             try{
                 cp.addUser(alice);
                 cp.deleteUser("id_bob");

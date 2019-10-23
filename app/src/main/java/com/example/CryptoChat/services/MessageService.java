@@ -1,6 +1,7 @@
 package com.example.CryptoChat.services;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -9,8 +10,12 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
+import android.widget.Adapter;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.CryptoChat.common.data.adapters.DialogAdapter;
 import com.example.CryptoChat.common.data.adapters.MessageAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -23,13 +28,13 @@ class MessageUpdate extends Thread {
     public CountDownTimer updateOnline;
     private boolean activated;
 
-    public MessageUpdate(MessageAdapter adapter){
+    public MessageUpdate(RecyclerView.Adapter adapter, Context ctx){
         activated = true;
         updateOnline = new CountDownTimer(System.currentTimeMillis(), 1000) {
 
             @Override
             public void onTick(long l) {
-                FirebaseAPIs.readMsgFromDB(adapter);
+                FirebaseAPIs.readMsgFromDB(adapter, ctx);
             }
 
             @Override
@@ -76,7 +81,7 @@ public class MessageService extends Service {
     private Looper serviceLooper;
     private ServiceHandler serviceHandler;
     private MessageUpdate t;
-    private MessageAdapter<com.example.CryptoChat.common.data.models.Message> adapter;
+    private RecyclerView.Adapter adapter;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -94,7 +99,7 @@ public class MessageService extends Service {
 //        // Get the HandlerThread's Looper and use it for our Handler
         serviceLooper = thread.getLooper();
         serviceHandler = new ServiceHandler(serviceLooper);
-        t = new MessageUpdate(adapter);
+        t = new MessageUpdate(adapter, getApplicationContext());
         t.start();
     }
 
@@ -102,6 +107,9 @@ public class MessageService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         t.notifyResume();
         //TODO: Check if t is running, if not start
+        if (!t.isAlive()) {
+            t.run();
+        }
         Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
 
         // For each start request, send a message to start a job and deliver the
@@ -119,11 +127,14 @@ public class MessageService extends Service {
 
     public void stop(){
         //TODO: Set notifyStop MessageUpdate
+        t.notifyStop();
     }
 
-    public void setAdapter(MessageAdapter adapter) {
+    public void setAdapter(RecyclerView.Adapter adapter) {
         //TODO: When in message activity, stop, set adapter and start with new adapter
+        this.adapter = adapter;
     }
+
 
     @Override
     public void onDestroy() {

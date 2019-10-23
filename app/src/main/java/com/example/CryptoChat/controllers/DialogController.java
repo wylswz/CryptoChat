@@ -116,6 +116,7 @@ public class DialogController extends Fragment implements
     @Override
     public void onDialogClick(Dialog dialog) {
         //DefaultMessagesActivity.open(this);
+        dialog.setUnreadCount(0);
         MessageController.open(Objects.requireNonNull(this.getContext()), dialog.getReceiverId());
         // TODO: User real receiver id queried from database
     }

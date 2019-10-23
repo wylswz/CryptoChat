@@ -2,6 +2,7 @@ package com.example.CryptoChat.controllers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CryptoChat.R;
@@ -218,6 +220,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public boolean onSubmit(CharSequence input) {
         try {

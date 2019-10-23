@@ -1,8 +1,13 @@
 package com.example.CryptoChat.services;
 
+import com.example.CryptoChat.common.data.adapters.DialogAdapter;
 import com.example.CryptoChat.common.data.adapters.MessageAdapter;
+import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
+import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.models.Message;
+import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.controllers.MessageController;
 import com.example.CryptoChat.utils.DBUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,15 +22,23 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.auth.*;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.CryptoChat.common.data.models.User;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
 import android.content.SharedPreferences;
+
+import org.greenrobot.greendao.DaoException;
 
 public class FirebaseAPIs {
     private static FirebaseDatabase fbClient = FirebaseDatabase.getInstance();
@@ -38,25 +51,66 @@ public class FirebaseAPIs {
 
     //Read from Firebase
     //listen on message change
-    public static void readMsgFromDB(MessageAdapter adapter) {
+    public static void readMsgFromDB(RecyclerView.Adapter adapter, Context ctx) {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 Map<String, Object> msgMap = (HashMap)dataSnapshot.child("messages").child(AuthenticationManager.getUid()).getValue(false);
-                //if(msg.getReceiverId().equals(AuthenticationManager.getUid())) {
-                //    SQLiteMessageProvider.getInstance(null).insertMessage(msg);
-                //}
+                if (msgMap != null) {
+                    for (String k : msgMap.keySet()) {
+                        String id = ((Map<String, String>)msgMap.get(k)).get("id");
+                        String senderId = ((Map<String, String>)msgMap.get(k)).get("senderId");
+                        String receiverId = ((Map<String, String>)msgMap.get(k)).get("receiverId");
+                        String text = ((Map<String, String>)msgMap.get(k)).get("text");
+                        String timestamp = ((Map<String, String>)msgMap.get(k)).get("timestamp");
+                        Date time = Date.from(Instant.parse(timestamp));
+                        try{
+                            User author = SQLiteUserProvider.getInstance(DBUtils.getDaoSession(ctx)).getUser(senderId);
+                            User receiver = AuthenticationManager.getMe();
+                            Message msg = new Message(id,author, receiver,text,time);
+                            SQLiteMessageProvider.getInstance(DBUtils.getDaoSession(ctx)).insertMessage(msg);
+                            try{
+                                Dialog d = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).getDialogByReceiverId(senderId);
+                                d.setLastMessage(msg);
+                                d.setUnreadCount(d.getUnreadCount() + 1);
+                            } catch (ObjectNotExistException e) {
+                                Log.e("FirebaseAPIs","Dialog not exist, create new");
+                                Dialog d = new Dialog(receiver.getAlias(),receiver.getAvatar(),receiverId,msg,1);
+                            }
+
+                        } catch (DaoException e) {
+                            Log.e("FirebaseAPIs", "Message from untrusted user");
+                        }
+
+
+
+                        mRef.child("messages").child(AuthenticationManager.getUid()).child(id).removeValue();
+
+
+                    }
+                }
+
                 
                 //TODO: save to local SQLlite
                //saveToLocal(context:this, "Message", msgMap);
                 
-                //delete all messages under "messages-uid"
-                FirebaseDatabase.getInstance().getReference().child("messages").child(AuthenticationManager.getUid()).removeValue();
 
                 //TODO: Notify MessageAdapter for real time update
                 //TODO: If adapter is not null, push new messages inside and notify data change
+                if (adapter == null) {
+
+                }
+                else if(adapter instanceof MessageAdapter) {
+                    //TODO: Push message
+
+
+                } else if (adapter instanceof DialogAdapter) {
+                    //TODO: Create dialog if not exist
+                    //TODO: Increment unread if exist
+                }
 
                 if (msgMap != null) {
                     Log.d(TAG, "Value is: " + msgMap.toString());
@@ -94,15 +148,17 @@ public class FirebaseAPIs {
 
     // update firebase
     // write message to Firebase
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static void writeMsg(Message msg, String fromUserId, String toUserId) {
         HashMap<String, String> msgMap = new HashMap<>();
         msgMap.put("id", msg.getId());
         msgMap.put("senderId", msg.getSenderId());
         msgMap.put("receiverId", msg.getReceiverId());
         msgMap.put("text", msg.getText());
+        msgMap.put("timestamp", msg.getCreatedAt().toInstant().toString());
         // fromId, not toId
         // fromId is uid
-        mRef.child("messages").child(fromUserId).child(msg.getId()).setValue(msgMap);
+        mRef.child("messages").child(toUserId).child(msg.getId()).setValue(msgMap);
     }
 
     //write user to Firebase
