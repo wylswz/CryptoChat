@@ -48,12 +48,14 @@ public class MessageController extends AppCompatActivity implements MessagesList
 
     protected String senderId;
     protected String receiverId;
+    private String pubkey;
     protected ImageLoader imageLoader;
     protected MessageAdapter<Message> messagesAdapter;
     private SQLiteMessageProvider mp;
     private SQLiteDialogProvider dp;
     private SQLiteUserProvider cp;
     private DaoSession ds;
+
 
 
     private Menu menu;
@@ -87,6 +89,8 @@ public class MessageController extends AppCompatActivity implements MessagesList
         cp = SQLiteUserProvider.getInstance(ds);
         offset = 0;
         limit = 10;
+        User u = cp.getUser(receiverId);
+        this.pubkey = u.getPubkey();
         try {
             this.dialog = dp.getDialogByReceiverId(receiverId);
         } catch (ObjectNotExistException e) {

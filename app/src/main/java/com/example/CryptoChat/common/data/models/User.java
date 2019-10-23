@@ -17,6 +17,7 @@ public class User implements IUser {
     private String name;
     private String avatar;
     private String alias;
+    private String pubkey;
 
     private boolean online;
 
@@ -95,6 +96,14 @@ public class User implements IUser {
 
     public void setOnline(boolean online) {
         this.online = online;
+    }
+
+    public void setPubkey(String pubkey){
+        this.pubkey = pubkey;
+    }
+
+    public String getPubkey(){
+        return this.pubkey;
     }
 }
 
