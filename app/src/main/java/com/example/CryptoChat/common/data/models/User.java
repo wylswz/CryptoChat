@@ -17,6 +17,7 @@ public class User implements IUser {
     private String name;
     private String avatar;
     private String alias;
+    private String publicKey;
 
     private boolean online;
 
@@ -28,14 +29,15 @@ public class User implements IUser {
         this.alias = name;
     }
 
-    @Generated(hash = 504421602)
+    @Generated(hash = 1971825852)
     public User(Long pk, String id, String name, String avatar, String alias,
-                boolean online) {
+            String publicKey, boolean online) {
         this.pk = pk;
         this.id = id;
         this.name = name;
         this.avatar = avatar;
         this.alias = alias;
+        this.publicKey = publicKey;
         this.online = online;
     }
 
@@ -95,6 +97,14 @@ public class User implements IUser {
 
     public void setOnline(boolean online) {
         this.online = online;
+    }
+
+    public String getPublicKey() {
+        return this.publicKey;
+    }
+
+    public void setPublicKey(String publicKey) {
+        this.publicKey = publicKey;
     }
 }
 
