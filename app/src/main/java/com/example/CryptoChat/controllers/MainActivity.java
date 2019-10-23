@@ -1,7 +1,6 @@
 package com.example.CryptoChat.controllers;
 
 import android.Manifest;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -24,19 +23,14 @@ import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
-import com.example.CryptoChat.services.FirebaseAPIs;
 import com.example.CryptoChat.services.MessageService;
 import com.example.CryptoChat.utils.DBUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthCredential;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -63,8 +57,11 @@ public class MainActivity extends AppCompatActivity implements DialogController.
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.INTERNET
                 ).withListener(new MultiplePermissionsListener() {
-            @Override public void onPermissionsChecked(MultiplePermissionsReport report) {/* ... */}
-            @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
+            @Override
+            public void onPermissionsChecked(MultiplePermissionsReport report) {/* ... */}
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {/* ... */}
         }).check();
         // Check permission
 
@@ -86,26 +83,26 @@ public class MainActivity extends AppCompatActivity implements DialogController.
          * */
 
         /*
-        * Temp
-        * */
+         * Temp
+         * */
         String TAG = "Sign";
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.signInAnonymously()
                 .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Log.d(TAG, "");
                             FirebaseUser user = mAuth.getCurrentUser();
-                        }else{
-                            Toast.makeText(MainActivity.this,"failed", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
 
         /*
-        * End Temp
-        * */
+         * End Temp
+         * */
 
     }
 
@@ -199,8 +196,8 @@ public class MainActivity extends AppCompatActivity implements DialogController.
         findViewById(R.id.activity_main_layout).setVisibility(View.VISIBLE);
     }
 
-    public static void open(Context ctx){
-        Intent i = new Intent(ctx,MainActivity.class);
+    public static void open(Context ctx) {
+        Intent i = new Intent(ctx, MainActivity.class);
         ctx.startActivity(i);
     }
 }
