@@ -33,15 +33,38 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".controllers.MainActivity"
+            android:name=".controllers.Signup"
             android:noHistory="false"
             android:theme="@style/AppTheme">
+
+
+
+        </activity>
+
+
+        <activity
+            android:name=".controllers.Login"
+            android:noHistory="false"
+            android:theme="@style/AppTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
+        </activity>
+
+
+        <activity
+            android:name=".controllers.MainActivity"
+            android:noHistory="false"
+            android:theme="@style/AppTheme">
+
+
         </activity>
         <activity
             android:name=".controllers.MessageController"
