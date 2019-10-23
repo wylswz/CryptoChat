@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements DialogController.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+// TODO: After auth, check local userid, if valid, set AuthManager
         Dexter.withActivity(this)
                 .withPermissions(
                         Manifest.permission.NFC,

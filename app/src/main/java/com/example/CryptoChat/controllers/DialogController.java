@@ -121,7 +121,7 @@ public class DialogController extends Fragment implements
     public void onDialogClick(Dialog dialog) {
         //DefaultMessagesActivity.open(this);
         dialog.setUnreadCount(0);
-        MessageController.open(Objects.requireNonNull(this.getContext()), dialog.getReceiverId());
+        MessageController.open(getActivity(), dialog.getReceiverId());
         // TODO: User real receiver id queried from database
     }
 
@@ -172,12 +172,12 @@ public class DialogController extends Fragment implements
     @Override
     public void onStop() {
         super.onStop();
-        AdapterManager.setAdapter(null, null);
+        //AdapterManager.setAdapter(null, null);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        AdapterManager.setAdapter(null, null);
+        //AdapterManager.setAdapter(null, null);
     }
 }

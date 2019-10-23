@@ -104,13 +104,16 @@ public class FirebaseAPIs {
                                 //TODO: Notify MessageAdapter for real time update
                                 //TODO: If adapter is not null, push new messages inside and notify data change
                                 if (adapter == null) {
-
+                                    Log.v("FirebaseAPIs", "Null adapter, skip updating");
                                 }
                                 else if(adapter instanceof MessageAdapter) {
                                     //TODO: Push message
                                     String openID = AdapterManager.getUserId();
+                                    Log.v("FirebaseAPIs", openID);
                                     if (msg.getSenderId().equals(openID)) {
                                         ((MessageAdapter) adapter).addToStart(msg, true);
+                                        ((MessageAdapter) adapter).notifyDataSetChanged();
+
                                     }
                                 }
 

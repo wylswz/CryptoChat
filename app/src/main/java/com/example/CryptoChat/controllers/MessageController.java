@@ -116,9 +116,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
         messagesAdapter = new MessageAdapter<Message>(senderId, imageLoader);
         messagesAdapter.enableSelectionMode(this);
         messagesAdapter.setLoadMoreListener(this);
-
         this.messagesList.setAdapter(messagesAdapter);
-        AdapterManager.setAdapter(messagesAdapter, receiverId);
     }
 
     @Override
@@ -285,13 +283,13 @@ public class MessageController extends AppCompatActivity implements MessagesList
     @Override
     public void onStop() {
         super.onStop();
-        AdapterManager.setAdapter(null, null);
+        //AdapterManager.setAdapter(null, null);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        AdapterManager.setAdapter(null, null);
+        //AdapterManager.setAdapter(null, null);
     }
 
     @Override
@@ -299,6 +297,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
         super.onResume();
         if (this.dialog != null){
             this.dialog.setUnreadCount(0);
+            dp.updateDialog(this.dialog);
         }
         AdapterManager.setAdapter(messagesAdapter, receiverId);
         offset = 0;
