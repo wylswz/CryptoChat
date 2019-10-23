@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
+import android.util.Log;
 import android.widget.Adapter;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ class MessageUpdate extends Thread {
 
             @Override
             public void onTick(long l) {
+                Log.v("MessageService:CountDownTimer", "Tick");
                 FirebaseAPIs.readMsgFromDB(ctx);
             }
 
@@ -100,11 +102,6 @@ public class MessageService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        t.notifyResume();
-        //TODO: Check if t is running, if not start
-        if (!t.isAlive()) {
-            t.run();
-        }
         Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
 
         // For each start request, send a message to start a job and deliver the

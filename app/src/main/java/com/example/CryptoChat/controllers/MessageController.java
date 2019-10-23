@@ -36,6 +36,8 @@ import com.stfalcon.chatkit.messages.MessageInput;
 import com.stfalcon.chatkit.messages.MessagesList;
 import com.stfalcon.chatkit.messages.MessagesListAdapter;
 
+import org.greenrobot.greendao.DaoException;
+
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
@@ -89,8 +91,13 @@ public class MessageController extends AppCompatActivity implements MessagesList
         cp = SQLiteUserProvider.getInstance(ds);
         offset = 0;
         limit = 10;
-        User u = cp.getUser(receiverId);
-        this.pubkey = u.getPubkey();
+        try{
+            User u = cp.getUser(receiverId);
+            this.pubkey = u.getPubkey();
+        } catch (DaoException e) {
+
+        }
+
         try {
             this.dialog = dp.getDialogByReceiverId(receiverId);
         } catch (ObjectNotExistException e) {

@@ -29,14 +29,15 @@ public class User implements IUser {
         this.alias = name;
     }
 
-    @Generated(hash = 504421602)
+    @Generated(hash = 1916723702)
     public User(Long pk, String id, String name, String avatar, String alias,
-                boolean online) {
+            String pubkey, boolean online) {
         this.pk = pk;
         this.id = id;
         this.name = name;
         this.avatar = avatar;
         this.alias = alias;
+        this.pubkey = pubkey;
         this.online = online;
     }
 

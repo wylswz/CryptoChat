@@ -32,6 +32,7 @@ import org.greenrobot.greendao.DaoException;
 import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -55,68 +56,74 @@ public class FirebaseAPIs {
                 RecyclerView.Adapter adapter = AdapterManager.getAdapter();
                 Map<String, Object> msgMap = (HashMap)dataSnapshot.child("messages").child(AuthenticationManager.getUid()).getValue(false);
                 if (msgMap != null) {
+                    HashSet<String> used = new HashSet<>();
                     for (String k : msgMap.keySet()) {
-                        String id = ((Map<String, String>)msgMap.get(k)).get("id");
-                        String senderId = ((Map<String, String>)msgMap.get(k)).get("senderId");
-                        String receiverId = ((Map<String, String>)msgMap.get(k)).get("receiverId");
-                        String text = ((Map<String, String>)msgMap.get(k)).get("text");
-                        String timestamp = ((Map<String, String>)msgMap.get(k)).get("timestamp");
-                        Date time = Date.from(Instant.parse(timestamp));
-                        Dialog d;
-                        Log.v("FirebaseAPIs", msgMap.get(k).toString());
-                        try{
-                            User author = SQLiteUserProvider.getInstance(DBUtils.getDaoSession(ctx)).getUser(senderId);
-                            User receiver = AuthenticationManager.getMe();
-                            Message msg = new Message(UUID.randomUUID().toString(),author, receiver,text,time);
-                            SQLiteMessageProvider.getInstance(DBUtils.getDaoSession(ctx)).insertMessage(msg);
+                        Log.v("FirebaseAPI", k);
+                        if (!used.contains(k)) {
+                            String id = ((Map<String, String>)msgMap.get(k)).get("id");
+                            String senderId = ((Map<String, String>)msgMap.get(k)).get("senderId");
+                            String receiverId = ((Map<String, String>)msgMap.get(k)).get("receiverId");
+                            String text = ((Map<String, String>)msgMap.get(k)).get("text");
+                            String timestamp = ((Map<String, String>)msgMap.get(k)).get("timestamp");
+                            Date time = Date.from(Instant.parse(timestamp));
+                            Dialog d;
+                            Log.v("FirebaseAPIs", msgMap.get(k).toString());
                             try{
-                                d = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).getDialogByReceiverId(senderId);
-                                d.setLastMessage(msg);
-                                String openID = AdapterManager.getUserId();
-                                if (msg.getSenderId().equals(openID)) {
-                                    d.setUnreadCount(d.getUnreadCount());
-                                }
-                                else{
-                                    d.setUnreadCount(d.getUnreadCount()+1);
-                                }
-                                if(adapter instanceof  DialogAdapter) {
-                                    List<Dialog> ds = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).getDialogs();
-                                    ((DialogAdapter)adapter).setItems(ds);
-                                    adapter.notifyDataSetChanged();
-                                }
+                                User author = SQLiteUserProvider.getInstance(DBUtils.getDaoSession(ctx)).getUser(senderId);
+                                User receiver = AuthenticationManager.getMe();
+                                Message msg = new Message(UUID.randomUUID().toString(),author, receiver,text,time);
+                                SQLiteMessageProvider.getInstance(DBUtils.getDaoSession(ctx)).insertMessage(msg);
+                                try{
+                                    d = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).getDialogByReceiverId(senderId);
+                                    d.setLastMessage(msg);
+                                    String openID = AdapterManager.getUserId();
+                                    if (msg.getSenderId().equals(openID)) {
+                                        d.setUnreadCount(d.getUnreadCount());
+                                    }
+                                    else{
+                                        d.setUnreadCount(d.getUnreadCount()+1);
+                                    }
+                                    if(adapter instanceof  DialogAdapter) {
+                                        List<Dialog> ds = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).getDialogs();
+                                        ((DialogAdapter)adapter).setItems(ds);
+                                        adapter.notifyDataSetChanged();
+                                    }
 
 
-                            } catch (ObjectNotExistException e) {
-                                Log.e("FirebaseAPIs","Dialog not exist, create new");
-                                d = new Dialog(author.getAlias(),author.getAvatar(),senderId,msg,1);
-                                SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).addDialog(d);
-                                if (adapter instanceof DialogAdapter) {
-                                    ((DialogAdapter)adapter).addItem(d);
-                                    ((DialogAdapter)adapter).notifyDataSetChanged();
+                                } catch (ObjectNotExistException e) {
+                                    Log.e("FirebaseAPIs","Dialog not exist, create new");
+                                    d = new Dialog(author.getAlias(),author.getAvatar(),senderId,msg,1);
+                                    SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).addDialog(d);
+                                    if (adapter instanceof DialogAdapter) {
+                                        ((DialogAdapter)adapter).addItem(d);
+                                        ((DialogAdapter)adapter).notifyDataSetChanged();
+
+                                    }
+                                }
+
+                                //TODO: Notify MessageAdapter for real time update
+                                //TODO: If adapter is not null, push new messages inside and notify data change
+                                if (adapter == null) {
 
                                 }
+                                else if(adapter instanceof MessageAdapter) {
+                                    //TODO: Push message
+                                    String openID = AdapterManager.getUserId();
+                                    if (msg.getSenderId().equals(openID)) {
+                                        ((MessageAdapter) adapter).addToStart(msg, true);
+                                    }
+                                }
+
+                            } catch (DaoException e) {
+                                Log.e("FirebaseAPIs", "Message from untrusted user");
+                                User u = new User(UUID.randomUUID().toString(),"unknown", "unknown",true);
+                                Message msg = new Message(UUID.randomUUID().toString(),u,AuthenticationManager.getMe(),text,time);
                             }
 
-                            //TODO: Notify MessageAdapter for real time update
-                            //TODO: If adapter is not null, push new messages inside and notify data change
-                            if (adapter == null) {
-
-                            }
-                            else if(adapter instanceof MessageAdapter) {
-                                //TODO: Push message
-                                String openID = AdapterManager.getUserId();
-                                if (msg.getSenderId().equals(openID)) {
-                                    ((MessageAdapter) adapter).addToStart(msg, true);
-                                }
-                            }
-
-                        } catch (DaoException e) {
-                            Log.e("FirebaseAPIs", "Message from untrusted user");
-                            User u = new User(UUID.randomUUID().toString(),"unknown", "unknown",true);
-                            Message msg = new Message(UUID.randomUUID().toString(),u,AuthenticationManager.getMe(),text,time);
+                            mRef.child("messages").child(AuthenticationManager.getUid()).child(id).removeValue();
+                            used.add(k);
                         }
 
-                        mRef.child("messages").child(AuthenticationManager.getUid()).child(id).removeValue();
 
 
                     }
