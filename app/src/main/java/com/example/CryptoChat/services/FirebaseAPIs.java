@@ -1,26 +1,5 @@
 package com.example.CryptoChat.services;
 
-import com.example.CryptoChat.common.data.adapters.DialogAdapter;
-import com.example.CryptoChat.common.data.adapters.MessageAdapter;
-import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
-import com.example.CryptoChat.common.data.models.Dialog;
-import com.example.CryptoChat.common.data.models.Message;
-import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
-import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
-import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
-import com.example.CryptoChat.controllers.MessageController;
-import com.example.CryptoChat.utils.DBUtils;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.auth.*;
-
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
@@ -29,21 +8,33 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.CryptoChat.common.data.adapters.DialogAdapter;
+import com.example.CryptoChat.common.data.adapters.MessageAdapter;
+import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
+import com.example.CryptoChat.common.data.models.Dialog;
+import com.example.CryptoChat.common.data.models.Message;
 import com.example.CryptoChat.common.data.models.User;
-import com.stfalcon.chatkit.messages.MessagesListAdapter;
+import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
+import com.example.CryptoChat.utils.DBUtils;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.greenrobot.greendao.DaoException;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Iterator;
 import java.util.UUID;
-
-import android.content.SharedPreferences;
-
-import org.greenrobot.greendao.DaoException;
 
 public class FirebaseAPIs {
     private static FirebaseDatabase fbClient = FirebaseDatabase.getInstance();
@@ -217,30 +208,9 @@ public class FirebaseAPIs {
                 }
     });
 }
-    // callback, delete message data
-    public static void deleteMsg(Map msg) {
-        mRef.child("messages").child(AuthenticationManager.getUid()).setValue(msg)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess (Void aVoid){
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure (@NonNull Exception e){
-                        // Write failed
-                    }
-                });
-    }
-    private static void saveToLocal(Context context,String filename, Map<String, Object> map){
-        SharedPreferences.Editor note = context.getSharedPreferences(filename, Context.MODE_PRIVATE).edit();
-        Iterator<Map.Entry<String, Object>> iterator= map.entrySet().iterator();
-        while (iterator.hasNext()){
-            Map.Entry<String, Object> entry = (Map.Entry<String, Object>) iterator.next();
-            note.putString(entry.getKey(), (String) entry.getValue());
-        }
-        note.commit();
-    }
+
+
+
 
 }
 
