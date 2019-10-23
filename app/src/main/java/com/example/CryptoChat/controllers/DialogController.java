@@ -149,7 +149,7 @@ public class DialogController extends Fragment implements
     @Override
     public void onResume() {
         super.onResume();
-        AdapterManager.setAdapter(this.adapter);
+        AdapterManager.setAdapter(this.adapter,null);
         this.adapter.notifyDataSetChanged();
 
     }
@@ -172,12 +172,12 @@ public class DialogController extends Fragment implements
     @Override
     public void onStop() {
         super.onStop();
-        AdapterManager.setAdapter(null);
+        AdapterManager.setAdapter(null, null);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        AdapterManager.setAdapter(null);
+        AdapterManager.setAdapter(null, null);
     }
 }

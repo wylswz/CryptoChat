@@ -104,7 +104,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
         messagesAdapter.setLoadMoreListener(this);
 
         this.messagesList.setAdapter(messagesAdapter);
-
+        AdapterManager.setAdapter(messagesAdapter, receiverId);
     }
 
     @Override
@@ -271,13 +271,13 @@ public class MessageController extends AppCompatActivity implements MessagesList
     @Override
     public void onStop() {
         super.onStop();
-        AdapterManager.setAdapter(null);
+        AdapterManager.setAdapter(null, null);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        AdapterManager.setAdapter(null);
+        AdapterManager.setAdapter(null, null);
     }
 
     @Override
@@ -286,6 +286,8 @@ public class MessageController extends AppCompatActivity implements MessagesList
         if (this.dialog != null){
             this.dialog.setUnreadCount(0);
         }
-        AdapterManager.setAdapter(messagesAdapter);
+        AdapterManager.setAdapter(messagesAdapter, receiverId);
+        offset = 0;
+        loadMessages();
     }
 }
