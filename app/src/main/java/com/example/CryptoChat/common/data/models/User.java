@@ -103,6 +103,7 @@ public class User implements IUser {
         return this.publicKey;
     }
 
+    
     public void setPublicKey(String publicKey) {
         this.publicKey = publicKey;
     }
