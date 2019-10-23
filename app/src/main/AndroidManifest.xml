@@ -36,17 +36,16 @@
 
         <activity
             android:name=".controllers.Signup"
-            android:noHistory="false"
+            android:noHistory="true"
+            android:parentActivityName=".controllers.Login"
             android:theme="@style/AppTheme">
-
-
 
         </activity>
 
 
         <activity
             android:name=".controllers.Login"
-            android:noHistory="false"
+            android:noHistory="true"
             android:theme="@style/AppTheme">
 
             <intent-filter>

@@ -27,7 +27,7 @@ public class Signup extends Activity {
         setContentView(R.layout.signup);
 
         button_signup = findViewById(R.id.login);
-        button_goto_signin = findViewById(R.id.go_to_signup_page);
+        //button_goto_signin = findViewById(R.id.go_to_signup_page);
         editText_username =(EditText)findViewById(R.id.username);
         editText_password =(EditText)findViewById(R.id.password);
         editText_confirm_password =(EditText)findViewById(R.id.confirm_password);
@@ -83,16 +83,22 @@ public class Signup extends Activity {
 
         });
 
-        button_goto_signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                todo:go to sign in page
+//        button_goto_signin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                todo:go to sign in page
+//
+//                Toast.makeText(Signup.this, "go to Log in page",Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(Signup.this, "go to Log in page",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Signup.this,Login.class);
+//            }
+//
+//        });
+    }
+
+    @Override
+    public void onBackPressed(){
+
+        Intent intent = new Intent(Signup.this,Login.class);
                 startActivity(intent);
-            }
-
-        });
     }
 }
