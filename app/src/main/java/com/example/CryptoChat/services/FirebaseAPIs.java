@@ -50,7 +50,6 @@ public class FirebaseAPIs {
     private static DatabaseReference mRef = fbClient.getReference();
     private static String TAG = "READFROMFIREBASE";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    
     private static Context a_context;
 
     //Read from Firebase
@@ -82,7 +81,13 @@ public class FirebaseAPIs {
                             try{
                                 d = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).getDialogByReceiverId(senderId);
                                 d.setLastMessage(msg);
-                                d.setUnreadCount(d.getUnreadCount() + 1);
+                                String openID = AdapterManager.getUserId();
+                                if (msg.getSenderId().equals(openID)) {
+                                    d.setUnreadCount(d.getUnreadCount());
+                                }
+                                else{
+                                    d.setUnreadCount(d.getUnreadCount()+1);
+                                }
                                 if(adapter instanceof  DialogAdapter) {
                                     List<Dialog> ds = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).getDialogs();
                                     ((DialogAdapter)adapter).setItems(ds);
@@ -108,7 +113,10 @@ public class FirebaseAPIs {
                             }
                             else if(adapter instanceof MessageAdapter) {
                                 //TODO: Push message
-                                ((MessageAdapter)adapter).addToStart(msg,true);
+                                String openID = AdapterManager.getUserId();
+                                if (msg.getSenderId().equals(openID)) {
+                                    ((MessageAdapter) adapter).addToStart(msg, true);
+                                }
                             }
 
                         } catch (DaoException e) {

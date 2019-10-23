@@ -41,7 +41,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         holder.cell.findViewById(R.id.contact_cell_constraint).setOnClickListener(view -> {
             MessageController.open(getContext(), cp.getUser(position).getId());
         });
-
     }
 
     @Override

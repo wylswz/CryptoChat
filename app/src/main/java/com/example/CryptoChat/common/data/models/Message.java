@@ -83,7 +83,6 @@ public class Message implements IMessage,
         return id;
     }
 
-
     @Override
     public String getText() {
         return text;
@@ -111,14 +110,12 @@ public class Message implements IMessage,
         // Nor contacts in the list
         // May happen when change current userID in debug page
         return AuthenticationManager.getMe();
-
     }
 
     @Override
     public String getImageUrl() {
         return image == null ? null : image.url;
     }
-
 
     public String getStatus() {
         return "Sent";
@@ -180,7 +177,6 @@ public class Message implements IMessage,
     public void setSenderId(String senderId) {
         this.senderId = senderId;
     }
-
 
     public static class Image {
 
