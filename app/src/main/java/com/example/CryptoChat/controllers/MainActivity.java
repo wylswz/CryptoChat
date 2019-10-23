@@ -25,7 +25,6 @@ import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.services.FirebaseAPIs;
-import com.example.CryptoChat.services.KeyValueStore;
 import com.example.CryptoChat.services.MessageService;
 import com.example.CryptoChat.utils.DBUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -72,8 +71,6 @@ public class MainActivity extends AppCompatActivity implements DialogController.
         initUI();
         hide();
         verifyAuth();
-
-        Log.v("MAinActivity", "Testing "+ KeyValueStore.getInstance().get(this,KeyValueStore.UID));
 
         Intent msgService = new Intent(this, MessageService.class);
         startService(msgService);

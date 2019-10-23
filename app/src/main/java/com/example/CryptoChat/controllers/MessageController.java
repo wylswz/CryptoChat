@@ -113,7 +113,9 @@ public class MessageController extends AppCompatActivity implements MessagesList
         try {
             User receiver = cp.getUser(receiverId);
             getSupportActionBar().setTitle(receiver.getAlias());
-
+            if (this.dialog != null){
+                this.dialog.setUnreadCount(0);
+            }
         } catch (Exception e) {
             Log.e("MessageController", "Contact not found when setting toolbar title");
         }
@@ -281,6 +283,9 @@ public class MessageController extends AppCompatActivity implements MessagesList
     @Override
     public void onResume(){
         super.onResume();
+        if (this.dialog != null){
+            this.dialog.setUnreadCount(0);
+        }
         AdapterManager.setAdapter(messagesAdapter);
     }
 }
