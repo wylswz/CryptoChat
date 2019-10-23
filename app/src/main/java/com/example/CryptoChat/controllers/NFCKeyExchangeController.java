@@ -30,9 +30,6 @@ public class NFCKeyExchangeController extends AppCompatActivity implements NfcAd
         nfcLogo.startAnimation(pulse);
         getSupportActionBar().setTitle("Key Exchange");
 
-
-        Gson msg = new Gson();
-
         NfcAdapter mAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mAdapter == null) {
             return;
@@ -42,7 +39,9 @@ public class NFCKeyExchangeController extends AppCompatActivity implements NfcAd
     }
     public NdefMessage createNdefMessage(NfcEvent nfcEvent) {
         String myId = AuthenticationManager.getUid();
-        NdefRecord ndefRecord = NdefRecord.createMime("text/plain", myId.getBytes());
+        String publicKey= new String("git fdsnvkndkd");
+        String sendMessage= myId+"\n"+publicKey;
+        NdefRecord ndefRecord = NdefRecord.createMime("text/plain", sendMessage.getBytes());
         NdefMessage ndefMessage = new NdefMessage(ndefRecord);
         return ndefMessage;
     }
