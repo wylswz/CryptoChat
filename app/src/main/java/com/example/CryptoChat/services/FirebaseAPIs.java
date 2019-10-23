@@ -30,12 +30,17 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.CryptoChat.common.data.models.User;
+import com.stfalcon.chatkit.messages.MessagesListAdapter;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Iterator;
+import java.util.UUID;
+
 import android.content.SharedPreferences;
 
 import org.greenrobot.greendao.DaoException;
@@ -48,16 +53,16 @@ public class FirebaseAPIs {
     
     private static Context a_context;
 
-
     //Read from Firebase
     //listen on message change
-    public static void readMsgFromDB(RecyclerView.Adapter adapter, Context ctx) {
+    public static void readMsgFromDB( Context ctx) {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+                RecyclerView.Adapter adapter = AdapterManager.getAdapter();
                 Map<String, Object> msgMap = (HashMap)dataSnapshot.child("messages").child(AuthenticationManager.getUid()).getValue(false);
                 if (msgMap != null) {
                     for (String k : msgMap.keySet()) {
@@ -67,25 +72,50 @@ public class FirebaseAPIs {
                         String text = ((Map<String, String>)msgMap.get(k)).get("text");
                         String timestamp = ((Map<String, String>)msgMap.get(k)).get("timestamp");
                         Date time = Date.from(Instant.parse(timestamp));
+                        Dialog d;
+                        Log.v("FirebaseAPIs", msgMap.get(k).toString());
                         try{
                             User author = SQLiteUserProvider.getInstance(DBUtils.getDaoSession(ctx)).getUser(senderId);
                             User receiver = AuthenticationManager.getMe();
-                            Message msg = new Message(id,author, receiver,text,time);
+                            Message msg = new Message(UUID.randomUUID().toString(),author, receiver,text,time);
                             SQLiteMessageProvider.getInstance(DBUtils.getDaoSession(ctx)).insertMessage(msg);
                             try{
-                                Dialog d = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).getDialogByReceiverId(senderId);
+                                d = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).getDialogByReceiverId(senderId);
                                 d.setLastMessage(msg);
                                 d.setUnreadCount(d.getUnreadCount() + 1);
+                                if(adapter instanceof  DialogAdapter) {
+                                    List<Dialog> ds = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).getDialogs();
+                                    ((DialogAdapter)adapter).setItems(ds);
+                                    adapter.notifyDataSetChanged();
+                                }
+
+
                             } catch (ObjectNotExistException e) {
                                 Log.e("FirebaseAPIs","Dialog not exist, create new");
-                                Dialog d = new Dialog(receiver.getAlias(),receiver.getAvatar(),receiverId,msg,1);
+                                d = new Dialog(author.getAlias(),author.getAvatar(),senderId,msg,1);
+                                SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).addDialog(d);
+                                if (adapter instanceof DialogAdapter) {
+                                    ((DialogAdapter)adapter).addItem(d);
+                                    ((DialogAdapter)adapter).notifyDataSetChanged();
+
+                                }
+                            }
+
+                            //TODO: Notify MessageAdapter for real time update
+                            //TODO: If adapter is not null, push new messages inside and notify data change
+                            if (adapter == null) {
+
+                            }
+                            else if(adapter instanceof MessageAdapter) {
+                                //TODO: Push message
+                                ((MessageAdapter)adapter).addToStart(msg,true);
                             }
 
                         } catch (DaoException e) {
                             Log.e("FirebaseAPIs", "Message from untrusted user");
+                            User u = new User(UUID.randomUUID().toString(),"unknown", "unknown",true);
+                            Message msg = new Message(UUID.randomUUID().toString(),u,AuthenticationManager.getMe(),text,time);
                         }
-
-
 
                         mRef.child("messages").child(AuthenticationManager.getUid()).child(id).removeValue();
 
@@ -94,27 +124,9 @@ public class FirebaseAPIs {
                 }
 
                 
-                //TODO: save to local SQLlite
-               //saveToLocal(context:this, "Message", msgMap);
-                
-
-                //TODO: Notify MessageAdapter for real time update
-                //TODO: If adapter is not null, push new messages inside and notify data change
-                if (adapter == null) {
-
-                }
-                else if(adapter instanceof MessageAdapter) {
-                    //TODO: Push message
 
 
-                } else if (adapter instanceof DialogAdapter) {
-                    //TODO: Create dialog if not exist
-                    //TODO: Increment unread if exist
-                }
 
-                if (msgMap != null) {
-                    Log.d(TAG, "Value is: " + msgMap.toString());
-                }
 
             }
 

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -24,6 +25,7 @@ import com.example.CryptoChat.common.data.models.User;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
+import com.example.CryptoChat.services.AdapterManager;
 import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.services.FirebaseAPIs;
 import com.example.CryptoChat.utils.AppUtils;
@@ -102,6 +104,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
         messagesAdapter.setLoadMoreListener(this);
 
         this.messagesList.setAdapter(messagesAdapter);
+
     }
 
     @Override
@@ -244,6 +247,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
             this.dialog.setLastMessageId(msg.getId());
             dp.updateDialog(this.dialog);
         } catch (Exception e) {
+            Toast.makeText(getApplicationContext(),"Target user is untrusted",Toast.LENGTH_SHORT).show();
             Log.e("MessageController", "User not exist when sending message");
         }
 
@@ -260,5 +264,23 @@ public class MessageController extends AppCompatActivity implements MessagesList
     @Override
     public void onFocusChange(View view, boolean b) {
 
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        AdapterManager.setAdapter(null);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        AdapterManager.setAdapter(null);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        AdapterManager.setAdapter(messagesAdapter);
     }
 }

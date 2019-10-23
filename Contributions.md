@@ -15,3 +15,7 @@
 - Manage design patterns
   - Data management with Models -> DataProvider -> Adapter
   - Thread-safe singleton data provider connected to SQLite
+- Help desining message passing
+  - Service design
+  - Event listening
+  - Real-time UI update

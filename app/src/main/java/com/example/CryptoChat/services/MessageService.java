@@ -34,7 +34,7 @@ class MessageUpdate extends Thread {
 
             @Override
             public void onTick(long l) {
-                FirebaseAPIs.readMsgFromDB(adapter, ctx);
+                FirebaseAPIs.readMsgFromDB(ctx);
             }
 
             @Override
@@ -60,11 +60,6 @@ class MessageUpdate extends Thread {
 }
 
 public class MessageService extends Service {
-
-    private static FirebaseDatabase fbClient = FirebaseDatabase.getInstance();
-
-
-
 
     private final class ServiceHandler extends Handler {
         public ServiceHandler(Looper looper) {
@@ -120,19 +115,6 @@ public class MessageService extends Service {
 
         // If we get killed, after returning from here, restart
         return START_STICKY;
-    }
-
-
-    //TODO: Stop service
-
-    public void stop(){
-        //TODO: Set notifyStop MessageUpdate
-        t.notifyStop();
-    }
-
-    public void setAdapter(RecyclerView.Adapter adapter) {
-        //TODO: When in message activity, stop, set adapter and start with new adapter
-        this.adapter = adapter;
     }
 
 

@@ -18,6 +18,8 @@ import com.example.CryptoChat.common.data.adapters.DialogAdapter;
 import com.example.CryptoChat.common.data.models.Dialog;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
+import com.example.CryptoChat.services.AdapterManager;
+import com.example.CryptoChat.services.MessageService;
 import com.example.CryptoChat.utils.DBUtils;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
@@ -93,6 +95,8 @@ public class DialogController extends Fragment implements
 
         dialogs.setAdapter(this.adapter);
 
+
+
     }
 
     @Override
@@ -145,6 +149,7 @@ public class DialogController extends Fragment implements
     @Override
     public void onResume() {
         super.onResume();
+        AdapterManager.setAdapter(this.adapter);
         this.adapter.notifyDataSetChanged();
 
     }
@@ -162,5 +167,17 @@ public class DialogController extends Fragment implements
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        AdapterManager.setAdapter(null);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        AdapterManager.setAdapter(null);
     }
 }
