@@ -129,11 +129,6 @@ public class FirebaseAPIs {
                     }
                 }
 
-                
-
-
-
-
             }
 
             @Override

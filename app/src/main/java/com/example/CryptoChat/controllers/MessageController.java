@@ -84,6 +84,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
         this.receiverId = getIntent().getStringExtra("receiverId");
         this.senderId = AuthenticationManager.getUid();
         setContentView(R.layout.activity_messages_controller);
+        this.messagesList = findViewById(R.id.messagesList);
 
         ds = DBUtils.getDaoSession(this);
         mp = SQLiteMessageProvider.getInstance(ds);
@@ -105,6 +106,8 @@ public class MessageController extends AppCompatActivity implements MessagesList
         }
 
         imageLoader = (imageView, url, payload) -> Picasso.get().load(url).into(imageView);
+        initAdapter();
+
 
     }
 
@@ -131,8 +134,8 @@ public class MessageController extends AppCompatActivity implements MessagesList
             Log.e("MessageController", "Contact not found when setting toolbar title");
         }
 
-        this.messagesList = findViewById(R.id.messagesList);
-        initAdapter();
+
+
         MessageInput input = findViewById(R.id.input);
         input.setInputListener(this);
         input.setTypingListener(this);

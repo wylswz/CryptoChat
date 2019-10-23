@@ -44,9 +44,9 @@ dependencies {
     implementation 'androidx.biometric:biometric:1.0.0-rc01'
     implementation 'org.greenrobot:greendao:3.2.2' // add library
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
-    implementation 'com.google.firebase:firebase-database:19.1.0'
+    implementation 'com.google.firebase:firebase-database:19.2.0'
     implementation 'com.google.firebase:firebase-auth:19.1.0'
-    implementation 'com.google.firebase:firebase-firestore:21.1.1'
+    implementation 'com.google.firebase:firebase-firestore:21.2.0'
     implementation 'com.mikhaellopez:circularimageview:4.0.2'
     implementation 'com.karumi:dexter:6.0.0' // Simplify permission
     implementation 'com.google.code.gson:gson:2.8.6'
