@@ -1,0 +1,667 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+MERGED from [androidx.navigation:navigation-ui:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/53ac5ef1f40d91df5aa1a4c4b86a295f/AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.stfalcon:chatkit:0.3.3] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/611d646413f66a6b420932045f407264/AndroidManifest.xml:2:1-9:12
+MERGED from [com.karumi:dexter:6.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1b3c44a9a550ba61cb17fcb2e321b541/AndroidManifest.xml:17:1-32:12
+MERGED from [com.google.android.material:material:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2709b7bf4ca9b5ff7359e6645e9089bd/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:17:1-34:12
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/d4782c51841926c4918aa15cb8a9124c/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8bc96b1faeda8e9357956f8ad437256d/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ae82334e88f6a59184ddf8e26188cfef/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-fragment:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/218617c6a720d2c7937f17e57c948827/AndroidManifest.xml:17:1-24:12
+MERGED from [com.squareup.picasso:picasso:2.71828] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2eac15fada9621f12bf58ca3e10d0975/AndroidManifest.xml:2:1-14:12
+MERGED from [com.google.firebase:firebase-analytics:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ee997ad2ef3e982326cfa7e1fc17fcc2/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:15:1-38:12
+MERGED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:17:1-42:12
+MERGED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:2:1-26:12
+MERGED from [com.mikhaellopez:circularimageview:4.0.2] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/154a94520affbfba802e0032081d36aa/AndroidManifest.xml:2:1-11:12
+MERGED from [io.grpc:grpc-android:1.21.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b2eca5e093f430fb19ca21965bfb314f/AndroidManifest.xml:2:1-13:12
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:17:1-55:12
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:17:1-36:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fb2fc781cd3428216a465d1e3995b0d9/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.firebase:firebase-auth-interop:18.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/9a944d561912939edf9ea5fd2608e55f/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:17:1-47:12
+MERGED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:2:1-24:12
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/f825c6693a9d146b49af4f9d98380dd4/AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2364e626d149ebe5f27acf1b93fce9d0/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/755715d266992fa956dc13d8341ba3f3/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e4a6f1822e458232c7db55f2c9b9009e/AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2f82d02ac7da7b61f5f35581807e3644/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/05cab8e5237d1e2d7cbecaec618c5206/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ad955f5f8c4b78fd4f758ce075f54d94/AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/db36a1630052fbfb806d41c25640662f/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fa7dbe407dc9460ffecbce6797c4ca2d/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/7fe841d4c686be27e9f84c70c05d2e46/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b4d309173dccbb9d6f088fb55d07eca8/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/00f52a3a888f61190ad811394bb3c799/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/936c2f26603f87ffad235d0ac111d4c5/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e94840cedc864b754c1e4188c4b53df0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/137c89c1d1828c614738ee2cc609a07c/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/06c1767f911e2ab70c17e9adc2161393/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.0.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/75dafa5a963ecbdfcc747c4b6844897d/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/31613eb5110c254afe8b9fa7b9b0f86f/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/c254018fa58e03cde070c3269c3f73da/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-runtime:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/3488d96837bdb29e2be26d60acc2fecd/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b620ead8fe8b0d9cc4d10192f48d98c6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8b78ea3b22946302cb6dfaeae6ca2ec6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af4a2d3f495c7d544726174b88a61c61/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e3833340df67ff5d0e15ee6e74e9dedd/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2cb8dc69f99bf1428f77b755d4f5fe61/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac541029eeb9af794e74c4df5a476eaa/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/a69a1f32c0bce437251ab0e723bbf2b9/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/19039164e6fa7e312969bd6899b63b4d/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-common:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2806e6e2de4ec0a6f9234e1716820ad5/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e0b6caff4303c0ec19a9471e0bb52ba5/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1e76e86386488957cfd316b8ddfa7ef6/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/89609e574b724edc3dff14d9da044347/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ffe49b9dbc08ba8e212bb919238112e3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/63a792b0fc27b2cfab54a70dbf820e47/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e3729291cc8b2a5bc4380abac51c06bf/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/587d06812ca1b0f5b06f6ab4b7df2f6a/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/c667b1aa25d1d1c8671696268f2597b0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/07503729db26cbe72bfa330ab130bf0c/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/c2378d485b62d254087cee1d3798f1e0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/3fb4d9402762a350090c0da3eb9eefa8/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b1b33770787c9d1a3944208437a151e9/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/a5aef36c91a0ff9b89899fc937bcf4ae/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fe61d16a7935d4c4eaf23fd5ae13c420/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/914d86b933fae334d4e8db3999b0b410/AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android:flexbox:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8237bd3b6ce3f7948b9ec52400ace2fb/AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.firebase:firebase-database-collection:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/12cba43aa372b5e845e8655b67ef729c/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/437ab6ff0a2d5479c49e972b0952f30c/AndroidManifest.xml:2:1-11:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+	package
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:5:5-37
+		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+	xmlns:app
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:3:5-56
+	android:versionName
+		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:4:5-51
+	android:versionCode
+		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission-sdk-23#android.permission.NFC
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:7:5-69
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:7:29-66
+uses-permission-sdk-23#android.permission.USE_BIOMETRIC
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:8:5-79
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:8:29-76
+uses-permission-sdk-23#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:9:5-87
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:9:29-84
+uses-permission-sdk-23#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:10:5-88
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:10:29-85
+uses-permission-sdk-23#android.permission.INTERNET
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:11:5-74
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:11:29-71
+uses-permission-sdk-23#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:12:5-86
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:12:29-83
+uses-feature#android.hardware.nfc
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:14:5-17:40
+	tools:ignore
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:17:9-37
+	android:required
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:16:9-32
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:15:9-44
+application
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:19:5-81:19
+MERGED from [com.karumi:dexter:6.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1b3c44a9a550ba61cb17fcb2e321b541/AndroidManifest.xml:26:5-30:19
+MERGED from [com.karumi:dexter:6.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1b3c44a9a550ba61cb17fcb2e321b541/AndroidManifest.xml:26:5-30:19
+MERGED from [com.google.android.material:material:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2709b7bf4ca9b5ff7359e6645e9089bd/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2709b7bf4ca9b5ff7359e6645e9089bd/AndroidManifest.xml:22:5-20
+MERGED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:27:5-32:19
+MERGED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:27:5-32:19
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8bc96b1faeda8e9357956f8ad437256d/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8bc96b1faeda8e9357956f8ad437256d/AndroidManifest.xml:9:5-20
+MERGED from [com.squareup.picasso:picasso:2.71828] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2eac15fada9621f12bf58ca3e10d0975/AndroidManifest.xml:7:5-12:19
+MERGED from [com.squareup.picasso:picasso:2.71828] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2eac15fada9621f12bf58ca3e10d0975/AndroidManifest.xml:7:5-12:19
+MERGED from [com.google.firebase:firebase-analytics:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ee997ad2ef3e982326cfa7e1fc17fcc2/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-analytics:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ee997ad2ef3e982326cfa7e1fc17fcc2/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:23:5-40:19
+MERGED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:23:5-40:19
+MERGED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:16:5-24:19
+MERGED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:16:5-24:19
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:26:5-34:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:26:5-34:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fb2fc781cd3428216a465d1e3995b0d9/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fb2fc781cd3428216a465d1e3995b0d9/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-auth-interop:18.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/9a944d561912939edf9ea5fd2608e55f/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:18.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/9a944d561912939edf9ea5fd2608e55f/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:28:5-45:19
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:28:5-45:19
+MERGED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:11:5-22:19
+MERGED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:11:5-22:19
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/f825c6693a9d146b49af4f9d98380dd4/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/f825c6693a9d146b49af4f9d98380dd4/AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2364e626d149ebe5f27acf1b93fce9d0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2364e626d149ebe5f27acf1b93fce9d0/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/755715d266992fa956dc13d8341ba3f3/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/755715d266992fa956dc13d8341ba3f3/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2f82d02ac7da7b61f5f35581807e3644/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2f82d02ac7da7b61f5f35581807e3644/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/05cab8e5237d1e2d7cbecaec618c5206/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/05cab8e5237d1e2d7cbecaec618c5206/AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ad955f5f8c4b78fd4f758ce075f54d94/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ad955f5f8c4b78fd4f758ce075f54d94/AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/db36a1630052fbfb806d41c25640662f/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/db36a1630052fbfb806d41c25640662f/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fa7dbe407dc9460ffecbce6797c4ca2d/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fa7dbe407dc9460ffecbce6797c4ca2d/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e0b6caff4303c0ec19a9471e0bb52ba5/AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e0b6caff4303c0ec19a9471e0bb52ba5/AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e3729291cc8b2a5bc4380abac51c06bf/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e3729291cc8b2a5bc4380abac51c06bf/AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e0b6caff4303c0ec19a9471e0bb52ba5/AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:26:9-35
+	android:label
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:24:9-41
+	android:allowClearUserData
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:21:9-42
+	android:fullBackupContent
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:22:9-59
+	tools:ignore
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:27:9-48
+	android:roundIcon
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:25:9-54
+	android:icon
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:23:9-43
+	android:allowBackup
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:20:9-35
+activity#com.example.CryptoChat.controllers.Receiver
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:28:9-35:20
+	android:theme
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:29:13-44
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:28:19-55
+intent-filter#action:name:android.nfc.action.NDEF_DISCOVERED+category:name:android.intent.category.DEFAULT+data:mimeType:text/plain
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:30:13-34:29
+action#android.nfc.action.NDEF_DISCOVERED
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:31:17-77
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:31:25-74
+category#android.intent.category.DEFAULT
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:32:17-75
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:32:27-73
+data
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:33:17-55
+	android:mimeType
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:33:23-52
+activity#com.example.CryptoChat.controllers.Signup
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:37:9-42:20
+	android:noHistory
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:39:13-38
+	android:theme
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:40:13-44
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:38:13-47
+activity#com.example.CryptoChat.controllers.Login
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:45:9-57:20
+	android:noHistory
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:47:13-38
+	android:theme
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:48:13-44
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:46:13-46
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:50:13-54:29
+action#android.intent.action.MAIN
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:51:17-69
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:51:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:53:17-77
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:53:27-74
+activity#com.example.CryptoChat.controllers.MainActivity
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:60:9-66:20
+	android:noHistory
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:62:13-38
+	android:theme
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:63:13-44
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:61:13-53
+activity#com.example.CryptoChat.controllers.MessageController
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:67:9-70:56
+	android:noHistory
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:69:13-38
+	android:theme
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:70:13-44
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:68:13-58
+activity#com.example.CryptoChat.controllers.ContactSettingsController
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:71:9-74:56
+	android:noHistory
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:73:13-38
+	android:theme
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:74:13-44
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:72:13-66
+activity#com.example.CryptoChat.controllers.NFCKeyExchangeController
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:75:9-77:47
+	android:theme
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:77:13-44
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:76:13-65
+service#com.example.CryptoChat.services.MessageService
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:78:9-80:19
+	android:name
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:78:18-57
+uses-sdk
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+MERGED from [androidx.navigation:navigation-ui:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/53ac5ef1f40d91df5aa1a4c4b86a295f/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-ui:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/53ac5ef1f40d91df5aa1a4c4b86a295f/AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.stfalcon:chatkit:0.3.3] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/611d646413f66a6b420932045f407264/AndroidManifest.xml:7:5-44
+MERGED from [com.github.stfalcon:chatkit:0.3.3] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/611d646413f66a6b420932045f407264/AndroidManifest.xml:7:5-44
+MERGED from [com.karumi:dexter:6.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1b3c44a9a550ba61cb17fcb2e321b541/AndroidManifest.xml:22:5-24:41
+MERGED from [com.karumi:dexter:6.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1b3c44a9a550ba61cb17fcb2e321b541/AndroidManifest.xml:22:5-24:41
+MERGED from [com.google.android.material:material:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2709b7bf4ca9b5ff7359e6645e9089bd/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2709b7bf4ca9b5ff7359e6645e9089bd/AndroidManifest.xml:20:5-44
+MERGED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/d4782c51841926c4918aa15cb8a9124c/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/d4782c51841926c4918aa15cb8a9124c/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8bc96b1faeda8e9357956f8ad437256d/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:1.1.3] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8bc96b1faeda8e9357956f8ad437256d/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ae82334e88f6a59184ddf8e26188cfef/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ae82334e88f6a59184ddf8e26188cfef/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-fragment:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/218617c6a720d2c7937f17e57c948827/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-fragment:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/218617c6a720d2c7937f17e57c948827/AndroidManifest.xml:20:5-22:41
+MERGED from [com.squareup.picasso:picasso:2.71828] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2eac15fada9621f12bf58ca3e10d0975/AndroidManifest.xml:5:5-44
+MERGED from [com.squareup.picasso:picasso:2.71828] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2eac15fada9621f12bf58ca3e10d0975/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-analytics:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ee997ad2ef3e982326cfa7e1fc17fcc2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-analytics:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ee997ad2ef3e982326cfa7e1fc17fcc2/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:7:5-9:41
+MERGED from [com.mikhaellopez:circularimageview:4.0.2] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/154a94520affbfba802e0032081d36aa/AndroidManifest.xml:7:5-9:41
+MERGED from [com.mikhaellopez:circularimageview:4.0.2] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/154a94520affbfba802e0032081d36aa/AndroidManifest.xml:7:5-9:41
+MERGED from [io.grpc:grpc-android:1.21.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b2eca5e093f430fb19ca21965bfb314f/AndroidManifest.xml:7:5-9:41
+MERGED from [io.grpc:grpc-android:1.21.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b2eca5e093f430fb19ca21965bfb314f/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fb2fc781cd3428216a465d1e3995b0d9/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fb2fc781cd3428216a465d1e3995b0d9/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:18.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/9a944d561912939edf9ea5fd2608e55f/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:18.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/9a944d561912939edf9ea5fd2608e55f/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/f825c6693a9d146b49af4f9d98380dd4/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/f825c6693a9d146b49af4f9d98380dd4/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2364e626d149ebe5f27acf1b93fce9d0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2364e626d149ebe5f27acf1b93fce9d0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/755715d266992fa956dc13d8341ba3f3/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/755715d266992fa956dc13d8341ba3f3/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e4a6f1822e458232c7db55f2c9b9009e/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e4a6f1822e458232c7db55f2c9b9009e/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2f82d02ac7da7b61f5f35581807e3644/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2f82d02ac7da7b61f5f35581807e3644/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/05cab8e5237d1e2d7cbecaec618c5206/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/05cab8e5237d1e2d7cbecaec618c5206/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ad955f5f8c4b78fd4f758ce075f54d94/AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ad955f5f8c4b78fd4f758ce075f54d94/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/db36a1630052fbfb806d41c25640662f/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/db36a1630052fbfb806d41c25640662f/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fa7dbe407dc9460ffecbce6797c4ca2d/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fa7dbe407dc9460ffecbce6797c4ca2d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/7fe841d4c686be27e9f84c70c05d2e46/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/7fe841d4c686be27e9f84c70c05d2e46/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b4d309173dccbb9d6f088fb55d07eca8/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b4d309173dccbb9d6f088fb55d07eca8/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/00f52a3a888f61190ad811394bb3c799/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/00f52a3a888f61190ad811394bb3c799/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/936c2f26603f87ffad235d0ac111d4c5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/936c2f26603f87ffad235d0ac111d4c5/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e94840cedc864b754c1e4188c4b53df0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e94840cedc864b754c1e4188c4b53df0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/137c89c1d1828c614738ee2cc609a07c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/137c89c1d1828c614738ee2cc609a07c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/06c1767f911e2ab70c17e9adc2161393/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/06c1767f911e2ab70c17e9adc2161393/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/75dafa5a963ecbdfcc747c4b6844897d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.0.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/75dafa5a963ecbdfcc747c4b6844897d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/31613eb5110c254afe8b9fa7b9b0f86f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/31613eb5110c254afe8b9fa7b9b0f86f/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/c254018fa58e03cde070c3269c3f73da/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/c254018fa58e03cde070c3269c3f73da/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/3488d96837bdb29e2be26d60acc2fecd/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/3488d96837bdb29e2be26d60acc2fecd/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b620ead8fe8b0d9cc4d10192f48d98c6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b620ead8fe8b0d9cc4d10192f48d98c6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8b78ea3b22946302cb6dfaeae6ca2ec6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8b78ea3b22946302cb6dfaeae6ca2ec6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af4a2d3f495c7d544726174b88a61c61/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af4a2d3f495c7d544726174b88a61c61/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e3833340df67ff5d0e15ee6e74e9dedd/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e3833340df67ff5d0e15ee6e74e9dedd/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2cb8dc69f99bf1428f77b755d4f5fe61/AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2cb8dc69f99bf1428f77b755d4f5fe61/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac541029eeb9af794e74c4df5a476eaa/AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac541029eeb9af794e74c4df5a476eaa/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/a69a1f32c0bce437251ab0e723bbf2b9/AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/a69a1f32c0bce437251ab0e723bbf2b9/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/19039164e6fa7e312969bd6899b63b4d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/19039164e6fa7e312969bd6899b63b4d/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2806e6e2de4ec0a6f9234e1716820ad5/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2806e6e2de4ec0a6f9234e1716820ad5/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e0b6caff4303c0ec19a9471e0bb52ba5/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e0b6caff4303c0ec19a9471e0bb52ba5/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1e76e86386488957cfd316b8ddfa7ef6/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1e76e86386488957cfd316b8ddfa7ef6/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/89609e574b724edc3dff14d9da044347/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/89609e574b724edc3dff14d9da044347/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ffe49b9dbc08ba8e212bb919238112e3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ffe49b9dbc08ba8e212bb919238112e3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/63a792b0fc27b2cfab54a70dbf820e47/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/63a792b0fc27b2cfab54a70dbf820e47/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e3729291cc8b2a5bc4380abac51c06bf/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e3729291cc8b2a5bc4380abac51c06bf/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/587d06812ca1b0f5b06f6ab4b7df2f6a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/587d06812ca1b0f5b06f6ab4b7df2f6a/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/c667b1aa25d1d1c8671696268f2597b0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/c667b1aa25d1d1c8671696268f2597b0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/07503729db26cbe72bfa330ab130bf0c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/07503729db26cbe72bfa330ab130bf0c/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/c2378d485b62d254087cee1d3798f1e0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/c2378d485b62d254087cee1d3798f1e0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/3fb4d9402762a350090c0da3eb9eefa8/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/3fb4d9402762a350090c0da3eb9eefa8/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b1b33770787c9d1a3944208437a151e9/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b1b33770787c9d1a3944208437a151e9/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/a5aef36c91a0ff9b89899fc937bcf4ae/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/a5aef36c91a0ff9b89899fc937bcf4ae/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fe61d16a7935d4c4eaf23fd5ae13c420/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fe61d16a7935d4c4eaf23fd5ae13c420/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/914d86b933fae334d4e8db3999b0b410/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/914d86b933fae334d4e8db3999b0b410/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android:flexbox:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8237bd3b6ce3f7948b9ec52400ace2fb/AndroidManifest.xml:23:5-25:41
+MERGED from [com.google.android:flexbox:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8237bd3b6ce3f7948b9ec52400ace2fb/AndroidManifest.xml:23:5-25:41
+MERGED from [com.google.firebase:firebase-database-collection:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/12cba43aa372b5e845e8655b67ef729c/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-database-collection:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/12cba43aa372b5e845e8655b67ef729c/AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/437ab6ff0a2d5479c49e972b0952f30c/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/437ab6ff0a2d5479c49e972b0952f30c/AndroidManifest.xml:7:5-9:41
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
+activity#com.karumi.dexter.DexterActivity
+ADDED from [com.karumi:dexter:6.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1b3c44a9a550ba61cb17fcb2e321b541/AndroidManifest.xml:27:9-29:72
+	android:theme
+		ADDED from [com.karumi:dexter:6.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1b3c44a9a550ba61cb17fcb2e321b541/AndroidManifest.xml:29:13-69
+	android:name
+		ADDED from [com.karumi:dexter:6.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1b3c44a9a550ba61cb17fcb2e321b541/AndroidManifest.xml:28:13-60
+uses-permission#android.permission.USE_BIOMETRIC
+ADDED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:24:5-72
+	android:name
+		ADDED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:24:22-69
+uses-permission#android.permission.USE_FINGERPRINT
+ADDED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:25:5-74
+	android:name
+		ADDED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:25:22-71
+activity#androidx.biometric.DeviceCredentialHandlerActivity
+ADDED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:28:9-31:67
+	android:exported
+		ADDED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:30:13-36
+	android:theme
+		ADDED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:31:13-64
+	android:name
+		ADDED from [androidx.biometric:biometric:1.0.0-rc01] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/cbd939a7e8b3f69948c66e08f8fd9d00/AndroidManifest.xml:29:13-78
+provider#com.squareup.picasso.PicassoProvider
+ADDED from [com.squareup.picasso:picasso:2.71828] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2eac15fada9621f12bf58ca3e10d0975/AndroidManifest.xml:8:9-11:40
+	android:authorities
+		ADDED from [com.squareup.picasso:picasso:2.71828] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2eac15fada9621f12bf58ca3e10d0975/AndroidManifest.xml:10:13-72
+	android:exported
+		ADDED from [com.squareup.picasso:picasso:2.71828] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2eac15fada9621f12bf58ca3e10d0975/AndroidManifest.xml:11:13-37
+	android:name
+		ADDED from [com.squareup.picasso:picasso:2.71828] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2eac15fada9621f12bf58ca3e10d0975/AndroidManifest.xml:9:13-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:25:5-79
+MERGED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:13:5-79
+MERGED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:13:5-79
+MERGED from [io.grpc:grpc-android:1.21.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b2eca5e093f430fb19ca21965bfb314f/AndroidManifest.xml:11:5-79
+MERGED from [io.grpc:grpc-android:1.21.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b2eca5e093f430fb19ca21965bfb314f/AndroidManifest.xml:11:5-79
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e4a6f1822e458232c7db55f2c9b9009e/AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e4a6f1822e458232c7db55f2c9b9009e/AndroidManifest.xml:24:5-79
+	android:name
+		ADDED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:25:22-76
+uses-permission#android.permission.INTERNET
+ADDED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:26:5-67
+MERGED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:14:5-67
+MERGED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:14:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e4a6f1822e458232c7db55f2c9b9009e/AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e4a6f1822e458232c7db55f2c9b9009e/AndroidManifest.xml:23:5-67
+	android:name
+		ADDED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:26:22-64
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:33:9-39:19
+MERGED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:33:9-39:19
+MERGED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:17:9-23:19
+MERGED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:17:9-23:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:27:9-33:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:27:9-33:19
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:12:9-15:40
+MERGED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:12:9-15:40
+	android:exported
+		ADDED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:31:13-37
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:14:13-43
+	android:name
+		ADDED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:30:13-84
+meta-data#com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar
+ADDED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-database:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/848a4d73f0b5d22d24693fa5180e056a/AndroidManifest.xml:33:17-109
+activity#com.google.firebase.auth.internal.FederatedSignInActivity
+ADDED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:24:9-31:50
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:26:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:28:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:27:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:29:13-102
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:30:13-72
+	tools:replace
+		ADDED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:31:13-47
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:25:13-85
+meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
+ADDED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:36:13-38:85
+	android:value
+		ADDED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:38:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5a6cf815ab4209a3ac336d7a415291f7/AndroidManifest.xml:37:17-109
+meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
+ADDED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:20:13-22:85
+	android:value
+		ADDED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:22:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-firestore:21.1.1] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e692b7cbb3c0a71a76f26b38fa58b8c8/AndroidManifest.xml:21:17-111
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:24:5-68
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:24:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e4a6f1822e458232c7db55f2c9b9009e/AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/e4a6f1822e458232c7db55f2c9b9009e/AndroidManifest.xml:25:5-68
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:25:22-65
+uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:26:5-110
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:26:22-107
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:29:9-33:20
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:31:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:30:13-85
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:34:9-42:20
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:29:9-37:20
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/af12367f177ceb7279cb0f50f91014d7/AndroidManifest.xml:29:9-37:20
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:36:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:37:13-36
+	android:permission
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:38:13-69
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:35:13-100
+intent-filter#action:name:com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:39:13-41:29
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:40:17-79
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:40:25-76
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:44:9-47:40
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:46:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:47:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:45:13-84
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:48:9-52:72
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:50:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:51:13-37
+	android:permission
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:52:13-69
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/5ebe3c5c5be697def4955a9d266f2d9d/AndroidManifest.xml:49:13-87
+meta-data#com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
+ADDED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:30:13-32:85
+	android:value
+		ADDED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:32:17-82
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement-api:17.2.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/632214a448712eac26c25e3813cec026/AndroidManifest.xml:31:17-139
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:26:5-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:26:22-79
+meta-data#com.google.firebase.components:com.google.firebase.iid.Registrar
+ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:33:17-96
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:37:9-44:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:39:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:40:13-73
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:38:13-78
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:41:13-43:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:42:17-81
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:19.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/ac85f74dda29592efadca55d9336a685/AndroidManifest.xml:42:25-78
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:17:9-21:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:19:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:20:13-37
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:21:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:19.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/b52a455ff9bf57d841b385ccff9cf9a4/AndroidManifest.xml:18:13-77
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2364e626d149ebe5f27acf1b93fce9d0/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2364e626d149ebe5f27acf1b93fce9d0/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2364e626d149ebe5f27acf1b93fce9d0/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2364e626d149ebe5f27acf1b93fce9d0/AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fa7dbe407dc9460ffecbce6797c4ca2d/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fa7dbe407dc9460ffecbce6797c4ca2d/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/fa7dbe407dc9460ffecbce6797c4ca2d/AndroidManifest.xml:24:13-58
