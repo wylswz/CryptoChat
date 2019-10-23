@@ -17,12 +17,13 @@ import com.example.CryptoChat.common.data.models.User;
 import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.utils.DBUtils;
-import com.google.gson.Gson;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Receiver extends AppCompatActivity {
 
     private TextView mTextView;
-
+    Timer timer;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +40,28 @@ public class Receiver extends AppCompatActivity {
                     NfcAdapter.EXTRA_NDEF_MESSAGES);
 
             NdefMessage message = (NdefMessage) rawMessages[0];
-            mTextView.setText(new String(message.getRecords()[0].getPayload()));
-            String uid = new String(message.getRecords()[0].getPayload());
+            String success= new String("Add friends successfully!!");
+
+            String messages=new String(message.getRecords()[0].getPayload());
+            String[] parts =messages.split("\n");
+            String uid = parts[0];
+            String keyPublic= parts[1];
             User u = new User(uid,uid,"",true);
             SQLiteUserProvider.getInstance(DBUtils.getDaoSession(getApplicationContext())).addUser(u);
+            mTextView.setText(keyPublic);
 
         } else
             mTextView.setText("Waiting for NDEF Message");
+
+        timer= new Timer();
+        timer.schedule(new TimerTask() {
+                           @Override
+                           public void run() {
+        Intent intent= new Intent(Receiver.this,MainActivity.class);
+        startActivity(intent);
+        finish();
+                           }
+                       },500);
 
     }
 }
