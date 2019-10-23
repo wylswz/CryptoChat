@@ -39,6 +39,8 @@
             android:noHistory="false"
             android:theme="@style/AppTheme">
 
+
+
         </activity>
 
 

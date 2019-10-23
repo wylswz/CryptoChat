@@ -1,23 +1,19 @@
 package com.example.CryptoChat.controllers;
 
 import android.app.Activity;
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.CryptoChat.R;
 
 public class Login extends Activity {
 
-    Button button_signup, button_goto_signin;
+    Button button_login, button_goto_signup;
     String str_username, str_password, str_confirm_password;
     private static EditText editText_username;
     private static EditText editText_password;
@@ -29,14 +25,14 @@ public class Login extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        button_signup = findViewById(R.id.signup);
-        button_goto_signin = findViewById(R.id.go_to_signin_page);
+        button_login = findViewById(R.id.login);
+        button_goto_signup = findViewById(R.id.go_to_signup_page);
         editText_username =(EditText)findViewById(R.id.username);
         editText_password =(EditText)findViewById(R.id.password);
 
 
 //        click sign up button:
-        button_signup.setOnClickListener(new View.OnClickListener() { //为组件设置点击事件
+        button_login.setOnClickListener(new View.OnClickListener() { //为组件设置点击事件
             @Override
             public void onClick(View v) {
                 str_username = editText_username.getText().toString();
@@ -67,10 +63,11 @@ public class Login extends Activity {
                 }
 
                 else {
-                    Toast.makeText(Login.this, "correct!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Log in...", Toast.LENGTH_SHORT).show();
 
 
-//                    todo: go the next page
+                    Intent intent = new Intent(Login.this, MainActivity.class);
+                    startActivity(intent);
                 }
 
 
@@ -78,14 +75,14 @@ public class Login extends Activity {
 
         });
 
-        button_goto_signin.setOnClickListener(new View.OnClickListener() {
+        button_goto_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                todo:go to sign in page
 
-//                Toast.makeText(Signup.this, "go to sign in page",Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(Login.this, Signup.class);
-//                startActivity(intent);
+                Toast.makeText(Login.this, "go to Sign up page",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Login.this, Signup.class);
+                startActivity(intent);
             }
 
         });

@@ -1532,7 +1532,7 @@ id forever
 id frameLayout
 id frame_dialog
 id ghost_view
-id go_to_signin_page
+id go_to_signup_page
 id gone
 id group_divider
 id groups
@@ -1559,6 +1559,7 @@ id linearLayout
 id linearLayout2
 id listMode
 id list_item
+id login
 id main_nav
 id map
 id masked
@@ -1638,7 +1639,6 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
-id signup
 id smallLabel
 id snackbar_action
 id snackbar_text

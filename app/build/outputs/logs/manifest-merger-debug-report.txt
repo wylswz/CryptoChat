@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-85:12
 MERGED from [androidx.navigation:navigation-ui:2.1.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/53ac5ef1f40d91df5aa1a4c4b86a295f/AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.stfalcon:chatkit:0.3.3] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/611d646413f66a6b420932045f407264/AndroidManifest.xml:2:1-9:12
 MERGED from [com.karumi:dexter:6.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1b3c44a9a550ba61cb17fcb2e321b541/AndroidManifest.xml:17:1-32:12
@@ -74,9 +74,9 @@ MERGED from [androidx.arch.core:core-runtime:2.0.0] /Users/shidefang/.gradle/cac
 MERGED from [com.google.android:flexbox:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/8237bd3b6ce3f7948b9ec52400ace2fb/AndroidManifest.xml:17:1-27:12
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/12cba43aa372b5e845e8655b67ef729c/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/437ab6ff0a2d5479c49e972b0952f30c/AndroidManifest.xml:2:1-11:12
-INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-85:12
+INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-85:12
 	package
 		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:5:5-37
 		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
@@ -85,13 +85,13 @@ INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidMa
 		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:3:5-56
 	android:versionName
 		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-85:12
 		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
 	xmlns:tools
 		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:4:5-51
 	android:versionCode
 		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-83:12
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:1-85:12
 		INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:2:11-69
@@ -128,7 +128,7 @@ ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManif
 	android:name
 		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:15:9-44
 application
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:19:5-81:19
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:19:5-83:19
 MERGED from [com.karumi:dexter:6.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1b3c44a9a550ba61cb17fcb2e321b541/AndroidManifest.xml:26:5-30:19
 MERGED from [com.karumi:dexter:6.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/1b3c44a9a550ba61cb17fcb2e321b541/AndroidManifest.xml:26:5-30:19
 MERGED from [com.google.android.material:material:1.0.0] /Users/shidefang/.gradle/caches/transforms-2/files-2.1/2709b7bf4ca9b5ff7359e6645e9089bd/AndroidManifest.xml:22:5-20
@@ -220,7 +220,7 @@ ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManif
 	android:mimeType
 		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:33:23-52
 activity#com.example.CryptoChat.controllers.Signup
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:37:9-42:20
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:37:9-44:20
 	android:noHistory
 		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:39:13-38
 	android:theme
@@ -228,57 +228,57 @@ ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManif
 	android:name
 		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:38:13-47
 activity#com.example.CryptoChat.controllers.Login
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:45:9-57:20
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:47:9-59:20
 	android:noHistory
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:47:13-38
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:49:13-38
 	android:theme
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:48:13-44
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:50:13-44
 	android:name
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:46:13-46
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:48:13-46
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:50:13-54:29
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:52:13-56:29
 action#android.intent.action.MAIN
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:51:17-69
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:53:17-69
 	android:name
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:51:25-66
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:53:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:53:17-77
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:55:17-77
 	android:name
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:53:27-74
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:55:27-74
 activity#com.example.CryptoChat.controllers.MainActivity
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:60:9-66:20
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:62:9-68:20
 	android:noHistory
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:62:13-38
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:64:13-38
 	android:theme
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:63:13-44
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:65:13-44
 	android:name
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:61:13-53
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:63:13-53
 activity#com.example.CryptoChat.controllers.MessageController
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:67:9-70:56
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:69:9-72:56
 	android:noHistory
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:69:13-38
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:71:13-38
 	android:theme
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:70:13-44
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:72:13-44
 	android:name
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:68:13-58
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:70:13-58
 activity#com.example.CryptoChat.controllers.ContactSettingsController
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:71:9-74:56
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:73:9-76:56
 	android:noHistory
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:73:13-38
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:75:13-38
 	android:theme
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:74:13-44
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:76:13-44
 	android:name
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:72:13-66
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:74:13-66
 activity#com.example.CryptoChat.controllers.NFCKeyExchangeController
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:75:9-77:47
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:77:9-79:47
 	android:theme
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:77:13-44
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:79:13-44
 	android:name
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:76:13-65
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:78:13-65
 service#com.example.CryptoChat.services.MessageService
-ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:78:9-80:19
+ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:80:9-82:19
 	android:name
-		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:78:18-57
+		ADDED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml:80:18-57
 uses-sdk
 INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/shidefang/Desktop/project/CryptoChat/app/src/main/AndroidManifest.xml

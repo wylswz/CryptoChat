@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Oct 23 17:58:13 AEDT 2019
+#Wed Oct 23 18:19:37 AEDT 2019
 1.base=/Users/shidefang/Desktop/project/CryptoChat/app/build/intermediates/transforms/dexMerger/debug/1
 2.path=classes.dex
 0.baseType=DIRECTORY

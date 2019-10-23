@@ -45,9 +45,9 @@ public final class R {
         public static final int column_reverse = 0x7f09005c;
         public static final int flex_end = 0x7f09009a;
         public static final int flex_start = 0x7f09009b;
-        public static final int nowrap = 0x7f0900d9;
-        public static final int row = 0x7f0900ed;
-        public static final int row_reverse = 0x7f0900ee;
+        public static final int nowrap = 0x7f0900da;
+        public static final int row = 0x7f0900ee;
+        public static final int row_reverse = 0x7f0900ef;
         public static final int space_around = 0x7f090110;
         public static final int space_between = 0x7f090111;
         public static final int space_evenly = 0x7f090112;
