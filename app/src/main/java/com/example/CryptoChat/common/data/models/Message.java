@@ -1,8 +1,6 @@
 package com.example.CryptoChat.common.data.models;
 
 import android.util.Log;
-
-import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
 import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AuthenticationManager;
 import com.stfalcon.chatkit.commons.models.IMessage;
