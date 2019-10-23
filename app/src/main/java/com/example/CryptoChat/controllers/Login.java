@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.CryptoChat.R;
+//import UserInformation;
 
 public class Login extends Activity {
 
@@ -31,7 +32,9 @@ public class Login extends Activity {
         editText_password =(EditText)findViewById(R.id.password);
 
 
-//        click signin button:
+
+
+//        click login button:
         button_login.setOnClickListener(new View.OnClickListener() { //为组件设置点击事件
             @Override
             public void onClick(View v) {
@@ -58,14 +61,19 @@ public class Login extends Activity {
 
 
 
-//              successfully sign up
-                else if(username_used){
-                    Toast.makeText(Login.this, "username already occupied, try another one.",Toast.LENGTH_SHORT).show();
+//              no such username
+                else if(!str_username.equals(UserInformation.get_username())){
+                    Toast.makeText(Login.this, "Username not found.",Toast.LENGTH_SHORT).show();
+
+                }
+
+                else if(!str_password.equals(UserInformation.get_password())){
+                    Toast.makeText(Login.this, "Wrong password.",Toast.LENGTH_SHORT).show();
 
                 }
 
                 else {
-                    Toast.makeText(Login.this, "Log in...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Successfully log in.", Toast.LENGTH_SHORT).show();
 
 
                     Intent intent = new Intent(Login.this, MainActivity.class);

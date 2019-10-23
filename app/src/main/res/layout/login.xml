@@ -43,7 +43,7 @@
         android:layout_weight="1"
         android:background="@color/colorAccent"
         android:fontFamily="sans-serif-black"
-        android:text="Signup"
+        android:text="Register"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

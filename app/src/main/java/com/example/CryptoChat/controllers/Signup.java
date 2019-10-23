@@ -41,6 +41,8 @@ public class Signup extends Activity {
                 str_confirm_password = editText_confirm_password.getText().toString();
 
 
+
+
                 FirebaseAPIs.readUserFromDB();
 
 
@@ -66,14 +68,16 @@ public class Signup extends Activity {
 
 
 
-//              successfully sign up
-                else if(username_used){
-                    Toast.makeText(Signup.this, "username already occupied, try another one.",Toast.LENGTH_SHORT).show();
 
-                }
+//                else if(username_used){
+//                    Toast.makeText(Signup.this, "username already occupied, try another one.",Toast.LENGTH_SHORT).show();
+//
+//                }
 
                 else {
-                    Toast.makeText(Signup.this, "correct!", Toast.LENGTH_SHORT).show();
+                    UserInformation.set_username(str_username);
+                    UserInformation.set_password(str_password);
+                    Toast.makeText(Signup.this, "Successfully sign up.", Toast.LENGTH_SHORT).show();
 
 
                 }
