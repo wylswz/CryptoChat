@@ -209,30 +209,9 @@ public class FirebaseAPIs {
                 }
     });
 }
-    // callback, delete message data
-    public static void deleteMsg(Map msg) {
-        mRef.child("messages").child(AuthenticationManager.getUid()).setValue(msg)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess (Void aVoid){
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure (@NonNull Exception e){
-                        // Write failed
-                    }
-                });
-    }
-    private static void saveToLocal(Context context,String filename, Map<String, Object> map){
-        SharedPreferences.Editor note = context.getSharedPreferences(filename, Context.MODE_PRIVATE).edit();
-        Iterator<Map.Entry<String, Object>> iterator= map.entrySet().iterator();
-        while (iterator.hasNext()){
-            Map.Entry<String, Object> entry = (Map.Entry<String, Object>) iterator.next();
-            note.putString(entry.getKey(), (String) entry.getValue());
-        }
-        note.commit();
-    }
+
+
+
 
 }
 
