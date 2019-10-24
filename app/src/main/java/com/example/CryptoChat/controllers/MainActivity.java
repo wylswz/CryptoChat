@@ -66,8 +66,7 @@ public class MainActivity extends AppCompatActivity implements DialogController.
         // Check permission
 
         initUI();
-        hide();
-        verifyAuth();
+        //hide();
 
         Intent msgService = new Intent(this, MessageService.class);
         startService(msgService);
@@ -171,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements DialogController.
     @Override
     public void onResume() {
         super.onResume();
-        //verifyAuth();
 
     }
 
@@ -179,7 +177,6 @@ public class MainActivity extends AppCompatActivity implements DialogController.
     public void onStart() {
 
         super.onStart();
-        verifyAuth();
     }
 
     @Override

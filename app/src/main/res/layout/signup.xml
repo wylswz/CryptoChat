@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/username"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/password"
 
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="confirm password"
         android:inputType="textPassword"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/button_login"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginStart="64dp"
@@ -58,7 +58,7 @@
         android:layout_marginEnd="64dp"
         android:layout_weight="2.5"
         android:background="@color/colorAccent"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="casual"
         android:text="Sign up"
         android:textColor="@color/white"
         android:textSize="18dp"

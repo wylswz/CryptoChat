@@ -9,6 +9,8 @@ public class KeyValueStore {
     public static final String KEYFILE = "com.example.CryptoChat.KEY";
     public static final String UID = "UID";
     public static final String EMAIL = "EMAIL";
+    public static final String USERNAME = "USERNAME";
+    public static final String PASSWORD = "PASSOWRD";
 
     private static KeyValueStore instance;
 
@@ -27,14 +29,14 @@ public class KeyValueStore {
         SharedPreferences sp = ctx.getSharedPreferences(KEYFILE,ctx.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(key, value);
-        editor.apply();
+        editor.commit();
     }
 
     public void putValueSet(Context ctx, String key, Set<String> set) {
         SharedPreferences sp = ctx.getSharedPreferences(KEYFILE,ctx.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putStringSet(key, set);
-        editor.apply();
+        editor.commit();
     }
 
     public String get(Context ctx, String key) {

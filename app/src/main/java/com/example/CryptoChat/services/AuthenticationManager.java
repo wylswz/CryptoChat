@@ -33,7 +33,7 @@ public class AuthenticationManager {
     synchronized public static void unlock() {
         lastUnlock = Calendar.getInstance().getTime();
         authenticated = true;
-        setUid("0");
+
     }
 
     synchronized public static String getUid(){

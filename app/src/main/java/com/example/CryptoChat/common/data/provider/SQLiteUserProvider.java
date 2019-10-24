@@ -87,5 +87,9 @@ public class SQLiteUserProvider extends ContactProvider {
         this.userDao.insert(user);
     }
 
+    public void clear(){
+        this.userDao.deleteAll();
+    }
+
 
 }

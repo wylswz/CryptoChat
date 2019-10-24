@@ -10,7 +10,15 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.CryptoChat.R;
+import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
+import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
+import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.services.FirebaseAPIs;
+import com.example.CryptoChat.services.KeyValueStore;
+import com.example.CryptoChat.utils.DBUtils;
+
+import java.util.UUID;
 
 public class Signup extends Activity {
 
@@ -26,7 +34,7 @@ public class Signup extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
-        button_signup = findViewById(R.id.login);
+        button_signup = findViewById(R.id.button_login);
         //button_goto_signin = findViewById(R.id.go_to_signup_page);
         editText_username =(EditText)findViewById(R.id.username);
         editText_password =(EditText)findViewById(R.id.password);
@@ -75,9 +83,28 @@ public class Signup extends Activity {
 //                }
 
                 else {
-                    UserInformation.set_username(str_username);
-                    UserInformation.set_password(str_password);
+                    //TODO: Store username/password
+                    //TODO: Set AuthenticationManager
+                    // Clean the database
+                    SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(getApplicationContext())).clear();
+                    SQLiteMessageProvider.getInstance(DBUtils.getDaoSession(getApplicationContext())).clear();
+                    SQLiteUserProvider.getInstance(DBUtils.getDaoSession(getApplicationContext())).clear();
+                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.USERNAME, null);
+                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.PASSWORD, null);
+                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.UID, null);
+
+
+                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.USERNAME, str_username);
+                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.PASSWORD, str_password);
+                    String Uid = UUID.randomUUID().toString();
+                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.UID, Uid);
+                    AuthenticationManager.setUid(Uid);
                     Toast.makeText(Signup.this, "Successfully sign up.", Toast.LENGTH_SHORT).show();
+
+
+
+
+                    MainActivity.open(Signup.this);
 
 
                 }
