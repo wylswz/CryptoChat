@@ -1,6 +1,7 @@
 package com.example.CryptoChat.common.data.provider;
 
 
+import android.database.sqlite.SQLiteConstraintException;
 import android.util.Log;
 
 import com.example.CryptoChat.common.data.exceptions.ObjectNotExistException;
@@ -17,7 +18,7 @@ public class SQLiteDialogProvider {
     private DialogDao dialogDao;
     private DaoSession session;
 
-    public static SQLiteDialogProvider getInstance(DaoSession session) {
+    synchronized public static SQLiteDialogProvider getInstance(DaoSession session) {
         if (instance == null) {
             synchronized (SQLiteMessageProvider.class) {
                 if (instance == null) {
@@ -30,17 +31,27 @@ public class SQLiteDialogProvider {
         return instance;
     }
 
-    public void addDialog(Dialog dialog) {
-        dialogDao.insert(dialog);
+    synchronized public void addDialog(Dialog dialog) {
+        try{
+            Dialog d = dialogDao.queryBuilder()
+                    .where(DialogDao.Properties.ReceiverId.eq(dialog.getReceiverId())).unique();
+            if (d == null) {
+                dialogDao.insert(dialog);
+            }
+
+        }catch (SQLiteConstraintException e) {
+            // No repeated
+        }
+
     }
 
-    public List<Dialog> getDialogs() {
+    synchronized public List<Dialog> getDialogs() {
         List<Dialog> l = dialogDao.queryBuilder()
                 .list();
         return l;
     }
 
-    public Dialog getDialogById(String Id) throws ObjectNotExistException {
+    synchronized public Dialog getDialogById(String Id) throws ObjectNotExistException {
         try{
             Dialog d = dialogDao.queryBuilder()
                     .where(DialogDao.Properties.Id.eq(Id))
@@ -52,7 +63,7 @@ public class SQLiteDialogProvider {
 
     }
 
-    public Dialog getDialogByReceiverId(String receiverId) throws ObjectNotExistException {
+    synchronized public Dialog getDialogByReceiverId(String receiverId) throws ObjectNotExistException {
         try{
             Dialog d = dialogDao.queryBuilder()
                     .where(DialogDao.Properties.ReceiverId.eq(receiverId)).uniqueOrThrow();
@@ -63,7 +74,7 @@ public class SQLiteDialogProvider {
 
     }
 
-    public void dropDialog(String dialogId) {
+    synchronized public void dropDialog(String dialogId) {
         try {
             dialogDao.queryBuilder()
                     .where(DialogDao.Properties.Id.eq(dialogId)).buildDelete().executeDeleteWithoutDetachingEntities();
@@ -75,19 +86,19 @@ public class SQLiteDialogProvider {
 
     }
 
-    public void dropDialog(Dialog dialog) {
+    synchronized public void dropDialog(Dialog dialog) {
         dialogDao.delete(dialog);
     }
 
-    public void updateDialog(Dialog dialog) {
+    synchronized public void updateDialog(Dialog dialog) {
         dialogDao.update(dialog);
     }
 
-    public void clear() {
+    synchronized public void clear() {
         dialogDao.deleteAll();
     }
 
-    public void incrementUnread(String receiverId, int count) {
+    synchronized public void incrementUnread(String receiverId, int count) {
         Dialog dialog = dialogDao.queryBuilder()
                 .where(DialogDao.Properties.ReceiverId.eq(receiverId))
                 .uniqueOrThrow();
@@ -95,7 +106,7 @@ public class SQLiteDialogProvider {
         updateDialog(dialog);
     }
 
-    public void resetUnread(String receiverId) {
+    synchronized public void resetUnread(String receiverId) {
         Dialog dialog = dialogDao.queryBuilder()
                 .where(DialogDao.Properties.ReceiverId.eq(receiverId))
                 .uniqueOrThrow();

@@ -12,8 +12,10 @@ import org.greenrobot.greendao.DaoException;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Transient;
+import org.greenrobot.greendao.annotation.Unique;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -29,6 +31,7 @@ public class Dialog implements IDialog<Message> {
     private String lastMessageId; // Used for message list view
     private String dialogPhoto;
     private String dialogName;
+    @Index
     private String receiverId; // id of target user (not primary key)
     private int unreadCount;
 

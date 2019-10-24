@@ -18,6 +18,7 @@ import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.utils.DBUtils;
+import com.example.CryptoChat.utils.rsa;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +30,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.greenrobot.greendao.DaoException;
 
+import java.math.BigInteger;
 import java.time.Instant;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -42,11 +45,13 @@ public class FirebaseAPIs {
     private static DatabaseReference mRef = fbClient.getReference();
     private static String TAG = "READFROMFIREBASE";
     private static FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private static Context a_context;
+    public static HashSet<String> used = new HashSet<>();
+
 
     //Read from Firebase
     //listen on message change
-    public static void readMsgFromDB( Context ctx) {
+    synchronized public static void readMsgFromDB( Context ctx) {
+
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -56,11 +61,11 @@ public class FirebaseAPIs {
                 RecyclerView.Adapter adapter = AdapterManager.getAdapter();
                 Map<String, Object> msgMap = (HashMap)dataSnapshot.child("messages").child(AuthenticationManager.getUid()).getValue(false);
                 if (msgMap != null) {
-                    HashSet<String> used = new HashSet<>();
+
                     for (String k : msgMap.keySet()) {
                         Log.v("FirebaseAPI", k);
                         if (!used.contains(k)) {
-
+                            used.add(k);
                             String id = ((Map<String, String>)msgMap.get(k)).get("id");
                             String senderId = ((Map<String, String>)msgMap.get(k)).get("senderId");
                             String text = ((Map<String, String>)msgMap.get(k)).get("text");
@@ -72,6 +77,23 @@ public class FirebaseAPIs {
                                 User author = SQLiteUserProvider.getInstance(DBUtils.getDaoSession(ctx)).getUser(senderId);
                                 User receiver = AuthenticationManager.getMe();
                                 Message msg = new Message(UUID.randomUUID().toString(),author, receiver,text,time);
+
+                                String plainText;
+                                String cipher = msg.getText();
+                                String privateKey = KeyValueStore.getInstance().get(ctx,KeyValueStore.PRIVKEY);
+                                try {
+                                    byte[] decodeData = Base64.getDecoder().decode(cipher.getBytes());
+                                    byte[] decode = rsa.decryptByPrivateKey(decodeData, privateKey);
+                                    String decodeStr = new String(decode);
+                                    plainText=decodeStr;
+                                }catch (Exception e){
+
+                                    plainText=e.getMessage();
+
+                                }
+                                msg.setText(plainText);
+
+
                                 SQLiteMessageProvider.getInstance(DBUtils.getDaoSession(ctx)).insertMessage(msg);
                                 try{
                                     d = SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).getDialogByReceiverId(senderId);
@@ -91,7 +113,7 @@ public class FirebaseAPIs {
 
 
                                 } catch (ObjectNotExistException e) {
-                                    Log.e("FirebaseAPIs","Dialog not exist, create new");
+                                    Log.e("FirebaseAPIs",e.getMessage() +"Sender: " + senderId);
                                     d = new Dialog(author.getAlias(),author.getAvatar(),senderId,msg,1);
                                     SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).addDialog(d);
                                     if (adapter instanceof DialogAdapter) {
@@ -119,7 +141,7 @@ public class FirebaseAPIs {
                             }
 
                             mRef.child("messages").child(AuthenticationManager.getUid()).child(id).removeValue();
-                            used.add(k);
+
                         }
 
                     }

@@ -11,6 +11,8 @@ public class KeyValueStore {
     public static final String EMAIL = "EMAIL";
     public static final String USERNAME = "USERNAME";
     public static final String PASSWORD = "PASSOWRD";
+    public static final String PUBKEY = "PUBKEY";
+    public static final String PRIVKEY = "PRIVKEY";
 
     private static KeyValueStore instance;
 

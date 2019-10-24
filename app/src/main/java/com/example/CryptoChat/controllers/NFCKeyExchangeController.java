@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.CryptoChat.R;
 import com.example.CryptoChat.services.AuthenticationManager;
+import com.example.CryptoChat.services.KeyValueStore;
 import com.google.gson.Gson;
 
 public class NFCKeyExchangeController extends AppCompatActivity implements NfcAdapter.CreateNdefMessageCallback {
@@ -39,8 +40,8 @@ public class NFCKeyExchangeController extends AppCompatActivity implements NfcAd
     }
     public NdefMessage createNdefMessage(NfcEvent nfcEvent) {
         String myId = AuthenticationManager.getUid();
-        String publicKey= new String("git fdsnvkndkd");
-        String sendMessage= myId+"\n"+publicKey;
+        String publicKey= KeyValueStore.getInstance().get(getApplicationContext(),KeyValueStore.PUBKEY);
+        String sendMessage= myId+"<<<>>>"+publicKey;
         NdefRecord ndefRecord = NdefRecord.createMime("text/plain", sendMessage.getBytes());
         NdefMessage ndefMessage = new NdefMessage(ndefRecord);
         return ndefMessage;

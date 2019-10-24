@@ -1,6 +1,7 @@
 package com.example.CryptoChat.controllers;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.Bundle;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
@@ -43,11 +44,17 @@ public class Receiver extends AppCompatActivity {
             String success= new String("Add friends successfully!!");
 
             String messages=new String(message.getRecords()[0].getPayload());
-            String[] parts =messages.split("\n");
+            String[] parts =messages.split("<<<>>>");
             String uid = parts[0];
             String keyPublic= parts[1];
             User u = new User(uid,uid,"",true);
-            SQLiteUserProvider.getInstance(DBUtils.getDaoSession(getApplicationContext())).addUser(u);
+            u.setPubkey(keyPublic);
+            try{
+                SQLiteUserProvider.getInstance(DBUtils.getDaoSession(getApplicationContext())).addUser(u);
+            } catch (SQLiteConstraintException e) {
+                Toast.makeText(getApplicationContext(),"Friend already exists",Toast.LENGTH_SHORT).show();
+            }
+
             mTextView.setText(keyPublic);
 
         } else

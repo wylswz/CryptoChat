@@ -28,8 +28,10 @@ import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
 import com.example.CryptoChat.services.AdapterManager;
 import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.services.FirebaseAPIs;
+import com.example.CryptoChat.services.KeyValueStore;
 import com.example.CryptoChat.utils.AppUtils;
 import com.example.CryptoChat.utils.DBUtils;
+import com.example.CryptoChat.utils.rsa;
 import com.squareup.picasso.Picasso;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.messages.MessageInput;
@@ -38,7 +40,9 @@ import com.stfalcon.chatkit.messages.MessagesListAdapter;
 
 import org.greenrobot.greendao.DaoException;
 
+import java.math.BigInteger;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -208,6 +212,7 @@ public class MessageController extends AppCompatActivity implements MessagesList
 
             List<Message> messages = mp.getMessages(receiverId, limit, offset);
             offset = offset + limit;
+
             messagesAdapter.addToEnd(messages, false);
         }, 100);
     }
@@ -241,30 +246,44 @@ public class MessageController extends AppCompatActivity implements MessagesList
     @Override
     public boolean onSubmit(CharSequence input) {
         try {
-            Message msg = new Message(UUID.randomUUID().toString(), AuthenticationManager.getMe(), cp.getUser(receiverId), input.toString());
-            msg.setReceiverId(receiverId);
-            mp.insertMessage(msg);
-            messagesAdapter.addToStart(msg,true);
-            FirebaseAPIs.writeMsg(msg, senderId, receiverId);
+            byte[] encodeData=null;
+            String text = input.toString();
+            User receiver = cp.getUser(receiverId);
+            String pubkey = receiver.getPubkey().trim();
+
+            byte [] rsaData= text.getBytes();
+            encodeData= rsa.encryptByPublicKey(rsaData,pubkey);
+            byte [] encode= Base64.getEncoder().encode(encodeData);
+            String encodeStr= new String(encode);
+
+            Message msg_plain = new Message(UUID.randomUUID().toString(), AuthenticationManager.getMe(), receiver, text);
+            Message msg_encrypted = new Message(UUID.randomUUID().toString(), AuthenticationManager.getMe(), receiver, encodeStr);
+            msg_encrypted.setReceiverId(receiverId);
+            msg_plain.setReceiverId(receiverId);
+
+            mp.insertMessage(msg_plain);
+            messagesAdapter.addToStart(msg_plain,true);
+            FirebaseAPIs.writeMsg(msg_encrypted, senderId, receiverId);
 
             offset += 1;
             if (this.dialog == null) {
                 try {
-                    User receiver = cp.getUser(receiverId);
-                    this.dialog = new Dialog(receiver.getAlias(), receiver.getAvatar(), receiverId, msg, 0);
+
+                    this.dialog = new Dialog(receiver.getAlias(), receiver.getAvatar(), receiverId, msg_plain, 0);
                     dp.addDialog(this.dialog);
                 } catch (Exception e) {
                     Log.e("MessageController", "Contact not found when creating dialog");
                 }
 
             }
-            this.dialog.setLastMessageId(msg.getId());
+            this.dialog.setLastMessageId(msg_plain.getId());
             dp.updateDialog(this.dialog);
-        } catch (Exception e) {
+        } catch (DaoException e) {
             Toast.makeText(getApplicationContext(),"Target user is untrusted",Toast.LENGTH_SHORT).show();
             Log.e("MessageController", "User not exist when sending message");
+        } catch (Exception e) {
+            Log.e("MessageController", e.getMessage());
         }
-
 
         // TODO: Send the message to server side along with receiver ID
         return true;

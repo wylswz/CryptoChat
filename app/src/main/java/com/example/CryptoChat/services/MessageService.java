@@ -35,7 +35,6 @@ class MessageUpdate extends Thread {
 
             @Override
             public void onTick(long l) {
-                Log.v("MessageService:CountDownTimer", "Tick");
                 FirebaseAPIs.readMsgFromDB(ctx);
             }
 

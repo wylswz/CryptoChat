@@ -95,21 +95,26 @@ public class Message implements IMessage,
 
     @Override
     public User getUser() {
-
-        if (this.senderId.equals(AuthenticationManager.getUid()) || this.senderId.equals("0")) {
-            return AuthenticationManager.getMe();
-        } else {
-            try{
-                User u = SQLiteUserProvider.getInstance(null).getUser(senderId);
-                return u;
-            } catch (Exception e) {
-                Log.e("Message", "User not exist when rendering last sender avatar with id " + senderId + "/" + AuthenticationManager.getUid());
+        try{
+            if (this.senderId.equals(AuthenticationManager.getUid()) || this.senderId.equals("0")) {
+                return AuthenticationManager.getMe();
+            } else {
+                try{
+                    User u = SQLiteUserProvider.getInstance(null).getUser(senderId);
+                    return u;
+                } catch (Exception e) {
+                    Log.e("Message", "User not exist when rendering last sender avatar with id " + senderId + "/" + AuthenticationManager.getUid());
+                }
             }
+            // The message is neither from phone user
+            // Nor contacts in the list
+            // May happen when change current userID in debug page
+            return AuthenticationManager.getMe();
+        } catch (NullPointerException e) {
+            User u = new User("-1","Unknown","",false);
+            return u;
         }
-        // The message is neither from phone user
-        // Nor contacts in the list
-        // May happen when change current userID in debug page
-        return AuthenticationManager.getMe();
+
     }
 
     @Override
@@ -186,6 +191,7 @@ public class Message implements IMessage,
             this.url = url;
         }
     }
+
 
 
 }

@@ -3,6 +3,7 @@ package com.example.CryptoChat.controllers;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -17,7 +18,9 @@ import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.services.FirebaseAPIs;
 import com.example.CryptoChat.services.KeyValueStore;
 import com.example.CryptoChat.utils.DBUtils;
+import com.example.CryptoChat.utils.rsa;
 
+import java.util.Map;
 import java.util.UUID;
 
 public class Signup extends Activity {
@@ -82,6 +85,20 @@ public class Signup extends Activity {
             boolean success = verifyAndRegister(str_username,str_password,str_confirm_password);
             if (success) {
                 //TODO: Setup rsa keypair
+                String publicKey="";
+                String privateKey="";
+                try {
+                    Map<String, Object> keyMap = rsa.initKey();
+                    publicKey=rsa.getPublicKey(keyMap);
+                    privateKey=rsa.getPrivateKey(keyMap);
+                    Log.e("Signup", publicKey);
+                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.PUBKEY, publicKey);
+                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.PRIVKEY, privateKey);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
                 MainActivity.open(Signup.this);
             }
 
