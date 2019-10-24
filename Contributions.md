@@ -11,3 +11,14 @@
 - Migrate thrid party chat ui library to make it work with local data models as well as cloud message passing apis.
 - Manage design patterns
 - Help desining message passing
+## Tian jin (Tianjin3)
+- Add NFC communication model
+  - nfc transmision protocal
+  - ecapsulate message in NDEF data form
+  - initial Android beam in transmission stage
+  - parsing the key information
+- Implementation of RSA encryption
+  - Generate public and private key at intial user state
+  - convert encrypted message to string
+  - decrpyt and parsing decrypted message back to string
+  
