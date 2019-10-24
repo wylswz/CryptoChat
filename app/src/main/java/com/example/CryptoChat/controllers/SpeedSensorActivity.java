@@ -57,7 +57,11 @@ public class SpeedSensorActivity extends Activity implements SensorEventListener
 
         if (speed > 3){
             // TODO: add reccomendation on Screen(walk too fast, plz change to voice talk or sth)
+<<<<<<< HEAD
             Toast.makeText(this, "be careful for sending message when you are walking", Toast.LENGTH_SHORT).show();
+=======
+            Toast.makeText(this,"please carefully messaging when you are walking", Toast.LENGTH_SHORT).show();
+>>>>>>> c879c58abe18547089e42220cab7bdc86f8f68ba
         }
     }
 

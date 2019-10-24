@@ -34,10 +34,17 @@ public class LightSensorActivity extends Activity implements SensorEventListener
 
         if (light_now < 100){
             // TODO: pop out a reccomentdation to change a background or etc.
+<<<<<<< HEAD
             Toast.makeText(this, "light is too low, recommend to change a night background", Toast.LENGTH_SHORT).show();
         }else if(light_now > 50000){
             // TODO: pop out a reccomentdation to change a background or etc.
             Toast.makeText(this, "light is too high, recommend to change a light background", Toast.LENGTH_SHORT).show();
+=======
+            Toast.makeText(this,"Light is too low, recommend a night background", Toast.LENGTH_SHORT).show();
+        }else if(light_now > 50000){
+            // TODO: pop out a reccomentdation to change a background or etc.
+            Toast.makeText(this, "Light is too high, recommend a light background", Toast.LENGTH_SHORT).show();
+>>>>>>> c879c58abe18547089e42220cab7bdc86f8f68ba
         }
 
     }
