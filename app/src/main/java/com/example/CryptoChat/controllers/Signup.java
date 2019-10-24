@@ -36,9 +36,9 @@ public class Signup extends Activity {
 
         button_signup = findViewById(R.id.button_login);
         //button_goto_signin = findViewById(R.id.go_to_signup_page);
-        editText_username =(EditText)findViewById(R.id.username);
-        editText_password =(EditText)findViewById(R.id.password);
-        editText_confirm_password =(EditText)findViewById(R.id.confirm_password);
+        editText_username = (EditText) findViewById(R.id.username);
+        editText_password = (EditText) findViewById(R.id.password);
+        editText_confirm_password = (EditText) findViewById(R.id.confirm_password);
 
 //        click sign up button:
         button_signup.setOnClickListener(new View.OnClickListener() { //为组件设置点击事件
@@ -49,59 +49,33 @@ public class Signup extends Activity {
                 str_confirm_password = editText_confirm_password.getText().toString();
 
 
-
-
-                FirebaseAPIs.readUserFromDB();
-
-
-//                todo: checker whether the username is already in the server database
-                boolean username_used = false;
-
-
 //              check whether one of the blank is not typed
-                if(str_username.equals("")){
-                    Toast.makeText(Signup.this, "Please enter username",Toast.LENGTH_SHORT).show();
-                }
-                else if(str_password.equals("")){
-                    Toast.makeText(Signup.this, "Please enter password",Toast.LENGTH_SHORT).show();
-                }
-                else if(str_confirm_password.equals("")){
-                    Toast.makeText(Signup.this, "Please re-enter password",Toast.LENGTH_SHORT).show();
+                if (str_username.equals("")) {
+                    Toast.makeText(Signup.this, "Please enter username", Toast.LENGTH_SHORT).show();
+                } else if (str_password.equals("")) {
+                    Toast.makeText(Signup.this, "Please enter password", Toast.LENGTH_SHORT).show();
+                } else if (str_confirm_password.equals("")) {
+                    Toast.makeText(Signup.this, "Please re-enter password", Toast.LENGTH_SHORT).show();
                 }
 
 //              check whether the two passwords are same
-                else if(!str_password.equals(str_confirm_password)){
-                    Toast.makeText(Signup.this, "wrong password",Toast.LENGTH_SHORT).show();
-                }
-
-
-
-
-//                else if(username_used){
-//                    Toast.makeText(Signup.this, "username already occupied, try another one.",Toast.LENGTH_SHORT).show();
-//
-//                }
-
-                else {
+                else if (!str_password.equals(str_confirm_password)) {
+                    Toast.makeText(Signup.this, "wrong password", Toast.LENGTH_SHORT).show();
+                } else {
                     //TODO: Store username/password
                     //TODO: Set AuthenticationManager
+
                     // Clean the database
                     SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(getApplicationContext())).clear();
                     SQLiteMessageProvider.getInstance(DBUtils.getDaoSession(getApplicationContext())).clear();
                     SQLiteUserProvider.getInstance(DBUtils.getDaoSession(getApplicationContext())).clear();
-                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.USERNAME, null);
-                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.PASSWORD, null);
-                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.UID, null);
 
-
-                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.USERNAME, str_username);
-                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.PASSWORD, str_password);
+                    KeyValueStore.getInstance().putValue(getApplicationContext(), KeyValueStore.USERNAME, str_username);
+                    KeyValueStore.getInstance().putValue(getApplicationContext(), KeyValueStore.PASSWORD, str_password);
                     String Uid = UUID.randomUUID().toString();
-                    KeyValueStore.getInstance().putValue(getApplicationContext(),KeyValueStore.UID, Uid);
+                    KeyValueStore.getInstance().putValue(getApplicationContext(), KeyValueStore.UID, Uid);
                     AuthenticationManager.setUid(Uid);
                     Toast.makeText(Signup.this, "Successfully sign up.", Toast.LENGTH_SHORT).show();
-
-
 
 
                     MainActivity.open(Signup.this);
@@ -114,22 +88,12 @@ public class Signup extends Activity {
 
         });
 
-//        button_goto_signin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                todo:go to sign in page
-//
-//                Toast.makeText(Signup.this, "go to Log in page",Toast.LENGTH_SHORT).show();
-
-//            }
-//
-//        });
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
 
-        Intent intent = new Intent(Signup.this,Login.class);
-                startActivity(intent);
+        Intent intent = new Intent(Signup.this, Login.class);
+        startActivity(intent);
     }
 }

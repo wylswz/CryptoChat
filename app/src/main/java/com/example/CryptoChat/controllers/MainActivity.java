@@ -11,8 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.biometric.BiometricPrompt;
-import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -22,7 +20,6 @@ import com.example.CryptoChat.common.data.models.DaoSession;
 import com.example.CryptoChat.common.data.provider.SQLiteDialogProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteMessageProvider;
 import com.example.CryptoChat.common.data.provider.SQLiteUserProvider;
-import com.example.CryptoChat.services.AuthenticationManager;
 import com.example.CryptoChat.services.MessageService;
 import com.example.CryptoChat.utils.DBUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,7 +37,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements DialogController.OnFragmentInteractionListener,
-        ContactListController.OnFragmentInteractionListener, SettingsController.OnFragmentInteractionListener, Authenticatable {
+        ContactListController.OnFragmentInteractionListener, SettingsController.OnFragmentInteractionListener {
 
 
     private DaoSession mDaoSession;
@@ -105,47 +102,6 @@ public class MainActivity extends AppCompatActivity implements DialogController.
 
     }
 
-    @Override
-    public BiometricPrompt.AuthenticationCallback getCallback() {
-        return new BiometricPrompt.AuthenticationCallback() {
-            @Override
-            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
-                super.onAuthenticationError(errorCode, errString);
-                Log.e("Auth", "Auth error");
-                //TODO: In prod env, should exit the program
-                show();
-
-                //System.exit(0);
-            }
-
-            @Override
-            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
-                super.onAuthenticationSucceeded(result);
-                AuthenticationManager.unlock();
-                show();
-
-            }
-
-            @Override
-            public void onAuthenticationFailed() {
-                super.onAuthenticationFailed();
-                AuthenticationManager.lock();
-
-                Log.e("Auth", "Auth failed");
-            }
-        };
-    }
-
-    @Override
-    public void verifyAuth() {
-        if (!AuthenticationManager.getAuthState()) {
-            showBiometricPrompt();
-        } else {
-            show();
-        }
-    }
-
-    @Override
     public void initUI() {
         setContentView(R.layout.activity_main);
 
@@ -156,10 +112,6 @@ public class MainActivity extends AppCompatActivity implements DialogController.
         NavigationUI.setupWithNavController(nav, navCtl);
     }
 
-    @Override
-    public FragmentActivity getBioActivity() {
-        return MainActivity.this;
-    }
 
     @Override
     public void onStop() {
@@ -182,15 +134,6 @@ public class MainActivity extends AppCompatActivity implements DialogController.
     @Override
     public void onFragmentInteraction(Uri uri) {
 
-    }
-
-    private void hide() {
-        findViewById(R.id.activity_main_layout).setVisibility(View.INVISIBLE);
-
-    }
-
-    private void show() {
-        findViewById(R.id.activity_main_layout).setVisibility(View.VISIBLE);
     }
 
     public static void open(Context ctx) {
