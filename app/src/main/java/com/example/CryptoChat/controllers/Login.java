@@ -152,9 +152,6 @@ public class Login extends AppCompatActivity implements Authenticatable {
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
                 succeed();
-
-
-
             }
 
             @Override

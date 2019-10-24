@@ -60,9 +60,9 @@ public class FirebaseAPIs {
                     for (String k : msgMap.keySet()) {
                         Log.v("FirebaseAPI", k);
                         if (!used.contains(k)) {
+
                             String id = ((Map<String, String>)msgMap.get(k)).get("id");
                             String senderId = ((Map<String, String>)msgMap.get(k)).get("senderId");
-                            String receiverId = ((Map<String, String>)msgMap.get(k)).get("receiverId");
                             String text = ((Map<String, String>)msgMap.get(k)).get("text");
                             String timestamp = ((Map<String, String>)msgMap.get(k)).get("timestamp");
                             Date time = Date.from(Instant.parse(timestamp));
@@ -78,7 +78,7 @@ public class FirebaseAPIs {
                                     d.setLastMessage(msg);
                                     String openID = AdapterManager.getUserId();
                                     if (msg.getSenderId().equals(openID)) {
-                                        d.setUnreadCount(d.getUnreadCount());
+                                        d.setUnreadCount(0);
                                     }
                                     else{
                                         d.setUnreadCount(d.getUnreadCount()+1);
@@ -96,38 +96,31 @@ public class FirebaseAPIs {
                                     SQLiteDialogProvider.getInstance(DBUtils.getDaoSession(ctx)).addDialog(d);
                                     if (adapter instanceof DialogAdapter) {
                                         ((DialogAdapter)adapter).addItem(d);
-                                        ((DialogAdapter)adapter).notifyDataSetChanged();
+                                        adapter.notifyDataSetChanged();
 
                                     }
                                 }
 
-                                //TODO: Notify MessageAdapter for real time update
-                                //TODO: If adapter is not null, push new messages inside and notify data change
                                 if (adapter == null) {
                                     Log.v("FirebaseAPIs", "Null adapter, skip updating");
                                 }
                                 else if(adapter instanceof MessageAdapter) {
-                                    //TODO: Push message
                                     String openID = AdapterManager.getUserId();
                                     Log.v("FirebaseAPIs", openID);
                                     if (msg.getSenderId().equals(openID)) {
                                         ((MessageAdapter) adapter).addToStart(msg, true);
-                                        ((MessageAdapter) adapter).notifyDataSetChanged();
+                                        adapter.notifyDataSetChanged();
 
                                     }
                                 }
 
                             } catch (DaoException e) {
                                 Log.e("FirebaseAPIs", "Message from untrusted user");
-                                User u = new User(UUID.randomUUID().toString(),"unknown", "unknown",true);
-                                Message msg = new Message(UUID.randomUUID().toString(),u,AuthenticationManager.getMe(),text,time);
                             }
 
                             mRef.child("messages").child(AuthenticationManager.getUid()).child(id).removeValue();
                             used.add(k);
                         }
-
-
 
                     }
                 }
