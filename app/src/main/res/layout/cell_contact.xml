@@ -33,12 +33,10 @@
 
         <TextView
             android:id="@+id/contact_cell_name"
-            android:layout_width="142dp"
-            android:layout_height="23dp"
+            android:layout_width="273dp"
+            android:layout_height="46dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:text="@string/name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

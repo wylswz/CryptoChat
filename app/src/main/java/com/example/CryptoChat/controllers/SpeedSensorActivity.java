@@ -8,6 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.CryptoChat.R;
 
@@ -28,7 +29,7 @@ public class SpeedSensorActivity extends Activity implements SensorEventListener
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         // TYPE_ACCELEROMETER
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        // TYPE_LIGHT
+
     }
 
     @Override
@@ -56,6 +57,7 @@ public class SpeedSensorActivity extends Activity implements SensorEventListener
 
         if (speed > 3){
             // TODO: add reccomendation on Screen(walk too fast, plz change to voice talk or sth)
+            Toast.makeText(this, "be careful for sending message when you are walking", Toast.LENGTH_SHORT).show();
         }
     }
 

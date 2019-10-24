@@ -47,7 +47,7 @@ public class Receiver extends AppCompatActivity {
             String[] parts =messages.split("<<<>>>");
             String uid = parts[0];
             String keyPublic= parts[1];
-            User u = new User(uid,uid,"",true);
+            User u = new User(uid,uid,"https://i.imgur.com/mRqh5w1.png",true);
             u.setPubkey(keyPublic);
             try{
                 SQLiteUserProvider.getInstance(DBUtils.getDaoSession(getApplicationContext())).addUser(u);

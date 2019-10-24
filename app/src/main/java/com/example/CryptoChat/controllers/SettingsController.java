@@ -89,12 +89,10 @@ public class SettingsController extends Fragment {
         super.onActivityCreated(savedInstanceState);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Settings");
 
-        Button asAlice = (Button)getView().findViewById(R.id.debug_as_test_user_1);
-        Button asBob = (Button)getView().findViewById(R.id.debug_as_test_user_2);
         Button keyEx = (Button)getView().findViewById(R.id.debug_exchange_keypair);
         Button signout = (Button)getView().findViewById(R.id.debug_signout);
 
-        asAlice.setOnClickListener(view -> {
+        /*asAlice.setOnClickListener(view -> {
             User bob = new User("id_bob","Bob", "https://i.imgur.com/R3Jm1CL.png",true);
             try{
                 cp.addUser(bob);
@@ -120,7 +118,7 @@ public class SettingsController extends Fragment {
                 AuthenticationManager.setUid("id_bob");
                 Toast.makeText(getContext(),"You are now Bob", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         keyEx.setOnClickListener(view -> {
             NFCKeyExchangeController.open(getContext());

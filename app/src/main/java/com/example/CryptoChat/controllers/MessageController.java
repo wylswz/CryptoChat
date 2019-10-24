@@ -2,6 +2,10 @@ package com.example.CryptoChat.controllers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,9 +51,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+import static java.lang.Math.sqrt;
+
 
 public class MessageController extends AppCompatActivity implements MessagesListAdapter.OnLoadMoreListener,
-        MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.TypingListener, MessageInput.AttachmentsListener,MessageInput.OnFocusChangeListener {
+        MessagesListAdapter.SelectionListener, MessageInput.InputListener, MessageInput.TypingListener, MessageInput.AttachmentsListener,MessageInput.OnFocusChangeListener, SensorEventListener {
     private static final int TOTAL_MESSAGES_COUNT = 10000;
 
     protected String senderId;
@@ -62,6 +68,8 @@ public class MessageController extends AppCompatActivity implements MessagesList
     private SQLiteUserProvider cp;
     private DaoSession ds;
 
+    private SensorManager mSensorManager;
+    private Sensor mSensor;
 
 
     private Menu menu;
@@ -89,6 +97,10 @@ public class MessageController extends AppCompatActivity implements MessagesList
         this.senderId = AuthenticationManager.getUid();
         setContentView(R.layout.activity_messages_controller);
         this.messagesList = findViewById(R.id.messagesList);
+        // sensor manager
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        // TYPE_ACCELEROMETER
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
         ds = DBUtils.getDaoSession(this);
         mp = SQLiteMessageProvider.getInstance(ds);
@@ -314,6 +326,8 @@ public class MessageController extends AppCompatActivity implements MessagesList
     @Override
     public void onResume(){
         super.onResume();
+        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+
         if (this.dialog != null){
             this.dialog.setUnreadCount(0);
             dp.updateDialog(this.dialog);
@@ -321,5 +335,20 @@ public class MessageController extends AppCompatActivity implements MessagesList
         AdapterManager.setAdapter(messagesAdapter, receiverId);
         offset = 0;
         loadMessages();
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        float light_now = event.values[0];
+
+        if (light_now < 100){
+            // TODO: pop out a reccomentdation to change a background or etc.
+            Toast.makeText(this, "light is too low, please pay attention for eye using", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor lightSensor, int i) {
+
     }
 }

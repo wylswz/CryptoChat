@@ -11,6 +11,7 @@
     <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
     <uses-permission-sdk-23 android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true"
