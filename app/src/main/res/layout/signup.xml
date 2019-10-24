@@ -58,7 +58,7 @@
         android:layout_marginEnd="64dp"
         android:layout_weight="2.5"
         android:background="@color/colorAccent"
-        android:fontFamily="casual"
+        android:fontFamily="sans-serif-light"
         android:text="Sign up"
         android:textColor="@color/white"
         android:textSize="18dp"

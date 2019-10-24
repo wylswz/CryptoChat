@@ -35,15 +35,58 @@ public class Login extends AppCompatActivity implements Authenticatable {
         ctx.startActivity(intent);
     }
 
+
+    /**
+     * Password/Biometric authentication succeed
+     * if Uid not exists, it can still fail
+     */
     private void succeed(){
         String Uid = KeyValueStore.getInstance().get(getApplicationContext(),KeyValueStore.UID);
-        AuthenticationManager.setUid(Uid);
-        MainActivity.open(Login.this);
+        if (Uid ==null || Uid.equals("")) {
+            // Fail, Set bio auth button back to clickable
+            button_login_bio.setClickable(true);
+            Toast.makeText(this,"User not registered",Toast.LENGTH_SHORT).show();
+        }else{
+            AuthenticationManager.setUid(Uid);
+            MainActivity.open(Login.this);
+            AuthenticationManager.unlock();
+        }
+
     }
 
+    /**
+     * Authentication fail
+     */
     private void fail(){
         AuthenticationManager.setUid(null);
         AuthenticationManager.lock();
+    }
+
+    /**
+     * Verify username/password
+     * @param str_username from text input
+     * @param str_password from text input
+     * @return true if verified
+     */
+    private boolean verify(String str_username, String str_password){
+        if (str_username.equals("")) {
+            Toast.makeText(Login.this, "Please enter username", Toast.LENGTH_SHORT).show();
+        } else if (str_password.equals("")) {
+            Toast.makeText(Login.this, "Please enter password", Toast.LENGTH_SHORT).show();
+        }
+
+        else if (!str_username.equals(KeyValueStore.getInstance().get(getApplicationContext(),KeyValueStore.USERNAME))) {
+            Toast.makeText(Login.this, "Username not found.", Toast.LENGTH_SHORT).show();
+
+        } else if (!str_password.equals(KeyValueStore.getInstance().get(getApplicationContext(),KeyValueStore.PASSWORD))) {
+            Toast.makeText(Login.this, "Wrong password.", Toast.LENGTH_SHORT).show();
+
+        } else {
+            //TODO: Set Authentication manager
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -60,47 +103,14 @@ public class Login extends AppCompatActivity implements Authenticatable {
         editText_password = (EditText) findViewById(R.id.password);
 
 
-//        click login button:
-        button_login.setOnClickListener(new View.OnClickListener() { //为组件设置点击事件
-            @Override
-            public void onClick(View v) {
-                str_username = editText_username.getText().toString();
-                str_password = editText_password.getText().toString();
+        button_login.setOnClickListener(v -> {
+            str_username = editText_username.getText().toString();
+            str_password = editText_password.getText().toString();
 
-//                mRef.child("users").child(user.getId()).setValue(userMap);
-
-
-//                todo: checker whether the username is already in the server database
-                boolean username_used = false;
-
-
-//              check whether one of the blank is not typed
-                if (str_username.equals("")) {
-                    Toast.makeText(Login.this, "Please enter username", Toast.LENGTH_SHORT).show();
-                } else if (str_password.equals("")) {
-                    Toast.makeText(Login.this, "Please enter password", Toast.LENGTH_SHORT).show();
-                }
-
-
-//              no such username
-
-                else if (!str_username.equals(KeyValueStore.getInstance().get(getApplicationContext(),KeyValueStore.USERNAME))) {
-                    Toast.makeText(Login.this, "Username not found.", Toast.LENGTH_SHORT).show();
-
-                } else if (!str_password.equals(KeyValueStore.getInstance().get(getApplicationContext(),KeyValueStore.PASSWORD))) {
-                    Toast.makeText(Login.this, "Wrong password.", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    Toast.makeText(Login.this, "Successfully log in.", Toast.LENGTH_SHORT).show();
-
-
-                    //TODO: Set Authentication manager
-                    succeed();
-
-
-                }
-
-
+            if (verify(str_username, str_password)) {
+                succeed();
+            } else {
+                fail();
             }
 
         });
@@ -141,8 +151,9 @@ public class Login extends AppCompatActivity implements Authenticatable {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                AuthenticationManager.unlock();
                 succeed();
+
+
 
             }
 
@@ -172,6 +183,13 @@ public class Login extends AppCompatActivity implements Authenticatable {
     @Override
     public FragmentActivity getBioActivity() {
         return Login.this;
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        button_login_bio.setClickable(true);
     }
 
 

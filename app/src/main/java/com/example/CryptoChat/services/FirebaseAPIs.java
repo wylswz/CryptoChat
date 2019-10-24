@@ -150,7 +150,7 @@ public class FirebaseAPIs {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 Map<String, Object> userMap = (HashMap)dataSnapshot.child("users").child(AuthenticationManager.getUid()).getValue();
-               // User user = dataSnapshot.getValue(User.class);
+                // User user = dataSnapshot.getValue(User.class);
                 //Log.d(TAG, "Value is: " + user);
             }
 
@@ -201,21 +201,20 @@ public class FirebaseAPIs {
     public static void deleteUser(User user) {
         String userId = user.getId();
         mRef.child("users").child(userId).setValue(user)
-            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess (Void aVoid){
-                }
-    })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure (@NonNull Exception e){
-            // Write failed
-                }
-    });
-}
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess (Void aVoid){
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure (@NonNull Exception e){
+                        // Write failed
+                    }
+                });
+    }
 
 
 
 
 }
-
