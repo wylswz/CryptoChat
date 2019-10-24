@@ -55,7 +55,7 @@ public class Receiver extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Friend already exists",Toast.LENGTH_SHORT).show();
             }
 
-            mTextView.setText(keyPublic);
+            mTextView.setText(success);
 
         } else
             mTextView.setText("Waiting for NDEF Message");
