@@ -7,6 +7,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.CryptoChat.R;
 
@@ -33,8 +34,10 @@ public class LightSensorActivity extends Activity implements SensorEventListener
 
         if (light_now < 100){
             // TODO: pop out a reccomentdation to change a background or etc.
+            Toast.makeText(this,"Light is too low, recommend a night background", Toast.LENGTH_SHORT).show();
         }else if(light_now > 50000){
             // TODO: pop out a reccomentdation to change a background or etc.
+            Toast.makeText(this, "Light is too high, recommend a light background", Toast.LENGTH_SHORT).show();
         }
 
     }
