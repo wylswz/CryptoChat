@@ -22,3 +22,11 @@
   - convert encrypted message to string
   - decrpyt and parsing decrypted message back to string
   
+## Yifan Liang(liangy6)
+Implement remote database
+- contribute in remote database and message passing design
+- build Firebase database
+- implement Firebase API
+- contritution in service pattern
+- contribute in Database encryption and clean
+Implement light sensor
