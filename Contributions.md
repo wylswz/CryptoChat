@@ -23,13 +23,13 @@
   - decrpyt and parsing decrypted message back to string
   
 ## Yifan Liang(liangy6)
-Implement remote database
-- contribute in remote database and message passing design
-- build Firebase database
-- implement Firebase API
-- contritute in service pattern
-- contribute in database encryption and clean
-Implement light sensor
+- Implement remote database
+  - contribute in remote database and message passing design
+  - build Firebase database
+  - implement Firebase API
+  - contritute in service pattern
+  - contribute in database encryption and clean
+- Implement light sensor
 ## Defang Shi(defangs)
 Design UI and implement functions of sign up and log in page
 - include 2 versions of sign up & log in implementations (Finally the stable version was chosen rather than the fancy one, because bugs happened when the latter embedded into the app)
