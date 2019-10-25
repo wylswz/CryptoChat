@@ -38,7 +38,7 @@ Design UI and implement functions of sign up and log in page
 - Generate userid and store it locally for further identification.
 
 ## Fei Zhou(fzzh)
-- Design data model and local datatabse
+- Design and implement data model and local datatabse
   - Compat with remote firebase
-  - Support real-time update 
+  - Support real-time update after operation or receiving message
 
