@@ -40,7 +40,7 @@ Design UI and implement functions of sign up and log in page
 ## Fei Zhou(fzzh)
 - Design and implement data model and local datatabse
   - Design data model of message, dialog and user
-  - Implemented nteract with backend operation
+  - Implemented user adapter to interact with backend operation
   - Compat with remote firebase
   - Support real-time update after operation or receiving message
   - Optimize based on the requirement of service process
