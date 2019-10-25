@@ -27,6 +27,6 @@ Implement remote database
 - contribute in remote database and message passing design
 - build Firebase database
 - implement Firebase API
-- contritution in service pattern
-- contribute in Database encryption and clean
+- contritute in service pattern
+- contribute in database encryption and clean
 Implement light sensor
