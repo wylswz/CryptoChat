@@ -30,3 +30,8 @@ Implement remote database
 - contritute in service pattern
 - contribute in database encryption and clean
 Implement light sensor
+## Defang Shi(defangs)
+Design UI and implement functions of sign up and log in page
+- include 2 versions of sign up & log in implementations (Finally the stable version was chosen rather than the fancy one, because bugs happened when the latter embedded into the app)
+- Sign up & log in function interact with database
+- Generate userid and store it locally for further identification.
