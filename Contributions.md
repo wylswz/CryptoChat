@@ -7,10 +7,11 @@
   - UI for debug purpose
   - UI for NFC communication
   - UI for contact setting
+  - Responsive UI
   - Theme
 - Migrate thrid party chat ui library to make it work with local data models as well as cloud message passing apis.
 - Manage design patterns
-- Help desining message passing
+- Help designing message passing
 ## Tian jin (Tianjin3)
 - Add NFC communication model
   - nfc transmision protocal
